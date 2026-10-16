@@ -21,11 +21,11 @@
 | 09 | Olist JOIN과 2단계 집계 | [한글](til/ko/day09.md) | [English](til/en/day09.md) | [쿼리](sql/day09.sql) |
 | 10 | 월별 집계와 재구매 고객 | [한글](til/ko/day10.md) | [English](til/en/day10.md) | [쿼리](sql/day10.sql) |
 | 11 | 조건부 집계와 서브쿼리 복습 | [한글](til/ko/day11.md) | [English](til/en/day11.md) | [쿼리](sql/day11.sql) |
-| 12 | Finance 고객 집계·조건부 집계·서브쿼리 (2026-10-10) | [한글](til/ko/day12.md) | [English](til/en/day12.md) | [SQL](sql/day12.sql) |
-| 13 | Finance 조건부 집계·비율·서브쿼리 (2026-10-11) | [한글](til/ko/day13.md) | [English](til/en/day13.md) | [SQL](sql/day13.sql) |
-| 14 | Baku F1 집계·JOIN·조건부 COUNT·서브쿼리 (2026-10-12) | [한글](til/ko/day14.md) | [English](til/en/day14.md) | [SQL](sql/day14.sql) |
-| 15 | Baku F1 2일차·조건부 집계·팀 통계·서브쿼리 (2026-10-13) | [한글](til/ko/day15.md) | [English](til/en/day15.md) | [SQL](sql/day15.sql) |
-| 16 | Online Retail 국가·고객 집계·JOIN·서브쿼리 (2026-10-16) | [한글](til/ko/day16.md) | [English](til/en/day16.md) | [SQL](sql/day16.sql) |
+| 12 | Finance 고객 집계·조건부 집계·서브쿼리 (2026-10-10) | [한글](til/ko/day12.md) | [English](til/en/day12.md) | [쿼리](sql/day12.sql) |
+| 13 | Finance 조건부 집계·비율·서브쿼리 (2026-10-11) | [한글](til/ko/day13.md) | [English](til/en/day13.md) | [쿼리](sql/day13.sql) |
+| 14 | Baku F1 집계·JOIN·조건부 COUNT·서브쿼리 (2026-10-12) | [한글](til/ko/day14.md) | [English](til/en/day14.md) | [쿼리](sql/day14.sql) |
+| 15 | Baku F1 2일차·조건부 집계·팀 통계·서브쿼리 (2026-10-13) | [한글](til/ko/day15.md) | [English](til/en/day15.md) | [쿼리](sql/day15.sql) |
+| 16 | Online Retail 국가·고객 집계·JOIN·서브쿼리 (2026-10-16) | [한글](til/ko/day16.md) | [English](til/en/day16.md) | [쿼리](sql/day16.sql) |
 
 ## 현재 학습 범위
 

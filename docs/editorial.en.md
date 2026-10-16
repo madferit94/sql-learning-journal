@@ -18,8 +18,12 @@
 3. Equal row counts before and after a JOIN are insufficient on their own: unmatched rows and multiplying keys can offset one another.
 4. MySQL's `ONLY_FULL_GROUP_BY` behavior depends on grouping and functional dependencies. Selecting a team name while grouping by only its ID requires appropriate uniqueness constraints; the repository does not include those constraints.
 5. Historical errors and malformed attempt snippets remain as learning evidence. Do not copy an “earlier attempt” as a working answer. `SUM(x)/COUNT(*)` matches `AVG(x)` only when the relevant null treatment and denominator agree.
-6. Day11 Exercise 3 records ERROR 1064 after the final query. The notes suggest unusual whitespace; the cause and a successful repair have not been independently reproduced.
+6. Day11 Exercise 3 preserves its original ERROR 1064 and suspected whitespace history. The dated addendum records a later successful user run; publication did not independently reproduce the whitespace cause.
 
 ## What was checked
 
 Publication checks cover bilingual day/exercise counts, local links, extracted-query hashes, exclusion of local source exports and Day06 identifier replacement. No database was available to rerun the queries. Existing result tables remain historical evidence, with some source outputs only partially displayed.
+
+## October 16 update
+
+Added Days12–16: 25 exercises, bringing the journal to 16 sessions and 85 exercises. Day16 was executed over October 15–16. Korean notes preserve detailed source content with formatting cleanup; English editions cover every exercise, selected attempts, exact final SQL, recorded outputs and help scope. Public files omit local paths, raw data, dumps, credentials and transaction-ID mappings. Existing Days1–11 remain the earlier snapshot except the explicitly dated Day11 Exercise 3 follow-up. Checks are publication consistency checks; no exercise SQL was rerun for this update.

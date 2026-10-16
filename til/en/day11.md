@@ -116,7 +116,7 @@ ORDER BY
 
 **Question.** For 2018 purchases, show each state's total, delivered and canceled order counts, keeping at least one thousand total orders.
 
-**Learning point.** The first attempt omitted THEN and filtered the wrong aggregate. The last recorded query still produced ERROR 1064, attributed in the notes to unusual whitespace. No successful final result is recorded; diagnosis has not been reverified.
+**Learning point.** The first attempt omitted THEN and filtered the wrong aggregate. The last recorded query still produced ERROR 1064, attributed in the notes to unusual whitespace. The original snapshot had no successful final result; see the dated follow-up below.
 
 ### Earlier attempt (historical; may be invalid)
 
@@ -164,7 +164,25 @@ ORDER BY
     customer_state ASC;
 ```
 
-No result table is reproduced here. See the Korean source for the original execution notes.
+The original snapshot contained no result table. The follow-up below records the later user-run output.
+
+
+### Follow-up verification — 2026-10-10
+
+The learner subsequently supplied a successful MySQL run after whitespace cleanup: 10 rows in 0.58 seconds. The recorded values are below. This supersedes the original unresolved execution status; the SQL/error history above is retained. This publication did not rerun Olist, and the whitespace diagnosis itself was not independently reproduced.
+
+| customer_state | total_order_count | delivered_count | canceled_count |
+| --- | --- | --- | --- |
+| SP | 23871 | 23335 | 188 |
+| RJ | 6571 | 6342 | 37 |
+| MG | 6181 | 6079 | 36 |
+| RS | 2780 | 2737 | 13 |
+| PR | 2755 | 2711 | 13 |
+| SC | 1906 | 1884 | 8 |
+| BA | 1784 | 1726 | 8 |
+| DF | 1213 | 1193 | 2 |
+| ES | 1061 | 1047 | 4 |
+| GO | 1056 | 1033 | 5 |
 
 ## Exercise 4
 

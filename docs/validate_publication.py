@@ -6,10 +6,10 @@ import re
 
 root = Path(__file__).resolve().parents[1]
 manifest = json.loads((root / 'docs/query-manifest.json').read_text())
-assert len(manifest) == 60
-assert len(list((root / 'til/ko').glob('day*.md'))) == 11
-assert len(list((root / 'til/en').glob('day*.md'))) == 11
-for day in range(1, 12):
+assert len(manifest) == 85
+assert len(list((root / 'til/ko').glob('day*.md'))) == 16
+assert len(list((root / 'til/en').glob('day*.md'))) == 16
+for day in range(1, 17):
     doc = (root / f'til/en/day{day:02}.md').read_text()
     exercises = re.split(r'(?=^## Exercise \d+)', doc, flags=re.M)[1:]
     records = [r for r in manifest if r['day'] == day]
@@ -33,4 +33,15 @@ for language in ['ko', 'en']:
     assert not re.search(r'\bC\d{4,}\b', (root / f'til/{language}/day06.md').read_text())
 assert 'ERROR 1064' in (root / 'til/en/day11.md').read_text()
 assert not (root / 'notion-export.json').exists()
-print('PASS: 11 bilingual days, 60 queries, hashes, links, fences, pseudonyms and unresolved status.')
+print('PASS: 16 bilingual sessions, 85 queries, hashes, links, fences, pseudonyms and historical error/follow-up history.')
+
+for day in range(12,17):
+    for lang in ('ko','en'):
+        text=(root/f'til/{lang}/day{day:02}.md').read_text()
+        assert '/Users/' not in text
+        if day in (12,13): assert not re.search(r'\bC\d{5,}\b',text)
+    sql_text=(root/f'sql/day{day:02}.sql').read_text()
+    ko=(root/f'til/ko/day{day:02}.md').read_text()
+    for q in re.findall(r'```sql\n(.*?)\n```',(root/f'til/en/day{day:02}.md').read_text(),re.S):
+        if q in sql_text: assert q in ko
+print('PASS: new Korean/English final SQL alignment, no local paths or original finance IDs.')

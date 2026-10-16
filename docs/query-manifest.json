@@ -403,7 +403,7 @@
     "exercise": 3,
     "source_block_index": 21,
     "query_sha256": "f3bd07af31448442d00d5533338670ef8c99fb75e3f54f70b27d1b7fbdcfee83",
-    "status": "unresolved"
+    "status": "user_run_followup_2026-10-10"
   },
   {
     "day": 11,
@@ -418,5 +418,180 @@
     "source_block_index": 43,
     "query_sha256": "2309fa721f4ba289046abe7f88c545db1e5da5d305a93bc04c3484429afccfb5",
     "status": "historical_record"
+  },
+  {
+    "day": 12,
+    "exercise": 1,
+    "source_block_index": 1,
+    "query_sha256": "03c1cfb24041e1f41e947b203db6d705a7743114688159ed5cd0b614186dc409",
+    "status": "user_run_historical_record"
+  },
+  {
+    "day": 12,
+    "exercise": 2,
+    "source_block_index": 1,
+    "query_sha256": "65b00f0b85dd16962a73d0e52f764551988960d7390490d0f03a1e31020bba83",
+    "status": "user_run_historical_record"
+  },
+  {
+    "day": 12,
+    "exercise": 3,
+    "source_block_index": 1,
+    "query_sha256": "1fbad5cf9ad65bf6db0b4de351033498135cc2240c0b054d6ab37bca38499f27",
+    "status": "user_run_historical_record"
+  },
+  {
+    "day": 12,
+    "exercise": 4,
+    "source_block_index": 1,
+    "query_sha256": "50e1439b9d7f1b9d41a1be1109cd5f99c8963954fa5dd8bb9a9e5d509fac5668",
+    "status": "user_run_historical_record"
+  },
+  {
+    "day": 12,
+    "exercise": 5,
+    "source_block_index": 2,
+    "query_sha256": "dcf229043854cd92f2badd4a431aa846c3dc807aa7905b618f07d89cc1261f41",
+    "status": "user_run_historical_record"
+  },
+  {
+    "day": 13,
+    "exercise": 1,
+    "source_block_index": 1,
+    "query_sha256": "3485ebb63a35d560dcb074d66c9d9ab214ad1e576ef860af4dbb8c8126293c9a",
+    "status": "user_run_historical_record"
+  },
+  {
+    "day": 13,
+    "exercise": 2,
+    "source_block_index": 1,
+    "query_sha256": "64befee3c009a25cf7dce7ff5a22337cee06b499238d7750be9ad9d4c6731c19",
+    "status": "user_run_historical_record"
+  },
+  {
+    "day": 13,
+    "exercise": 3,
+    "source_block_index": 0,
+    "query_sha256": "f84d2b70445d9c46e67f05a8505892414d9850e5faca61a8aeb86a6adc327384",
+    "status": "user_run_historical_record"
+  },
+  {
+    "day": 13,
+    "exercise": 4,
+    "source_block_index": 2,
+    "query_sha256": "1652b11ddf1eda1ec54d610e44f7f81af05ee2e260d92147486953eb156b455c",
+    "status": "user_run_historical_record"
+  },
+  {
+    "day": 13,
+    "exercise": 5,
+    "source_block_index": 1,
+    "query_sha256": "41dfd5095234e0e284986467c44afc46f13bd8bb73af59f5d412c177901254ca",
+    "status": "user_run_historical_record"
+  },
+  {
+    "day": 14,
+    "exercise": 1,
+    "source_block_index": 1,
+    "query_sha256": "4c2f2b024fad81bcd29a27b05aba5592ff7281e558851a46e1cfdd21fadd426e",
+    "status": "user_run_historical_record"
+  },
+  {
+    "day": 14,
+    "exercise": 2,
+    "source_block_index": 1,
+    "query_sha256": "cb1fbf41dff679539c4bc16a8b54a4e570cba1e3647470d3d27589cc771e817d",
+    "status": "user_run_historical_record"
+  },
+  {
+    "day": 14,
+    "exercise": 3,
+    "source_block_index": 1,
+    "query_sha256": "b2c9f504ae8d72ad172d6fc4b13cecfc5cae513672681739dcc99d3c52aba2dc",
+    "status": "user_run_historical_record"
+  },
+  {
+    "day": 14,
+    "exercise": 4,
+    "source_block_index": 1,
+    "query_sha256": "5f6fdbf7ce86d6cede61098b1c9ac0fab56eb6b65b3fa8a9cb25da763f451d90",
+    "status": "user_run_historical_record"
+  },
+  {
+    "day": 14,
+    "exercise": 5,
+    "source_block_index": 1,
+    "query_sha256": "c8e49aac1e2dda1005fa3ced03dd3fbfaa7dc19dc9e426c18fd5cad4c13c2607",
+    "status": "user_run_historical_record"
+  },
+  {
+    "day": 15,
+    "exercise": 1,
+    "source_block_index": 0,
+    "query_sha256": "7c719caada945ba6529abd2ae41786fdc085f000770c5cb70c95532aec1993ae",
+    "status": "user_run_historical_record"
+  },
+  {
+    "day": 15,
+    "exercise": 2,
+    "source_block_index": 0,
+    "query_sha256": "19b2714f839d2fc58bfe10f1bce3f527269767959df599a7fe7a2a6a1b9836d1",
+    "status": "user_run_historical_record"
+  },
+  {
+    "day": 15,
+    "exercise": 3,
+    "source_block_index": 1,
+    "query_sha256": "40bbfde290df294c39a459179b3751a716cc41f434706210cd493fe2d3850d6d",
+    "status": "user_run_historical_record"
+  },
+  {
+    "day": 15,
+    "exercise": 4,
+    "source_block_index": 1,
+    "query_sha256": "8f5c78704ff9e3c9364aa130e9490ea9f026a2f77ac60065deaae877ff209d43",
+    "status": "user_run_historical_record"
+  },
+  {
+    "day": 15,
+    "exercise": 5,
+    "source_block_index": 2,
+    "query_sha256": "cc6b9bfc7406c9c40b87531f49e92de37b2f87f7a9e0c0af724a3b4ebec39f99",
+    "status": "user_run_historical_record"
+  },
+  {
+    "day": 16,
+    "exercise": 1,
+    "source_block_index": 0,
+    "query_sha256": "0be4def0d27b0602d910d9d6b0fb8158606f2b3fa159c3144a7579f8a526f6ea",
+    "status": "user_run_historical_record"
+  },
+  {
+    "day": 16,
+    "exercise": 2,
+    "source_block_index": 1,
+    "query_sha256": "57dae12d1b4703ce65d8b7400a2a658b6ca185772de7fa68bbea307380c7643c",
+    "status": "user_run_historical_record"
+  },
+  {
+    "day": 16,
+    "exercise": 3,
+    "source_block_index": 1,
+    "query_sha256": "3bfaa5261df421e4678d62923515e13a27f291608a06caeb083b3cde8e56e169",
+    "status": "user_run_historical_record"
+  },
+  {
+    "day": 16,
+    "exercise": 4,
+    "source_block_index": 0,
+    "query_sha256": "97d617be6259e2a1b0289a937ca2ab8415cbe59b1b3e14554a0b7c6a23b9a41a",
+    "status": "user_run_historical_record"
+  },
+  {
+    "day": 16,
+    "exercise": 5,
+    "source_block_index": 0,
+    "query_sha256": "a6a062e79c2d4d46813330d581cf55e75c6d1fa043b1d2ce23a0a1dda750f974",
+    "status": "user_run_historical_record"
   }
 ]

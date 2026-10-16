@@ -21,11 +21,11 @@ The focus is learning to turn a question into a query, understand the unit of ea
 | 09 | Olist joins and two-stage aggregation | [한글](til/ko/day09.md) | [English](til/en/day09.md) | [Queries](sql/day09.sql) |
 | 10 | Monthly metrics and repeat customers | [한글](til/ko/day10.md) | [English](til/en/day10.md) | [Queries](sql/day10.sql) |
 | 11 | Conditional aggregation and subqueries | [한글](til/ko/day11.md) | [English](til/en/day11.md) | [Queries](sql/day11.sql) |
-| 12 | Customer aggregation and transaction distribution | [한글](til/ko/day12.md) | [English](til/en/day12.md) | [SQL](sql/day12.sql) |
-| 13 | Conditional counts, amounts and customer totals | [한글](til/ko/day13.md) | [English](til/en/day13.md) | [SQL](sql/day13.sql) |
-| 14 | Baku F1 joins and conditional aggregation | [한글](til/ko/day14.md) | [English](til/en/day14.md) | [SQL](sql/day14.sql) |
-| 15 | Baku F1 independent practice and aggregate subqueries | [한글](til/ko/day15.md) | [English](til/en/day15.md) | [SQL](sql/day15.sql) |
-| 16 | Online Retail quantities, customer joins and totals | [한글](til/ko/day16.md) | [English](til/en/day16.md) | [SQL](sql/day16.sql) |
+| 12 | Customer aggregation and transaction distribution | [한글](til/ko/day12.md) | [English](til/en/day12.md) | [Queries](sql/day12.sql) |
+| 13 | Conditional counts, amounts and customer totals | [한글](til/ko/day13.md) | [English](til/en/day13.md) | [Queries](sql/day13.sql) |
+| 14 | Baku F1 joins and conditional aggregation | [한글](til/ko/day14.md) | [English](til/en/day14.md) | [Queries](sql/day14.sql) |
+| 15 | Baku F1 independent practice and aggregate subqueries | [한글](til/ko/day15.md) | [English](til/en/day15.md) | [Queries](sql/day15.sql) |
+| 16 | Online Retail quantities, customer joins and totals | [한글](til/ko/day16.md) | [English](til/en/day16.md) | [Queries](sql/day16.sql) |
 
 ## What the record covers
 

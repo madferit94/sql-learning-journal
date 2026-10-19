@@ -6,10 +6,10 @@ import re
 
 root = Path(__file__).resolve().parents[1]
 manifest = json.loads((root / 'docs/query-manifest.json').read_text())
-assert len(manifest) == 85
-assert len(list((root / 'til/ko').glob('day*.md'))) == 16
-assert len(list((root / 'til/en').glob('day*.md'))) == 16
-for day in range(1, 17):
+assert len(manifest) == 90
+assert len(list((root / 'til/ko').glob('day*.md'))) == 17
+assert len(list((root / 'til/en').glob('day*.md'))) == 17
+for day in range(1, 18):
     doc = (root / f'til/en/day{day:02}.md').read_text()
     exercises = re.split(r'(?=^## Exercise \d+)', doc, flags=re.M)[1:]
     records = [r for r in manifest if r['day'] == day]
@@ -33,9 +33,9 @@ for language in ['ko', 'en']:
     assert not re.search(r'\bC\d{4,}\b', (root / f'til/{language}/day06.md').read_text())
 assert 'ERROR 1064' in (root / 'til/en/day11.md').read_text()
 assert not (root / 'notion-export.json').exists()
-print('PASS: 16 bilingual sessions, 85 queries, hashes, links, fences, pseudonyms and historical error/follow-up history.')
+print('PASS: 17 bilingual sessions, 90 queries, hashes, links, fences, pseudonyms and historical error/follow-up history.')
 
-for day in range(12,17):
+for day in range(12,18):
     for lang in ('ko','en'):
         text=(root/f'til/{lang}/day{day:02}.md').read_text()
         assert '/Users/' not in text

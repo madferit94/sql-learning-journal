@@ -27,3 +27,7 @@ Publication checks cover bilingual day/exercise counts, local links, extracted-q
 ## October 16 update
 
 Added Days12–16: 25 exercises, bringing the journal to 16 sessions and 85 exercises. Day16 was executed over October 15–16. Korean notes preserve detailed source content with formatting cleanup; English editions cover every exercise, selected attempts, exact final SQL, recorded outputs and help scope. Public files omit local paths, raw data, dumps, credentials and transaction-ID mappings. Existing Days1–11 remain the earlier snapshot except the explicitly dated Day11 Exercise 3 follow-up. Checks are publication consistency checks; no exercise SQL was rerun for this update.
+
+## Day17 addition
+
+Added the next five exercises from the current Notion Day17 record, bringing the total to 17 sessions and 90 exercises. The Korean detailed record and English edited translation preserve final SQL, actual output tables, earlier attempts and help scope. Study-date labels are omitted from the new lesson. The final question was executed successfully but the learner requested another conceptual explanation; independent understanding is not asserted. This publication reruns consistency checks, not SQL exercises.

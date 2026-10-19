@@ -593,5 +593,40 @@
     "source_block_index": 0,
     "query_sha256": "a6a062e79c2d4d46813330d581cf55e75c6d1fa043b1d2ce23a0a1dda750f974",
     "status": "user_run_historical_record"
+  },
+  {
+    "day": 17,
+    "exercise": 1,
+    "source_block_index": 1,
+    "query_sha256": "0ae91e22d4d42443d24982bed4d3da338e2de1aa9924d6b47d5b58a41cf0cd7d",
+    "status": "user_run_historical_record"
+  },
+  {
+    "day": 17,
+    "exercise": 2,
+    "source_block_index": 0,
+    "query_sha256": "80eb2fabb1e5d02c869a179381e9f7e69f0f388ee0ac058c0e35c4cf8b5f02d3",
+    "status": "user_run_historical_record"
+  },
+  {
+    "day": 17,
+    "exercise": 3,
+    "source_block_index": 1,
+    "query_sha256": "aa2dc41a05aae40619f657e0f0d392589b5e03d9d8c08f5a1e0c34e876ebe2d3",
+    "status": "user_run_historical_record"
+  },
+  {
+    "day": 17,
+    "exercise": 4,
+    "source_block_index": 1,
+    "query_sha256": "e78b3323958a3d6da50a34a186d6868f8509f2197e6348b7dc594e545dd1db67",
+    "status": "user_run_historical_record"
+  },
+  {
+    "day": 17,
+    "exercise": 5,
+    "source_block_index": 1,
+    "query_sha256": "f0100c59ab8c2317d2f58347d9728fd196b9ef578d7b4081ee1a61a686f89817",
+    "status": "user_run_historical_record"
   }
 ]

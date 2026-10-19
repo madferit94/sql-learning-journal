@@ -2,7 +2,7 @@
 
 [한국어](README.ko.md) | English
 
-A bilingual SQL TIL (Today I Learned) journal documenting my practice toward data analysis: **16 study sessions and 85 exercises**, using football, e-commerce and transaction examples.
+A bilingual SQL TIL (Today I Learned) journal documenting my practice toward data analysis: **17 study sessions and 90 exercises**, using football, e-commerce and transaction examples.
 
 The focus is learning to turn a question into a query, understand the unit of each row, diagnose mistakes and check results. This is a learning record, not a claim of independent mastery or a production-ready analytics project.
 
@@ -26,6 +26,7 @@ The focus is learning to turn a question into a query, understand the unit of ea
 | 14 | Baku F1 joins and conditional aggregation | [한글](til/ko/day14.md) | [English](til/en/day14.md) | [Queries](sql/day14.sql) |
 | 15 | Baku F1 independent practice and aggregate subqueries | [한글](til/ko/day15.md) | [English](til/en/day15.md) | [Queries](sql/day15.sql) |
 | 16 | Online Retail quantities, customer joins and totals | [한글](til/ko/day16.md) | [English](til/en/day16.md) | [Queries](sql/day16.sql) |
+| 17 | Online Retail monthly aggregation, date filters and subqueries | [한글](til/ko/day17.md) | [English](til/en/day17.md) | [Queries](sql/day17.sql) |
 
 ## What the record covers
 
@@ -50,6 +51,6 @@ Results are historical outputs transcribed from Notion, **not newly executed or 
 
 The Korean edition preserves the detailed journal with formatting cleanup. The English edition covers every exercise with translated questions, learning points, selected attempts, final recorded queries and available output excerpts; repeated commentary is condensed.
 
-Source: [Notion SQL TIL](https://www.notion.so/7b736fd8bbd949ca93f84cdc66987ace) (access may be required). Publication snapshot: 2026-10-16. This is a manual snapshot, not an automatic Notion sync.
+Source: [Notion SQL TIL](https://www.notion.so/7b736fd8bbd949ca93f84cdc66987ace) (access may be required). Publication snapshot: 2026-10-19. This is a manual snapshot, not an automatic Notion sync.
 
 Recent progress: Day16 Exercises 4 and 5 were accepted on the first submission: 1,668 qualifying customers and a mean customer total of GBP 4,678.46. This demonstrates transfer of the practiced aggregate-subquery pattern, not mastery of every subquery form. Day16 spans October 15–16.

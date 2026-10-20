@@ -2,7 +2,7 @@
 
 [한국어](README.ko.md) | English
 
-A bilingual SQL TIL (Today I Learned) journal documenting my practice toward data analysis: **17 study sessions and 90 exercises**, using football, e-commerce and transaction examples.
+A bilingual SQL TIL (Today I Learned) journal documenting my practice toward data analysis, using football, e-commerce and transaction examples such as monthly order metrics, repeat customers and conditional aggregation.
 
 The focus is learning to turn a question into a query, understand the unit of each row, diagnose mistakes and check results. This is a learning record, not a claim of independent mastery or a production-ready analytics project.
 

@@ -1,4 +1,4 @@
-# Day 15 — Baku F1 independent practice and aggregate subqueries
+# Day 15 — Baku F1 practice and aggregate subqueries
 
 [한국어](../ko/day15.md) · [Index](../../README.md)
 
@@ -8,11 +8,13 @@ Schema and row-grain details: [data notes](../../docs/data.en.md). Questions are
 
 ## Exercise 1 — Laps below 109 seconds
 
+**Selection rule and limits.** Forty recorded laps selects a minimum record volume; 109 seconds is an exercise classification. Neither is an official F1 or statistically validated standard.
+
 **Question.** For drivers with at least 40 timed laps, return their timed count and count below 109 seconds. Include zeros; sort conditional count descending and number ascending.
 
 **Learning point.** Transfer conditional COUNT to a changed threshold; NULL is not a timed lap.
 
-**Authorship and evidence.** First final submission correct without query correction; 16 user-run rows.
+
 
 ### Final query recorded in the journal
 
@@ -49,11 +51,13 @@ ORDER BY under_109_count DESC, driver_number ASC;
 
 ## Exercise 2 — Share of laps below 109 seconds
 
+**Selection rule and limits.** Keep drivers with at least 40 timed laps and divide by their recorded lap count. Record volume selection does not make tyre and race conditions comparable.
+
 **Question.** For the same drivers, return counts and percentage below 109, rounded to two decimals. Sort percentage descending then number ascending.
 
 **Learning point.** The denominator is all timed laps, not only laps below the threshold.
 
-**Authorship and evidence.** Final submitted query accepted as correct. The learner clarified that an earlier pasted sort expression was an in-progress draft, not the final submission. 16 rows.
+**Recorded execution.** 16 rows.
 
 ### Final query recorded in the journal
 
@@ -94,11 +98,13 @@ ORDER BY under_109_rate DESC, driver_number ASC;
 
 ## Exercise 3 — Team lap-time statistics
 
+**Selection rule and limits.** The 90 threshold applies to team-combined records, not each individual driver. It is an instructional cutoff and does not establish a fair performance ranking.
+
 **Question.** Join laps and drivers. For teams with at least 90 timed laps, show count, mean and minimum duration; round mean/minimum to two decimals. Sort rounded mean then team name ascending.
 
 **Learning point.** Team grain, composite join keys, COUNT, AVG and MIN were chosen correctly.
 
-**Authorship and evidence.** Learner logic correct initially; help concerned two typos and unusual whitespace. Seven user-run rows.
+
 
 ### Earlier attempt (historical; may be invalid)
 
@@ -144,11 +150,13 @@ ORDER BY avg_lap_duration ASC, d.team_name ASC;
 
 ## Exercise 4 — Count drivers meeting a lap threshold
 
+**Selection rule and limits.** Thirty-five means laps under 110 seconds, not all timed laps. This is an exercise threshold; participation length affects opportunities to accumulate qualifying laps.
+
 **Question.** Count drivers with at least 35 laps below 110 seconds. Return one row and zero if none qualify.
 
 **Learning point.** A table alias cannot be used as a column in COUNT. COUNT(*) counts the already-grouped driver rows.
 
-**Authorship and evidence.** Derived-table structure, CASE and HAVING written independently; outer COUNT(driver) corrected with feedback. User result: 11.
+
 
 ### Earlier attempt (historical; may be invalid)
 
@@ -184,11 +192,13 @@ FROM (
 
 ## Exercise 5 — Mean of driver means
 
+**Selection rule and limits.** Select drivers with at least 40 timed laps, then give each driver one equally weighted mean. This differs from weighting every raw lap equally. The eligibility threshold is instructional, not official.
+
 **Question.** For drivers with at least 40 timed laps, calculate each driver's mean, then average those means with equal weight per driver. Do not round intermediate values; round the final mean to two decimals.
 
 **Learning point.** Missing inner GROUP BY produces a global lap mean. ROUND(value) still rounds to an integer; removing ROUND requires removing its extra parenthesis.
 
-**Authorship and evidence.** AI helped with grouping, intermediate rounding and a remaining parenthesis. User-run values progressed from 115.78 to 115.94 to final 115.90.
+
 
 ### Earlier attempt (historical; may be invalid)
 
@@ -221,3 +231,7 @@ FROM (
 | --- |
 | 115.90 |
 
+
+## Race scope and interpretation
+
+These are Baku-only historical queries. After a local multi-race expansion, add a session filter or use the original single-session snapshot. The normal Baku race is 51 laps; recorded non-NULL times need not equal officially completed laps. None of these all-lap averages or threshold counts is an official race or ability ranking.

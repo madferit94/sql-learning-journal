@@ -12,7 +12,7 @@ Schema and row-grain details: [data notes](../../docs/data.en.md). Questions are
 
 **Learning point.** Item rows, units and monetary amounts are different measures.
 
-**Authorship and evidence.** First submission correct. User executed P1 on October 15: 28 rows.
+**Recorded execution.** 28 rows.
 
 ### Final query recorded in the journal
 
@@ -64,7 +64,7 @@ ORDER BY total_sales_amount DESC, country ASC;
 
 **Learning point.** High value refers to quantity times unit price, not unit price alone. Both conditional counts must use the same predicate.
 
-**Authorship and evidence.** AI guidance and cleaned code supplied. Markdown artifacts were clarified as paste errors. User ran P2 on October 16: 29 rows, including USA and Unspecified at 0%.
+**Recorded execution.** 29 rows.
 
 ### Earlier attempt (historical; may be invalid)
 
@@ -134,7 +134,7 @@ ORDER BY high_amount_rate DESC, country ASC;
 
 **Learning point.** COUNT(quantity) counts rows, not units. Exclude NULL customers instead of treating their pooled records as one person.
 
-**Authorship and evidence.** Join and amount formula written correctly; AI guided COUNT-to-SUM and NULL filtering. Only the shared 21-row excerpt is recorded; total output size and time were not supplied.
+
 
 ### Earlier attempt (historical; may be invalid)
 
@@ -195,7 +195,7 @@ ORDER BY total_purchase_amount DESC, h.customer_id ASC;
 
 **Learning point.** The inner grouping already creates one customer per row, even when customer_id is not selected.
 
-**Authorship and evidence.** First submission correct with no query correction. User result: 1668.
+
 
 ### Final query recorded in the journal
 
@@ -222,7 +222,7 @@ FROM (
 
 **Learning point.** Reuse the customer-level intermediate result from Exercise 4, then average the total column rather than counting rows.
 
-**Authorship and evidence.** First submission correct with no query correction. User result: 4678.46. Two consecutive subquery exercises transferred the pattern to a new dataset.
+
 
 ### Final query recorded in the journal
 

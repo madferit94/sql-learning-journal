@@ -24,33 +24,38 @@ The focus is learning to turn a question into a query, understand the unit of ea
 | 12 | Customer aggregation and transaction distribution | [한글](til/ko/day12.md) | [English](til/en/day12.md) | [Queries](sql/day12.sql) |
 | 13 | Conditional counts, amounts and customer totals | [한글](til/ko/day13.md) | [English](til/en/day13.md) | [Queries](sql/day13.sql) |
 | 14 | Baku F1 joins and conditional aggregation | [한글](til/ko/day14.md) | [English](til/en/day14.md) | [Queries](sql/day14.sql) |
-| 15 | Baku F1 independent practice and aggregate subqueries | [한글](til/ko/day15.md) | [English](til/en/day15.md) | [Queries](sql/day15.sql) |
+| 15 | Baku F1 practice and aggregate subqueries | [한글](til/ko/day15.md) | [English](til/en/day15.md) | [Queries](sql/day15.sql) |
 | 16 | Online Retail quantities, customer joins and totals | [한글](til/ko/day16.md) | [English](til/en/day16.md) | [Queries](sql/day16.sql) |
 | 17 | Online Retail monthly aggregation, date filters and subqueries | [한글](til/ko/day17.md) | [English](til/en/day17.md) | [Queries](sql/day17.sql) |
+| 18 | Finance monthly metrics, distinct transaction days and subqueries | [한글](til/ko/day18.md) | [English](til/en/day18.md) | [Queries](sql/day18.sql) |
+| 19 | Finance aggregation review and CTE foundations | [한글](til/ko/day19.md) | [English](til/en/day19.md) | [Queries](sql/day19.sql) |
+| 20 | F1 joins, CTEs and introductory window functions | [한글](til/ko/day20.md) | [English](til/en/day20.md) | [Queries](sql/day20.sql) |
+| 21 | F1 Austin results, multi-race points totals and rankings | [한글](til/ko/day21.md) | [English](til/en/day21.md) | [Queries](sql/day21.sql) |
 
 ## What the record covers
 
-- Practiced: SELECT, WHERE, ORDER BY, LIMIT, GROUP BY, HAVING, JOIN, CASE WHEN, DISTINCT, date functions and aggregate subqueries.
-- Still consolidating: conditional aggregation, two-stage aggregation, customer-level denominators and writing queries independently.
-- Next learning goals: CTEs and window functions. These are **not** presented as completed topics.
+- SELECT, WHERE, ORDER BY, GROUP BY, HAVING, JOIN, CASE WHEN, DISTINCT and date functions.
+- Aggregate subqueries and CTEs for customer/driver-level intermediate results.
+- RANK and PARTITION BY for overall and within-team rankings.
+- Row grain, join keys, NULL treatment, denominators, team changes and metric interpretation.
 
-AI has supported explanations, debugging and the preparation of this bilingual publication. Earlier attempts and unresolved issues remain visible; the record does not label AI-assisted work as independently completed.
+The journal contains 21 sessions and 110 final recorded exercise queries. It is a learning record, not a production analytics service. Explanations and bilingual editing used AI; SQL and output provenance are documented in the lesson and editorial notes.
 
 ## Data and execution
 
-The Notion notes identify MySQL 8.4. They use European Soccer Database, Olist and a transaction practice table. Raw datasets, database credentials and local imports are not included. Source schemas differ between days, so these files are not a one-command executable project. Read the [data and schema notes](docs/data.en.md) before adapting a query.
+Examples use European Soccer Database, Olist, a transaction practice table, UCI Online Retail and F1 snapshots. Read the [data and schema notes](docs/data.en.md). Raw datasets, dumps, credentials, private Notion exports and machine-specific paths are excluded.
 
-Results are historical outputs transcribed from Notion, **not newly executed or independently verified for this publication**. Day11 Exercise 3 retains its original ERROR 1064 history and now includes the learner's successful October 10 follow-up. See the [editorial and validation notes](docs/editorial.en.md).
+Result tables are recorded executions, not rerun for this publication. Day19 Exercise 1 includes the subsequently supplied three-row result and its recorded database cross-check. F1 Days14–15 and 20 describe a Baku-only snapshot; Day21 uses 18 main races through Austin. Reusing an old unfiltered query after expanding the database can combine races, so specify session scope before running it.
 
-## How to study with this repository
+Main-race points exclude Sprints and RANK ties do not implement official championship tie-breaking. A timed-lap cutoff or an all-lap mean is not an official classification or a controlled ability comparison.
 
-1. Read a question and predict the output grain before looking at the solution.
-2. Write a query independently; compare the attempt and explanation only after trying.
-3. Check keys, row counts, filters, grouping and denominators.
-4. Record the mistake, its cause and a new variation to solve without the answer.
+## How to study
 
-The Korean edition preserves the detailed journal with formatting cleanup. The English edition covers every exercise with translated questions, learning points, selected attempts, final recorded queries and available output excerpts; repeated commentary is condensed.
+1. Read the question, table structure and output grain before opening the solution.
+2. Write a query, then compare keys, filters, groups and denominators.
+3. Check the result and explain what one row and each metric mean.
+4. Revisit a changed condition without the previous answer.
 
-Source: [Notion SQL TIL](https://www.notion.so/7b736fd8bbd949ca93f84cdc66987ace) (access may be required). Publication snapshot: 2026-10-19. This is a manual snapshot, not an automatic Notion sync.
+The Korean edition follows the detailed Notion record; English is an edited translation covering the same exercises, final SQL, output values and interpretation limits. [Editorial and validation notes](docs/editorial.en.md) describe publication checks.
 
-Recent progress: Day16 Exercises 4 and 5 were accepted on the first submission: 1,668 qualifying customers and a mean customer total of GBP 4,678.46. This demonstrates transfer of the practiced aggregate-subquery pattern, not mastery of every subquery form. Day16 spans October 15–16.
+Source: [Notion SQL TIL](https://www.notion.so/7b736fd8bbd949ca93f84cdc66987ace) (access may be required). Publication snapshot: 2026-10-27. This is a manual synchronization, not an automatic background sync.

@@ -628,5 +628,145 @@
     "source_block_index": 1,
     "query_sha256": "f0100c59ab8c2317d2f58347d9728fd196b9ef578d7b4081ee1a61a686f89817",
     "status": "user_run_historical_record"
+  },
+  {
+    "day": 18,
+    "exercise": 1,
+    "source_block_index": 1,
+    "query_sha256": "e7c138d969cb8ee4dfe044918d7c7a4117cefb1498d225e2149a4293a47173d3",
+    "status": "recorded_execution"
+  },
+  {
+    "day": 18,
+    "exercise": 2,
+    "source_block_index": 2,
+    "query_sha256": "33cd9f2fc5b832d82ea30340e5973599b3474c55a155da21c50cb5fc6ceee86d",
+    "status": "recorded_execution"
+  },
+  {
+    "day": 18,
+    "exercise": 3,
+    "source_block_index": 3,
+    "query_sha256": "59204942eb958d0d993ed1a11dae11a972708595508e1d98ccb168e4a50d14fb",
+    "status": "recorded_execution"
+  },
+  {
+    "day": 18,
+    "exercise": 4,
+    "source_block_index": 4,
+    "query_sha256": "c9538934d952cc6bdc04ff067ee4b110e095b2504bb4d3cd67cde6734ff178d6",
+    "status": "recorded_execution"
+  },
+  {
+    "day": 18,
+    "exercise": 5,
+    "source_block_index": 5,
+    "query_sha256": "dfe1079b5bd4263cf8c6af6cb495191fb65e6a86eadf3415f9c2909b6e75ff74",
+    "status": "recorded_execution"
+  },
+  {
+    "day": 19,
+    "exercise": 1,
+    "source_block_index": 1,
+    "query_sha256": "e7c138d969cb8ee4dfe044918d7c7a4117cefb1498d225e2149a4293a47173d3",
+    "status": "recorded_execution"
+  },
+  {
+    "day": 19,
+    "exercise": 2,
+    "source_block_index": 2,
+    "query_sha256": "f33229746f726ef7f3ac2872160bdc2b1237c837e06221677dff5add347c9eff",
+    "status": "recorded_execution"
+  },
+  {
+    "day": 19,
+    "exercise": 3,
+    "source_block_index": 3,
+    "query_sha256": "43fcdf6c274ffe922ef9ede76e4c50a72d9dc9d8ecddc18c47de06f77e7d6360",
+    "status": "recorded_execution"
+  },
+  {
+    "day": 19,
+    "exercise": 4,
+    "source_block_index": 4,
+    "query_sha256": "a8decfa75f638563f026b2aa0ee3838f2bb752a16789eee86475a09271f34fd7",
+    "status": "recorded_execution"
+  },
+  {
+    "day": 19,
+    "exercise": 5,
+    "source_block_index": 5,
+    "query_sha256": "63515acbd226d04ebfb13313aeb4156f9eebb24965ea712897b26e38b5845f24",
+    "status": "recorded_execution"
+  },
+  {
+    "day": 20,
+    "exercise": 1,
+    "source_block_index": 1,
+    "query_sha256": "b783340be14cf84b7e55234e8de3239753a8b62a8ba7027f56bd7cc1f3e3f207",
+    "status": "recorded_execution"
+  },
+  {
+    "day": 20,
+    "exercise": 2,
+    "source_block_index": 2,
+    "query_sha256": "39d2c8682507c4507a28c198931f2fb139fbb33bf2131d036efde7f931010748",
+    "status": "recorded_execution"
+  },
+  {
+    "day": 20,
+    "exercise": 3,
+    "source_block_index": 3,
+    "query_sha256": "095ebfe9bfbea2c9fce3bd4abaa5e85ae008fd14d60b05ba41ea7d04024c6fd7",
+    "status": "recorded_execution"
+  },
+  {
+    "day": 20,
+    "exercise": 4,
+    "source_block_index": 4,
+    "query_sha256": "e309ae960463c9ccc1ce21afd30d7fb84c09bfb8180dfa4e4bba8aaf018115ea",
+    "status": "recorded_execution"
+  },
+  {
+    "day": 20,
+    "exercise": 5,
+    "source_block_index": 5,
+    "query_sha256": "72dd1ba50be0c19fcc640622c1d5c220f5d64d593f8f5ee5f8cb39b033a56847",
+    "status": "recorded_execution"
+  },
+  {
+    "day": 21,
+    "exercise": 1,
+    "source_block_index": 1,
+    "query_sha256": "fa9c3dba1ee2799055241e9c19e9daf309180227144010bdc9ff8a67c30b5d4f",
+    "status": "recorded_execution"
+  },
+  {
+    "day": 21,
+    "exercise": 2,
+    "source_block_index": 2,
+    "query_sha256": "489d05f8149baef3243478e9aa2bf528a8afef89a5c01b32d87a9e41b7a09f27",
+    "status": "recorded_execution"
+  },
+  {
+    "day": 21,
+    "exercise": 3,
+    "source_block_index": 3,
+    "query_sha256": "0f5619804a27645b3008bfbea19bee390cdc2d62fcd2bad191bf25dd62175644",
+    "status": "recorded_execution"
+  },
+  {
+    "day": 21,
+    "exercise": 4,
+    "source_block_index": 4,
+    "query_sha256": "fa64105ac118aa0b0c48b1a9da17ebe6bf2a29ceb7f7fa4634dfde91ab365ac1",
+    "status": "recorded_execution"
+  },
+  {
+    "day": 21,
+    "exercise": 5,
+    "source_block_index": 5,
+    "query_sha256": "296147ee74654d3573308f3937fb08badaa195f03042b306d34d3cf05c8eab24",
+    "status": "recorded_execution"
   }
 ]

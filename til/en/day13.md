@@ -14,7 +14,7 @@ Transaction customer IDs are publication pseudonyms, consistent within these two
 
 **Learning point.** SUM must receive the transaction amount, not 1. HAVING must filter the high-value count.
 
-**Authorship and evidence.** AI feedback on conditional SUM and HAVING; learner executed the corrected query.
+
 
 ### Earlier attempt (historical; may be invalid)
 
@@ -55,7 +55,7 @@ ORDER BY high_amount_total DESC, customer_id ASC;
 
 **Learning point.** A bare WHEN amount is a truth-value test, not a small-transaction condition. Apply the threshold to the conditional SUM too.
 
-**Authorship and evidence.** Learner corrected COUNT and conditional SUM with AI guidance; user-run excerpts recorded.
+
 
 ### Earlier attempt (historical; may be invalid)
 
@@ -98,7 +98,7 @@ ORDER BY small_amount_count DESC, customer_id ASC;
 
 **Learning point.** Do not filter away non-small transactions before calculating the denominator.
 
-**Authorship and evidence.** First submitted query accepted without correction; prior-code reference was not independently checked.
+
 
 ### Final query recorded in the journal
 
@@ -131,7 +131,7 @@ ORDER BY small_amount_rate DESC, customer_id ASC;
 
 **Learning point.** A customer total requires SUM, not COUNT; the outer AVG reads customer totals.
 
-**Authorship and evidence.** AI helped replace COUNT with SUM and supplied the outer template; learner filled the AVG operand and executed it. Result: 1866.86.
+
 
 ### Earlier attempt (historical; may be invalid)
 
@@ -165,7 +165,7 @@ FROM (
 
 **Learning point.** Filter customer totals inside the grouped query, then count the resulting customer rows.
 
-**Authorship and evidence.** Inner SUM and HAVING written by learner; outer template provided by AI. Result: 26455. Full independent rewrite not established.
+
 
 ### Earlier attempt (historical; may be invalid)
 

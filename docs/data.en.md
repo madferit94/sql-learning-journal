@@ -20,3 +20,17 @@ Before running a query, obtain the relevant data legitimately, inspect the actua
 - `invoice_headers` is a derived teaching table with 25,943 unique combinations of invoice number, timestamp, customer and country. Forty-three invoice numbers have multiple combinations. Its row count is not a distinct-order count. Join items using invoice_header_id; invoice_no alone may multiply rows. The original fields are retained in invoice_items.
 
 Schema-only files: [F1](../sql/schema-f1.sql), [Retail](../sql/schema-retail.sql). They do not include data or a one-command loader. The original workbook was compared against all imported fields (with declared text/type conversion); source-to-DB matching does not certify the business truth of every source record. Numeric descriptions are preserved as strings. Raw duplicates, cancellations and missing IDs require an explicit analysis policy before calling these exercise totals audited revenue.
+
+## Days18–21 update: finance, CTEs and multi-race F1
+
+Days18–19 continue bank_transactions. Public IDs use FIN_CUSTOMER pseudonyms consistent with existing Days12–13 examples; additional labels extend that mapping within this journal. Currency remains unspecified. No private mapping or raw transaction data is published.
+
+Day20 retains the Baku-only 11377 snapshot. The 40-timed-lap cutoff is instructional, not official or statistically validated. Day14/15 selection explanations distinguish total-timed-lap cutoffs, team-combined record cutoffs and counts under a time threshold. These are different eligibility rules.
+
+Day21 uses 18 2026 main races through United States/Austin (11396), excluding two cancelled sessions, Sprints, qualifying and practice. The local expansion has sessions 18 rows, drivers 396, laps 20811, stints 1119 and race_results 396. Stored Baku rows were preserved. The preparation report records full source-to-DB row/cell matching and no orphan driver joins; exercise SQL was not rerun for this publication.
+
+Official position, completed_laps and points were reconciled for 396 records against [F1 published results](https://www.formula1.com/en/results/2026/races). Other timing fields come from [OpenF1](https://openf1.org/docs/), an unofficial API. status is derived from DSQ/DNS/DNF flags; official_position_label and official_time_or_retired preserve published labels. A NULL position must not be silently replaced by a points rank.
+
+Known source caveats: 118 NULL lap durations, six reversed/empty stint intervals, and session 11731's inconsistent API location/circuit metadata (Kuala Lumpur versus Bahrain in the country and official event record). Raw fields are preserved; grand_prix_name supplies the official event label. Do not treat that session's location/timezone fields as verified geography or use invalid stint intervals as real lap ranges.
+
+After expansion, old unfiltered Baku SQL can combine races. Filter a session or group/partition by session_key when the metric is per race. Never compare raw average lap seconds across different circuits as an ability ranking. Main-race points exclude Sprints; RANK does not implement official championship tie-breaking.

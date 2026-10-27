@@ -169,7 +169,7 @@ The original snapshot contained no result table. The follow-up below records the
 
 ### Follow-up verification — 2026-10-10
 
-The learner subsequently supplied a successful MySQL run after whitespace cleanup: 10 rows in 0.58 seconds. The recorded values are below. This supersedes the original unresolved execution status; the SQL/error history above is retained. This publication did not rerun Olist, and the whitespace diagnosis itself was not independently reproduced.
+A later MySQL run after whitespace cleanup returned 10 rows in 0.58 seconds. The recorded values are below. This supersedes the original unresolved execution status; the SQL/error history above is retained. This publication did not rerun Olist, and the whitespace diagnosis itself was not independently reproduced.
 
 | customer_state | total_order_count | delivered_count | canceled_count |
 | --- | --- | --- | --- |

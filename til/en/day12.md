@@ -14,7 +14,7 @@ Transaction customer IDs are publication pseudonyms, consistent within these two
 
 **Learning point.** Fix a misspelled amount column and align the COUNT alias with HAVING. The first query also omitted the five-transaction filter.
 
-**Authorship and evidence.** Written by the learner, corrected with AI feedback; user-run output excerpts recorded.
+
 
 ### Earlier attempt (historical; may be invalid)
 
@@ -56,7 +56,7 @@ ORDER BY total_transaction_amount DESC, customer_id ASC;
 
 **Learning point.** Filtering a customer average in HAVING is different from filtering each transaction before grouping.
 
-**Authorship and evidence.** Learner attempt corrected after feedback about WHERE, HAVING and sorting; user-run excerpts recorded.
+
 
 ### Earlier attempt (historical; may be invalid)
 
@@ -98,7 +98,7 @@ ORDER BY transaction_count DESC, customer_id ASC;
 
 **Learning point.** A conditional count preserves other transactions; filtering the source to high-value rows would change the total.
 
-**Authorship and evidence.** Learner attempt corrected with conditional-aggregation guidance; user-run output recorded.
+
 
 ### Earlier attempt (historical; may be invalid)
 
@@ -141,7 +141,7 @@ ORDER BY high_amount_count DESC, customer_id ASC;
 
 **Learning point.** Use all customer transactions as the denominator. SUM of 1/0 flags and conditional COUNT can express the numerator with the stated null treatment.
 
-**Authorship and evidence.** AI-assisted completion; source records available output, not an independent rewrite.
+
 
 ### Earlier attempt (historical; may be invalid)
 
@@ -193,7 +193,7 @@ ORDER BY high_amount_rate DESC, customer_id ASC;
 
 **Learning point.** The inner COUNT counts transaction rows; the outer COUNT counts customer rows.
 
-**Authorship and evidence.** Learner inner query and attempted outer query; AI helped correct the outer grouping/selection. User execution recorded.
+
 
 ### Earlier attempt (historical; may be invalid)
 

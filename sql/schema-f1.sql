@@ -55,3 +55,46 @@ CREATE VIEW lap_details AS
 SELECT l.*, d.full_name, d.name_acronym, d.team_name
 FROM laps l JOIN drivers d
 ON l.session_key=d.session_key AND l.driver_number=d.driver_number;
+
+-- Added for 2026 multi-race result exercises; schema only.
+CREATE TABLE sessions (
+`session_key` INT NOT NULL,
+`meeting_key` INT NOT NULL,
+`year` INT NOT NULL,
+`session_name` VARCHAR(40),
+`session_type` VARCHAR(40),
+`country_name` VARCHAR(100),
+`country_code` VARCHAR(10),
+`country_key` INT,
+`location` VARCHAR(100),
+`circuit_key` INT,
+`circuit_short_name` VARCHAR(100),
+`date_start` VARCHAR(40),
+`date_end` VARCHAR(40),
+`gmt_offset` VARCHAR(20),
+`is_cancelled` BOOLEAN,
+`grand_prix_name` VARCHAR(100),
+`official_result_url` TEXT,
+PRIMARY KEY (`session_key`)
+) ENGINE=InnoDB;
+
+CREATE TABLE race_results (
+`meeting_key` INT NOT NULL,
+`session_key` INT NOT NULL,
+`driver_number` INT NOT NULL,
+`position` INT,
+`completed_laps` INT,
+`status` VARCHAR(20),
+`points` DECIMAL(8,2),
+`dnf` BOOLEAN,
+`dns` BOOLEAN,
+`dsq` BOOLEAN,
+`duration` DECIMAL(15,3),
+`gap_to_leader` VARCHAR(40),
+`official_position_label` VARCHAR(20),
+`official_time_or_retired` VARCHAR(100),
+`source_url` TEXT,
+PRIMARY KEY (`session_key`,`driver_number`),
+FOREIGN KEY (session_key) REFERENCES sessions(session_key),
+FOREIGN KEY (session_key,driver_number) REFERENCES drivers(session_key,driver_number)
+) ENGINE=InnoDB;

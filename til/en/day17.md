@@ -26,7 +26,7 @@ Edited from the Notion journal in the same format as the earlier English edition
 
 **Learning point.** The first attempt mixed in a previous high-value count, misspelled FROM, omitted quotes around the date format, used AS in GROUP BY and sorted by amount. The final query groups and sorts using the SELECT alias.
 
-**Authorship and evidence.** Learner wrote the attempt and revised it after hints about SUM, grouping, sorting and syntax. User execution returned 13 rows in 0.73 seconds.
+**Recorded execution.** 13 rows in 0.73 seconds.
 
 ### Earlier attempt (historical; may be invalid)
 
@@ -74,7 +74,7 @@ ORDER BY purchase_month ASC;
 
 **Learning point.** A row with many units is still one item row. Preserve all monthly item rows in the denominator and apply the value condition only to the numerator.
 
-**Authorship and evidence.** First submission correct without query correction. User execution: 13 rows in 0.66 seconds. The actual output had no zero-high-value month, although the query would retain one.
+**Recorded execution.** 13 rows in 0.66 seconds.
 
 ### Final query recorded in the journal
 
@@ -115,7 +115,7 @@ ORDER BY purchase_month ASC;
 
 **Learning point.** Use WHERE for individual purchase dates and HAVING for the grouped item count. Quote date literals. Backticks around a whole multiplication expression would mean a column name, not arithmetic.
 
-**Authorship and evidence.** Join and aggregate structure written by learner; AI helped with date-filter location, literals, backticks and a space inside the sort alias. Final user output: 29 rows in 1.21 seconds.
+**Recorded execution.** 29 rows in 1.21 seconds.
 
 ### Earlier attempt (historical; may be invalid)
 
@@ -187,7 +187,7 @@ ORDER BY total_sales_amount DESC, h.country ASC;
 
 **Learning point.** DATE_FORMAT converts timestamps to year-month values; DISTINCT removes repeated months; COUNT counts the remaining values. Calculating a month count alone does not filter customers: the grouped threshold must still be applied.
 
-**Authorship and evidence.** Learner wrote the derived-table structure. AI supplied the distinct-month expression and hints for NULL exclusion and HAVING. Earlier runs without these filters returned 4220; final user run returned 1692 in 0.92 seconds. Independent explanation/rewrite after the hints was not established.
+**Recorded execution.** 0.92 seconds.
 
 ### Earlier attempt (historical; may be invalid)
 
@@ -229,7 +229,7 @@ FROM (
 
 **Learning point.** The three-month rule selects customers; it is not the denominator of a monthly average. The outer AVG reads one annual total per selected customer, not individual item amounts.
 
-**Authorship and evidence.** Learner constructed the month count, date/NULL filters, total and outer AVG. AI helped move rounding to the final result. Initial output was 3915.728800; both later display values were 3915.73, but only the final query removed intermediate rounding. Final execution: 0.97 seconds. The learner then said the meaning was unclear; an explanation followed, with no subsequent independent restatement confirmed.
+**Recorded execution.** 0.97 seconds.
 
 ### Earlier attempt (historical; may be invalid)
 
@@ -272,4 +272,4 @@ FROM (
 
 ## Understanding the final result
 
-The three-month rule selects 1,692 customers. Each selected customer contributes one total for all their 2011 item purchases; averaging those totals gives GBP 3,915.73 per selected customer. This is neither per order nor per month. A customer with only two observed purchasing months is excluded even if their amount is large. Execution success and independent understanding are recorded separately: the last question still needs an answer-free rewrite and a learner explanation.
+The three-month rule selects 1,692 customers. Each selected customer contributes one total for all their 2011 item purchases; averaging those totals gives GBP 3,915.73 per selected customer. This is neither per order nor per month. A customer with only two observed purchasing months is excluded even if their amount is large.

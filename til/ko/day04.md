@@ -245,13 +245,15 @@ ORDER BY order_count DESC;
 
 집계 결과에서는 기본적으로 다음 관계를 확인한다.
 
+구조 설명용 틀:
+
+```text
+SELECT 그룹 기준, 집계 함수
+```
+
+실제 컬럼을 사용한 예시:
+
 ```sql
-SELECT
-    그룹 기준,
-    집계 함수
-
-즉,
-
 SELECT order_status, COUNT(*)
 FROM orders
 GROUP BY order_status;

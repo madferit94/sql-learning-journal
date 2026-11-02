@@ -205,3 +205,5 @@ ORDER BY order_year;
 Historical queries were organized for MySQL syntax; the exact original execution environment is not independently confirmed. Current checks restored the pre-deletion Olist backup into an isolated temporary database, without overwriting study databases. Recorded execution timings were retained, not replaced by current timings.
 
 See the [full audit and scope notes](../../docs/audit.en.md).
+
+The conceptual SELECT grouping/aggregate template is displayed as text, separately from the executable order_status / COUNT(*) example. This formatting repair does not change any recorded final query.

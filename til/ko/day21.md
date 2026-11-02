@@ -1,17 +1,19 @@
-# Day 21 — F1 오스틴 결과·다중 경기 집계·CTE·윈도우 함수
+# 🏎️ Day21 — F1 오스틴 결과·다중 경기 집계·CTE·윈도우 함수
 
-[English](../en/day21.md) · [목차](../../README.ko.md)
+[English](../en/day21.md) · [목차](../../README.ko.md) · [검증 기록](../../docs/audit.ko.md)
 
 <details>
 <summary>🏎️ Day21 — F1 오스틴 결과·다중 경기 집계·CTE·윈도우 함수</summary>
+
+<b>재실행 범위:</b> 아래 누적 집계는 오스틴까지 18경기의 과거 기록입니다. 현재 DB에 추가된 멕시코 세션 11404는 당시 범위에 포함되지 않습니다. 이번 재검증은 11404를 제외한 별도 조회 환경에서 수행했습니다. 원래 SQL과 과거 결과·실행 시간은 보존합니다.
 
 # SQL 학습 기록 — Day 21
 
 ## 학습 개요
 
-**환경:** MySQL / f1\_study
-**범위:** 오스틴 공식 결과 조회·팀별 집계·18개 본 레이스 누적 포인트·CTE·RANK·PARTITION BY
-**검증 근거:** MySQL 실행 결과표와 실행 시간. 아래 5개 쿼리는 최종 실행 SQL의 논리를 유지하고 줄바꿈을 정리했습니다. 이번 게시를 위해 문제 SQL을 다시 실행하지 않았습니다.
+<b>환경:</b> MySQL / f1_study
+<b>범위:</b> 오스틴 공식 결과 조회·팀별 집계·18개 본 레이스 누적 포인트·CTE·RANK·PARTITION BY
+<b>검증 근거:</b> MySQL 실행 결과표와 실행 시간. 아래 5개 쿼리는 최종 실행 SQL의 논리를 유지하고 줄바꿈을 정리했습니다. 출력과 실행 시간은 학습 당시 기록입니다. 별도 전체 재검증 결과는 검증 기록을 참고합니다.
 
 ### 데이터 범위와 해석
 
@@ -43,21 +45,21 @@ USE f1_study;
 
 ### 테이블 설명
 
-drivers의 한 행은 특정 세션에 참가한 드라이버 한 명이고, race\_results의 한 행은 특정 세션의 드라이버별 최종 결과입니다. 필요한 컬럼 일부입니다.
+drivers의 한 행은 특정 세션에 참가한 드라이버 한 명이고, race_results의 한 행은 특정 세션의 드라이버별 최종 결과입니다. 필요한 컬럼 일부입니다.
 
 | 테이블 | 컬럼 | 자료형 | 의미 |
 | --- | --- | --- | --- |
-| drivers | session\_key | INT | 세션 ID, NULL 불가 |
-| drivers | driver\_number | INT | 드라이버 번호, NULL 불가 |
-| drivers | full\_name | VARCHAR(100) | 이름, NULL 허용 |
-| drivers | team\_name | VARCHAR(100) | 해당 경기의 소속 팀, NULL 허용 |
-| race\_results | session\_key | INT | 세션 ID, NULL 불가 |
-| race\_results | driver\_number | INT | 드라이버 번호, NULL 불가 |
-| race\_results | position | INT | 공식 최종 순위, 숫자 순위가 없으면 NULL |
-| race\_results | completed\_laps | INT | 공식 완료 랩 수 |
-| race\_results | points | DECIMAL(8,2) | 해당 본 레이스 획득 포인트 |
+| drivers | session_key | INT | 세션 ID, NULL 불가 |
+| drivers | driver_number | INT | 드라이버 번호, NULL 불가 |
+| drivers | full_name | VARCHAR(100) | 이름, NULL 허용 |
+| drivers | team_name | VARCHAR(100) | 해당 경기의 소속 팀, NULL 허용 |
+| race_results | session_key | INT | 세션 ID, NULL 불가 |
+| race_results | driver_number | INT | 드라이버 번호, NULL 불가 |
+| race_results | position | INT | 공식 최종 순위, 숫자 순위가 없으면 NULL |
+| race_results | completed_laps | INT | 공식 완료 랩 수 |
+| race_results | points | DECIMAL(8,2) | 해당 본 레이스 획득 포인트 |
 
-두 테이블 모두 session\_key와 driver\_number의 조합으로 한 행을 구분합니다. 해당 조합으로 연결합니다. 현재 스냅샷의 결과 기록에는 completed\_laps와 points의 NULL이 없습니다. 이적한 드라이버는 경기마다 team\_name이 달라질 수 있습니다.
+두 테이블 모두 session_key와 driver_number의 조합으로 한 행을 구분합니다. 해당 조합으로 연결합니다. 현재 스냅샷의 결과 기록에는 completed_laps와 points의 NULL이 없습니다. 이적한 드라이버는 경기마다 team_name이 달라질 수 있습니다.
 
 ### 문제
 
@@ -77,11 +79,11 @@ drivers의 한 행은 특정 세션에 참가한 드라이버 한 명이고, rac
 
 | 컬럼 | 의미 |
 | --- | --- |
-| race\_position | 공식 최종 순위 |
-| driver\_number | 드라이버 번호 |
-| full\_name | 이름 |
-| team\_name | 팀 이름 |
-| completed\_laps | 완료 랩 수 |
+| race_position | 공식 최종 순위 |
+| driver_number | 드라이버 번호 |
+| full_name | 이름 |
+| team_name | 팀 이름 |
+| completed_laps | 완료 랩 수 |
 | points | 본 레이스 획득 포인트 |
 
 ### 가상 예시와 해설
@@ -109,7 +111,7 @@ ORDER BY race_position ASC, driver_number ASC;
 
 ### 실제 실행 결과
 
-| race\_position | driver\_number | full\_name | team\_name | completed\_laps | points |
+| race_position | driver_number | full_name | team_name | completed_laps | points |
 | --- | --- | --- | --- | --- | --- |
 | 1 | 12 | Kimi ANTONELLI | Mercedes | 56 | 25.00 |
 | 2 | 16 | Charles LECLERC | Ferrari | 56 | 18.00 |
@@ -135,7 +137,7 @@ ORDER BY race_position ASC, driver_number ASC;
 
 ### 핵심 개념과 결과 해석
 
-position AS race\_position은 기존 컬럼의 출력 이름만 바꿉니다. 집계나 순위 계산은 하지 않습니다. 여러 경기 합계를 조회하면 단일 경기 결과와 달라집니다. CTE 이름만으로 경기 필터가 생기지는 않습니다.
+position AS race_position은 기존 컬럼의 출력 이름만 바꿉니다. 집계나 순위 계산은 하지 않습니다. 여러 경기 합계를 조회하면 단일 경기 결과와 달라집니다. CTE 이름만으로 경기 필터가 생기지는 않습니다.
 </details>
 
 <details>
@@ -145,21 +147,21 @@ position AS race\_position은 기존 컬럼의 출력 이름만 바꿉니다. �
 
 ### 테이블 설명
 
-drivers의 한 행은 특정 세션에 참가한 드라이버 한 명이고, race\_results의 한 행은 특정 세션의 드라이버별 최종 결과입니다. 필요한 컬럼 일부입니다.
+drivers의 한 행은 특정 세션에 참가한 드라이버 한 명이고, race_results의 한 행은 특정 세션의 드라이버별 최종 결과입니다. 필요한 컬럼 일부입니다.
 
 | 테이블 | 컬럼 | 자료형 | 의미 |
 | --- | --- | --- | --- |
-| drivers | session\_key | INT | 세션 ID, NULL 불가 |
-| drivers | driver\_number | INT | 드라이버 번호, NULL 불가 |
-| drivers | full\_name | VARCHAR(100) | 이름, NULL 허용 |
-| drivers | team\_name | VARCHAR(100) | 해당 경기의 소속 팀, NULL 허용 |
-| race\_results | session\_key | INT | 세션 ID, NULL 불가 |
-| race\_results | driver\_number | INT | 드라이버 번호, NULL 불가 |
-| race\_results | position | INT | 공식 최종 순위, 숫자 순위가 없으면 NULL |
-| race\_results | completed\_laps | INT | 공식 완료 랩 수 |
-| race\_results | points | DECIMAL(8,2) | 해당 본 레이스 획득 포인트 |
+| drivers | session_key | INT | 세션 ID, NULL 불가 |
+| drivers | driver_number | INT | 드라이버 번호, NULL 불가 |
+| drivers | full_name | VARCHAR(100) | 이름, NULL 허용 |
+| drivers | team_name | VARCHAR(100) | 해당 경기의 소속 팀, NULL 허용 |
+| race_results | session_key | INT | 세션 ID, NULL 불가 |
+| race_results | driver_number | INT | 드라이버 번호, NULL 불가 |
+| race_results | position | INT | 공식 최종 순위, 숫자 순위가 없으면 NULL |
+| race_results | completed_laps | INT | 공식 완료 랩 수 |
+| race_results | points | DECIMAL(8,2) | 해당 본 레이스 획득 포인트 |
 
-두 테이블 모두 session\_key와 driver\_number의 조합으로 한 행을 구분합니다. 해당 조합으로 연결합니다. 현재 스냅샷의 결과 기록에는 completed\_laps와 points의 NULL이 없습니다. 이적한 드라이버는 경기마다 team\_name이 달라질 수 있습니다.
+두 테이블 모두 session_key와 driver_number의 조합으로 한 행을 구분합니다. 해당 조합으로 연결합니다. 현재 스냅샷의 결과 기록에는 completed_laps와 points의 NULL이 없습니다. 이적한 드라이버는 경기마다 team_name이 달라질 수 있습니다.
 
 ### 문제
 
@@ -179,14 +181,14 @@ drivers의 한 행은 특정 세션에 참가한 드라이버 한 명이고, rac
 
 | 컬럼 | 의미 |
 | --- | --- |
-| team\_name | 팀 이름 |
-| driver\_count | 팀의 결과 기록 수 |
-| total\_laps | 완료 랩 합계 |
-| total\_points | 해당 집계 단위의 본 레이스 포인트 합계 |
+| team_name | 팀 이름 |
+| driver_count | 팀의 결과 기록 수 |
+| total_laps | 완료 랩 합계 |
+| total_points | 해당 집계 단위의 본 레이스 포인트 합계 |
 
 ### 가상 예시와 해설
 
-가상 예시: 한 팀의 두 드라이버가 각각 56랩·25점, 56랩·18점이면 driver\_count=2, total\_laps=112, total\_points=43.00입니다.
+가상 예시: 한 팀의 두 드라이버가 각각 56랩·25점, 56랩·18점이면 driver_count=2, total_laps=112, total_points=43.00입니다.
 
 ### 최종 쿼리
 
@@ -207,7 +209,7 @@ ORDER BY total_points DESC, team_name ASC;
 
 ### 실제 실행 결과
 
-| team\_name | driver\_count | total\_laps | total\_points |
+| team_name | driver_count | total_laps | total_points |
 | --- | --- | --- | --- |
 | Ferrari | 2 | 112 | 30.00 |
 | Mercedes | 2 | 112 | 29.00 |
@@ -235,21 +237,21 @@ ORDER BY total_points DESC, team_name ASC;
 
 ### 테이블 설명
 
-drivers의 한 행은 특정 세션에 참가한 드라이버 한 명이고, race\_results의 한 행은 특정 세션의 드라이버별 최종 결과입니다. 필요한 컬럼 일부입니다.
+drivers의 한 행은 특정 세션에 참가한 드라이버 한 명이고, race_results의 한 행은 특정 세션의 드라이버별 최종 결과입니다. 필요한 컬럼 일부입니다.
 
 | 테이블 | 컬럼 | 자료형 | 의미 |
 | --- | --- | --- | --- |
-| drivers | session\_key | INT | 세션 ID, NULL 불가 |
-| drivers | driver\_number | INT | 드라이버 번호, NULL 불가 |
-| drivers | full\_name | VARCHAR(100) | 이름, NULL 허용 |
-| drivers | team\_name | VARCHAR(100) | 해당 경기의 소속 팀, NULL 허용 |
-| race\_results | session\_key | INT | 세션 ID, NULL 불가 |
-| race\_results | driver\_number | INT | 드라이버 번호, NULL 불가 |
-| race\_results | position | INT | 공식 최종 순위, 숫자 순위가 없으면 NULL |
-| race\_results | completed\_laps | INT | 공식 완료 랩 수 |
-| race\_results | points | DECIMAL(8,2) | 해당 본 레이스 획득 포인트 |
+| drivers | session_key | INT | 세션 ID, NULL 불가 |
+| drivers | driver_number | INT | 드라이버 번호, NULL 불가 |
+| drivers | full_name | VARCHAR(100) | 이름, NULL 허용 |
+| drivers | team_name | VARCHAR(100) | 해당 경기의 소속 팀, NULL 허용 |
+| race_results | session_key | INT | 세션 ID, NULL 불가 |
+| race_results | driver_number | INT | 드라이버 번호, NULL 불가 |
+| race_results | position | INT | 공식 최종 순위, 숫자 순위가 없으면 NULL |
+| race_results | completed_laps | INT | 공식 완료 랩 수 |
+| race_results | points | DECIMAL(8,2) | 해당 본 레이스 획득 포인트 |
 
-두 테이블 모두 session\_key와 driver\_number의 조합으로 한 행을 구분합니다. 해당 조합으로 연결합니다. 현재 스냅샷의 결과 기록에는 completed\_laps와 points의 NULL이 없습니다. 이적한 드라이버는 경기마다 team\_name이 달라질 수 있습니다.
+두 테이블 모두 session_key와 driver_number의 조합으로 한 행을 구분합니다. 해당 조합으로 연결합니다. 현재 스냅샷의 결과 기록에는 completed_laps와 points의 NULL이 없습니다. 이적한 드라이버는 경기마다 team_name이 달라질 수 있습니다.
 
 ### 문제
 
@@ -258,9 +260,9 @@ CTE로 드라이버별 결과 기록 수와 포인트 합계를 계산한 뒤 �
 ### 조건
 
 - 적재된 18개 본 레이스 전체를 사용합니다.
-- CTE 이름은 driver\_totals이며 안쪽에서 드라이버별 집계를 계산합니다.
+- CTE 이름은 driver_totals이며 안쪽에서 드라이버별 집계를 계산합니다.
 - 같은 드라이버의 이적 전후 기록을 합산합니다. 팀별로 나누지 않습니다.
-- 0포인트·순위 NULL 경기 기록도 race\_count와 합계에 포함합니다.
+- 0포인트·순위 NULL 경기 기록도 race_count와 합계에 포함합니다.
 - 100 이상 조건은 CTE 바깥에 작성합니다. 정확히 100도 포함합니다.
 - 포인트 합계 내림차순, 같으면 드라이버 번호 오름차순입니다.
 
@@ -270,10 +272,10 @@ CTE로 드라이버별 결과 기록 수와 포인트 합계를 계산한 뒤 �
 
 | 컬럼 | 의미 |
 | --- | --- |
-| driver\_number | 드라이버 번호 |
-| full\_name | 이름 |
-| race\_count | 해당 집계 단위의 본 레이스 결과 기록 수 |
-| total\_points | 해당 집계 단위의 본 레이스 포인트 합계 |
+| driver_number | 드라이버 번호 |
+| full_name | 이름 |
+| race_count | 해당 집계 단위의 본 레이스 결과 기록 수 |
+| total_points | 해당 집계 단위의 본 레이스 포인트 합계 |
 
 ### 가상 예시와 해설
 
@@ -302,7 +304,7 @@ ORDER BY total_points DESC, driver_number ASC;
 
 ### 실제 실행 결과
 
-| driver\_number | full\_name | race\_count | total\_points |
+| driver_number | full_name | race_count | total_points |
 | --- | --- | --- | --- |
 | 12 | Kimi ANTONELLI | 18 | 334.00 |
 | 3 | Max VERSTAPPEN | 18 | 216.00 |
@@ -317,7 +319,7 @@ ORDER BY total_points DESC, driver_number ASC;
 
 ### 핵심 개념과 결과 해석
 
-CTE에서 이미 드라이버별 한 행으로 만들었으므로 바깥 GROUP BY는 불필요합니다. 바깥 WHERE는 만들어진 total\_points 컬럼을 선별합니다. 이번 MySQL에서 바깥 HAVING으로 같은 조건을 적용한 실행도 결과가 같았으며, WHERE로 변경한 것은 역할을 명확히 하는 작성 방식입니다.
+CTE에서 이미 드라이버별 한 행으로 만들었으므로 바깥 GROUP BY는 불필요합니다. 바깥 WHERE는 만들어진 total_points 컬럼을 선별합니다. 이번 MySQL에서 바깥 HAVING으로 같은 조건을 적용한 실행도 결과가 같았으며, WHERE로 변경한 것은 역할을 명확히 하는 작성 방식입니다.
 </details>
 
 <details>
@@ -327,21 +329,21 @@ CTE에서 이미 드라이버별 한 행으로 만들었으므로 바깥 GROUP B
 
 ### 테이블 설명
 
-drivers의 한 행은 특정 세션에 참가한 드라이버 한 명이고, race\_results의 한 행은 특정 세션의 드라이버별 최종 결과입니다. 필요한 컬럼 일부입니다.
+drivers의 한 행은 특정 세션에 참가한 드라이버 한 명이고, race_results의 한 행은 특정 세션의 드라이버별 최종 결과입니다. 필요한 컬럼 일부입니다.
 
 | 테이블 | 컬럼 | 자료형 | 의미 |
 | --- | --- | --- | --- |
-| drivers | session\_key | INT | 세션 ID, NULL 불가 |
-| drivers | driver\_number | INT | 드라이버 번호, NULL 불가 |
-| drivers | full\_name | VARCHAR(100) | 이름, NULL 허용 |
-| drivers | team\_name | VARCHAR(100) | 해당 경기의 소속 팀, NULL 허용 |
-| race\_results | session\_key | INT | 세션 ID, NULL 불가 |
-| race\_results | driver\_number | INT | 드라이버 번호, NULL 불가 |
-| race\_results | position | INT | 공식 최종 순위, 숫자 순위가 없으면 NULL |
-| race\_results | completed\_laps | INT | 공식 완료 랩 수 |
-| race\_results | points | DECIMAL(8,2) | 해당 본 레이스 획득 포인트 |
+| drivers | session_key | INT | 세션 ID, NULL 불가 |
+| drivers | driver_number | INT | 드라이버 번호, NULL 불가 |
+| drivers | full_name | VARCHAR(100) | 이름, NULL 허용 |
+| drivers | team_name | VARCHAR(100) | 해당 경기의 소속 팀, NULL 허용 |
+| race_results | session_key | INT | 세션 ID, NULL 불가 |
+| race_results | driver_number | INT | 드라이버 번호, NULL 불가 |
+| race_results | position | INT | 공식 최종 순위, 숫자 순위가 없으면 NULL |
+| race_results | completed_laps | INT | 공식 완료 랩 수 |
+| race_results | points | DECIMAL(8,2) | 해당 본 레이스 획득 포인트 |
 
-두 테이블 모두 session\_key와 driver\_number의 조합으로 한 행을 구분합니다. 해당 조합으로 연결합니다. 현재 스냅샷의 결과 기록에는 completed\_laps와 points의 NULL이 없습니다. 이적한 드라이버는 경기마다 team\_name이 달라질 수 있습니다.
+두 테이블 모두 session_key와 driver_number의 조합으로 한 행을 구분합니다. 해당 조합으로 연결합니다. 현재 스냅샷의 결과 기록에는 completed_laps와 points의 NULL이 없습니다. 이적한 드라이버는 경기마다 team_name이 달라질 수 있습니다.
 
 ### 문제
 
@@ -349,12 +351,12 @@ drivers의 한 행은 특정 세션에 참가한 드라이버 한 명이고, rac
 
 ### 조건
 
-- 적재된 18개 본 레이스 전체와 driver\_totals CTE를 사용합니다.
+- 적재된 18개 본 레이스 전체와 driver_totals CTE를 사용합니다.
 - 이적 전후 포인트는 드라이버별로 합산합니다.
 - 100점 조건을 제거하고 0포인트와 순위 NULL 경기 결과도 포함합니다.
 - RANK를 사용하며 포인트 합계만 내림차순으로 비교합니다.
 - 같은 포인트는 공동 순위이며 경기 수·드라이버 번호는 순위 계산 기준에 넣지 않습니다.
-- 최종 출력은 points\_rank 오름차순, 같으면 드라이버 번호 오름차순입니다.
+- 최종 출력은 points_rank 오름차순, 같으면 드라이버 번호 오름차순입니다.
 
 ### 출력 컬럼
 
@@ -362,11 +364,11 @@ drivers의 한 행은 특정 세션에 참가한 드라이버 한 명이고, rac
 
 | 컬럼 | 의미 |
 | --- | --- |
-| points\_rank | 전체 누적 포인트 순위 |
-| driver\_number | 드라이버 번호 |
-| full\_name | 이름 |
-| race\_count | 해당 집계 단위의 본 레이스 결과 기록 수 |
-| total\_points | 해당 집계 단위의 본 레이스 포인트 합계 |
+| points_rank | 전체 누적 포인트 순위 |
+| driver_number | 드라이버 번호 |
+| full_name | 이름 |
+| race_count | 해당 집계 단위의 본 레이스 결과 기록 수 |
+| total_points | 해당 집계 단위의 본 레이스 포인트 합계 |
 
 ### 가상 예시와 해설
 
@@ -399,7 +401,7 @@ ORDER BY points_rank ASC, driver_number ASC;
 
 ### 실제 실행 결과
 
-| points\_rank | driver\_number | full\_name | race\_count | total\_points |
+| points_rank | driver_number | full_name | race_count | total_points |
 | --- | --- | --- | --- | --- |
 | 1 | 12 | Kimi ANTONELLI | 18 | 334.00 |
 | 2 | 3 | Max VERSTAPPEN | 18 | 216.00 |
@@ -439,21 +441,21 @@ ORDER BY points_rank ASC, driver_number ASC;
 
 ### 테이블 설명
 
-drivers의 한 행은 특정 세션에 참가한 드라이버 한 명이고, race\_results의 한 행은 특정 세션의 드라이버별 최종 결과입니다. 필요한 컬럼 일부입니다.
+drivers의 한 행은 특정 세션에 참가한 드라이버 한 명이고, race_results의 한 행은 특정 세션의 드라이버별 최종 결과입니다. 필요한 컬럼 일부입니다.
 
 | 테이블 | 컬럼 | 자료형 | 의미 |
 | --- | --- | --- | --- |
-| drivers | session\_key | INT | 세션 ID, NULL 불가 |
-| drivers | driver\_number | INT | 드라이버 번호, NULL 불가 |
-| drivers | full\_name | VARCHAR(100) | 이름, NULL 허용 |
-| drivers | team\_name | VARCHAR(100) | 해당 경기의 소속 팀, NULL 허용 |
-| race\_results | session\_key | INT | 세션 ID, NULL 불가 |
-| race\_results | driver\_number | INT | 드라이버 번호, NULL 불가 |
-| race\_results | position | INT | 공식 최종 순위, 숫자 순위가 없으면 NULL |
-| race\_results | completed\_laps | INT | 공식 완료 랩 수 |
-| race\_results | points | DECIMAL(8,2) | 해당 본 레이스 획득 포인트 |
+| drivers | session_key | INT | 세션 ID, NULL 불가 |
+| drivers | driver_number | INT | 드라이버 번호, NULL 불가 |
+| drivers | full_name | VARCHAR(100) | 이름, NULL 허용 |
+| drivers | team_name | VARCHAR(100) | 해당 경기의 소속 팀, NULL 허용 |
+| race_results | session_key | INT | 세션 ID, NULL 불가 |
+| race_results | driver_number | INT | 드라이버 번호, NULL 불가 |
+| race_results | position | INT | 공식 최종 순위, 숫자 순위가 없으면 NULL |
+| race_results | completed_laps | INT | 공식 완료 랩 수 |
+| race_results | points | DECIMAL(8,2) | 해당 본 레이스 획득 포인트 |
 
-두 테이블 모두 session\_key와 driver\_number의 조합으로 한 행을 구분합니다. 해당 조합으로 연결합니다. 현재 스냅샷의 결과 기록에는 completed\_laps와 points의 NULL이 없습니다. 이적한 드라이버는 경기마다 team\_name이 달라질 수 있습니다.
+두 테이블 모두 session_key와 driver_number의 조합으로 한 행을 구분합니다. 해당 조합으로 연결합니다. 현재 스냅샷의 결과 기록에는 completed_laps와 points의 NULL이 없습니다. 이적한 드라이버는 경기마다 team_name이 달라질 수 있습니다.
 
 ### 문제
 
@@ -461,7 +463,7 @@ drivers의 한 행은 특정 세션에 참가한 드라이버 한 명이고, rac
 
 ### 조건
 
-- 적재된 18개 본 레이스 전체를 사용하고 CTE 이름은 team\_driver\_totals로 지정합니다.
+- 적재된 18개 본 레이스 전체를 사용하고 CTE 이름은 team_driver_totals로 지정합니다.
 - 이적한 드라이버는 팀별로 나누고 해당 팀 소속으로 얻은 포인트만 합산합니다.
 - 0포인트와 순위 NULL 경기 기록을 포함하며 최소 경기 수·포인트 조건은 없습니다.
 - 팀마다 RANK를 다시 시작하고 같은 포인트는 공동 순위입니다.
@@ -474,12 +476,12 @@ drivers의 한 행은 특정 세션에 참가한 드라이버 한 명이고, rac
 
 | 컬럼 | 의미 |
 | --- | --- |
-| team\_name | 팀 이름 |
-| team\_rank | 팀 내 누적 포인트 순위 |
-| driver\_number | 드라이버 번호 |
-| full\_name | 이름 |
-| race\_count | 해당 집계 단위의 본 레이스 결과 기록 수 |
-| total\_points | 해당 집계 단위의 본 레이스 포인트 합계 |
+| team_name | 팀 이름 |
+| team_rank | 팀 내 누적 포인트 순위 |
+| driver_number | 드라이버 번호 |
+| full_name | 이름 |
+| race_count | 해당 집계 단위의 본 레이스 결과 기록 수 |
+| total_points | 해당 집계 단위의 본 레이스 포인트 합계 |
 
 ### 가상 예시와 해설
 
@@ -517,7 +519,7 @@ ORDER BY team_name ASC, team_rank ASC, driver_number ASC;
 
 ### 실제 실행 결과
 
-| team\_name | team\_rank | driver\_number | full\_name | race\_count | total\_points |
+| team_name | team_rank | driver_number | full_name | race_count | total_points |
 | --- | --- | --- | --- | --- | --- |
 | Alpine | 1 | 10 | Pierre GASLY | 18 | 40.00 |
 | Alpine | 2 | 43 | Franco COLAPINTO | 18 | 27.00 |
@@ -556,11 +558,11 @@ ORDER BY team_name ASC, team_rank ASC, driver_number ASC;
 
 ## 저장된 값 조회와 새 계산 구분
 
-position AS race\_position은 출력 이름을 바꿀 뿐 순위를 계산하지 않습니다. 이미 공식 결과가 있는 문제는 해당 값을 조회합니다. 여러 경기 포인트 합계와 팀별 순위처럼 새 지표가 필요할 때 집계·윈도우 함수를 사용합니다.
+position AS race_position은 출력 이름을 바꿀 뿐 순위를 계산하지 않습니다. 이미 공식 결과가 있는 문제는 해당 값을 조회합니다. 여러 경기 포인트 합계와 팀별 순위처럼 새 지표가 필요할 때 집계·윈도우 함수를 사용합니다.
 
 ## CTE 안과 바깥의 역할
 
-CTE 안에서 경기 기록을 드라이버별로 합산하면 한 행은 드라이버 한 명입니다. 바깥에서는 만들어진 total\_points를 조회·필터링·순위 계산에 사용합니다. 같은 기준으로 바깥 GROUP BY를 다시 할 필요가 없습니다.
+CTE 안에서 경기 기록을 드라이버별로 합산하면 한 행은 드라이버 한 명입니다. 바깥에서는 만들어진 total_points를 조회·필터링·순위 계산에 사용합니다. 같은 기준으로 바깥 GROUP BY를 다시 할 필요가 없습니다.
 
 ## 이적을 합칠지 나눌지
 
@@ -568,7 +570,7 @@ CTE 안에서 경기 기록을 드라이버별로 합산하면 한 행은 드라
 
 ## 공동 순위와 표시 순서
 
-RANK는 같은 포인트에 같은 순위를 주고 다음 순위를 건너뜁니다. OVER의 ORDER BY에는 점수만 넣고, 출력 동률 순서는 마지막 ORDER BY의 드라이버 번호로 지정합니다. PARTITION BY team\_name은 팀마다 순위를 새로 시작합니다.
+RANK는 같은 포인트에 같은 순위를 주고 다음 순위를 건너뜁니다. OVER의 ORDER BY에는 점수만 넣고, 출력 동률 순서는 마지막 ORDER BY의 드라이버 번호로 지정합니다. PARTITION BY team_name은 팀마다 순위를 새로 시작합니다.
 </details>
 
 <details>

@@ -1,6 +1,6 @@
-# Day 16 — Online Retail 국가·고객 집계·JOIN·서브쿼리
+# 🛒 Day16 — Online Retail 국가·고객 집계·JOIN·서브쿼리
 
-[English](../en/day16.md) · [목차](../../README.ko.md)
+[English](../en/day16.md) · [목차](../../README.ko.md) · [검증 기록](../../docs/audit.ko.md)
 
 <details>
 <summary>🛒 Day16 — Online Retail 국가·고객 집계·JOIN·서브쿼리</summary>
@@ -9,9 +9,9 @@
 
 ## 학습 개요
 
-**환경:** MySQL / retail\_study / sales\_items·invoice\_headers
+<b>환경:</b> MySQL / retail_study / sales_items·invoice_headers
 
-**검증 근거:** 사용자가 직접 공유한 MySQL 결과.
+<b>검증 근거:</b> 사용자가 직접 공유한 MySQL 결과.
 
 ### 접속
 
@@ -34,19 +34,19 @@ SHOW TABLES;
 
 | 표·뷰 | 한 행의 의미 | 행 수 |
 | --- | --- | --- |
-| invoice\_items | 원본 상품 항목 한 행 | 541909 |
-| invoice\_headers | 주문번호·일시·고객·국가의 고유 조합 | 25943 |
-| sales\_items | 양수 수량·단가의 비취소 원본 상품 항목 | 530104 |
+| invoice_items | 원본 상품 항목 한 행 | 541909 |
+| invoice_headers | 주문번호·일시·고객·국가의 고유 조합 | 25943 |
+| sales_items | 양수 수량·단가의 비취소 원본 상품 항목 | 530104 |
 
-고유 주문번호는 25900개입니다. 43개 주문번호 안에서 일시·고객·국가 조합이 달라 invoice\_headers는 25943행으로 만들었습니다. 헤더 행 수를 고유 주문 수라고 부르지 않습니다.
+고유 주문번호는 25900개입니다. 43개 주문번호 안에서 일시·고객·국가 조합이 달라 invoice_headers는 25943행으로 만들었습니다. 헤더 행 수를 고유 주문 수라고 부르지 않습니다.
 
-JOIN에는 invoice\_header\_id를 사용합니다. 원본 중복 추가분 5268행과 NULL·음수 기록은 invoice\_items에 보존했습니다. sales\_items에도 중복과 고객 NULL이 남아 있습니다.
+JOIN에는 invoice_header_id를 사용합니다. 원본 중복 추가분 5268행과 NULL·음수 기록은 invoice_items에 보존했습니다. sales_items에도 중복과 고객 NULL이 남아 있습니다.
 
-원본 customer\_id NULL은 135080행이고 sales\_items 중 고객 NULL 기록은 132220행입니다. 고객 ID를 모르는 기록을 고객 한 명으로 취급하지 않습니다.
+원본 customer_id NULL은 135080행이고 sales_items 중 고객 NULL 기록은 132220행입니다. 고객 ID를 모르는 기록을 고객 한 명으로 취급하지 않습니다.
 
 원본: [UCI Online Retail](https://archive.ics.uci.edu/dataset/352/online+retail), Daqing Chen, 2015, DOI 10.24432/C5BW33, CC BY 4.0. 기간 2010-12-01\~2011-12-09, 단가 단위 GBP.
 
-기존 Olist는 사용자 요청에 따라 백업 후 삭제했고 새 retail\_study를 적재·검증했습니다. F1·finance·soccer는 유지했습니다. 문제의 구매금액·판매금액은 연습용 정의로, 원본 취소·조정·중복을 정리한 확정 매출을 뜻하지 않습니다.
+기존 Olist는 사용자 요청에 따라 백업 후 삭제했고 새 retail_study를 적재·검증했습니다. F1·finance·soccer는 유지했습니다. 문제의 구매금액·판매금액은 연습용 정의로, 원본 취소·조정·중복을 정리한 확정 매출을 뜻하지 않습니다.
 
 <details>
 <summary>📚 문제 1\~3 — 국가별 판매·고액 비율·고객 JOIN</summary>
@@ -55,43 +55,43 @@ JOIN에는 invoice\_header\_id를 사용합니다. 원본 중복 추가분 5268�
 
 ### 테이블 설명
 
-**sales\_items — 한 행은 주문에 포함된 상품 항목 하나입니다.** 수량·단가가 양수이고 주문번호가 C로 시작하지 않는 원본 기록을 보여 주는 뷰입니다. 원본 중복 행은 제거하지 않았습니다.
+<b>sales_items — 한 행은 주문에 포함된 상품 항목 하나입니다.</b> 수량·단가가 양수이고 주문번호가 C로 시작하지 않는 원본 기록을 보여 주는 뷰입니다. 원본 중복 행은 제거하지 않았습니다.
 
 | 컬럼 | 자료형 | 설명 |
 | --- | --- | --- |
-| source\_row\_id | INT | 원본 상품 항목 행의 고유 번호 |
-| invoice\_header\_id | INT | JOIN용 주문 정보 조합 ID |
-| invoice\_no | VARCHAR(20) | 원본 주문번호, 여러 상품 행에서 반복 가능 |
+| source_row_id | INT | 원본 상품 항목 행의 고유 번호 |
+| invoice_header_id | INT | JOIN용 주문 정보 조합 ID |
+| invoice_no | VARCHAR(20) | 원본 주문번호, 여러 상품 행에서 반복 가능 |
 | quantity | INT | 해당 항목의 판매 수량 |
-| unit\_price | DECIMAL(16,6) | 개당 가격, GBP |
-| customer\_id | VARCHAR(20) | 고객 ID, NULL 허용 |
+| unit_price | DECIMAL(16,6) | 개당 가격, GBP |
+| customer_id | VARCHAR(20) | 고객 ID, NULL 허용 |
 | country | VARCHAR(100) | 국가 이름 |
 
-위는 필요한 주요 컬럼 일부입니다. 상품 항목 금액은 quantity × unit\_price입니다. 수량 6개·단가 2.55이면 한 행의 금액은 15.30파운드이며, 행 수는 1입니다.
+위는 필요한 주요 컬럼 일부입니다. 상품 항목 금액은 quantity × unit_price입니다. 수량 6개·단가 2.55이면 한 행의 금액은 15.30파운드이며, 행 수는 1입니다.
 
 ### 문제
 
-sales\_items에서 국가별 판매 수량과 판매금액을 조회하는 SQL문을 작성하세요. 결과 한 행은 국가 하나의 판매 통계입니다.
+sales_items에서 국가별 판매 수량과 판매금액을 조회하는 SQL문을 작성하세요. 결과 한 행은 국가 하나의 판매 통계입니다.
 
 ### 조건
 
 - 전체 기간을 사용합니다.
 - 국가별 판매 수량 합계가 1,000개 이상인 국가만 출력합니다. 정확히 1,000개도 포함합니다.
-- 판매금액은 각 행의 quantity × unit\_price를 합하고 최종 소수점 둘째 자리까지 반올림합니다.
+- 판매금액은 각 행의 quantity × unit_price를 합하고 최종 소수점 둘째 자리까지 반올림합니다.
 - 고객 ID가 NULL인 기록도 포함합니다.
-- 반올림한 금액 내림차순, 같으면 국가 이름 오름차순. sales\_items만 사용합니다.
+- 반올림한 금액 내림차순, 같으면 국가 이름 오름차순. sales_items만 사용합니다.
 
 ### 출력 컬럼
 
 | 컬럼 | 의미 |
 | --- | --- |
 | country | 국가 |
-| total\_quantity | 수량 합계 |
-| total\_sales\_amount | 상품 항목 금액 합계(GBP) |
+| total_quantity | 수량 합계 |
+| total_sales_amount | 상품 항목 금액 합계(GBP) |
 
 ### 출력 예시 — 가상
 
-| country | total\_quantity | total\_sales\_amount |
+| country | total_quantity | total_sales_amount |
 | --- | --- | --- |
 | Country A | 1200 | 6000.00 |
 | Country B | 1000 | 4500.00 |
@@ -119,7 +119,7 @@ ORDER BY total_sales_amount DESC, country ASC;
 
 ### 검증 — 사용자 실제 출력 전체
 
-| country | total\_quantity | total\_sales\_amount |
+| country | total_quantity | total_sales_amount |
 | --- | --- | --- |
 | United Kingdom | 4662390 | 9025222.08 |
 | Netherlands | 200361 | 285446.34 |
@@ -162,23 +162,23 @@ ORDER BY total_sales_amount DESC, country ASC;
 
 ### 테이블 설명
 
-**sales\_items — 한 행은 주문에 포함된 상품 항목 하나입니다.** 수량·단가가 양수이고 주문번호가 C로 시작하지 않는 원본 기록을 보여 주는 뷰입니다. 원본 중복 행은 제거하지 않았습니다.
+<b>sales_items — 한 행은 주문에 포함된 상품 항목 하나입니다.</b> 수량·단가가 양수이고 주문번호가 C로 시작하지 않는 원본 기록을 보여 주는 뷰입니다. 원본 중복 행은 제거하지 않았습니다.
 
 | 컬럼 | 자료형 | 설명 |
 | --- | --- | --- |
-| source\_row\_id | INT | 원본 상품 항목 행의 고유 번호 |
-| invoice\_header\_id | INT | JOIN용 주문 정보 조합 ID |
-| invoice\_no | VARCHAR(20) | 원본 주문번호, 여러 상품 행에서 반복 가능 |
+| source_row_id | INT | 원본 상품 항목 행의 고유 번호 |
+| invoice_header_id | INT | JOIN용 주문 정보 조합 ID |
+| invoice_no | VARCHAR(20) | 원본 주문번호, 여러 상품 행에서 반복 가능 |
 | quantity | INT | 해당 항목의 판매 수량 |
-| unit\_price | DECIMAL(16,6) | 개당 가격, GBP |
-| customer\_id | VARCHAR(20) | 고객 ID, NULL 허용 |
+| unit_price | DECIMAL(16,6) | 개당 가격, GBP |
+| customer_id | VARCHAR(20) | 고객 ID, NULL 허용 |
 | country | VARCHAR(100) | 국가 이름 |
 
-위는 필요한 주요 컬럼 일부입니다. 상품 항목 금액은 quantity × unit\_price입니다. 수량 6개·단가 2.55이면 한 행의 금액은 15.30파운드이며, 행 수는 1입니다.
+위는 필요한 주요 컬럼 일부입니다. 상품 항목 금액은 quantity × unit_price입니다. 수량 6개·단가 2.55이면 한 행의 금액은 15.30파운드이며, 행 수는 1입니다.
 
 ### 문제
 
-상품 항목이 100행 이상 기록된 국가의 이름, 전체 상품 항목 수, 고액 항목 수와 고액 항목 비율을 조회하세요. 고액 항목은 quantity × unit\_price가 100파운드 이상인 행입니다.
+상품 항목이 100행 이상 기록된 국가의 이름, 전체 상품 항목 수, 고액 항목 수와 고액 항목 비율을 조회하세요. 고액 항목은 quantity × unit_price가 100파운드 이상인 행입니다.
 
 ### 조건
 
@@ -186,20 +186,20 @@ ORDER BY total_sales_amount DESC, country ASC;
 - 정확히 100파운드인 항목도 고액에 포함합니다.
 - 비율(%) = 고액 항목 수 / 전체 상품 항목 수 × 100. 최종 소수점 둘째 자리까지 반올림합니다.
 - 고액 항목이 없어도 전체 행 수 조건을 만족하면 포함하며 건수·비율은 0입니다.
-- 반올림 비율 내림차순, 같으면 국가 이름 오름차순. sales\_items만 사용합니다.
+- 반올림 비율 내림차순, 같으면 국가 이름 오름차순. sales_items만 사용합니다.
 
 ### 출력 컬럼
 
 | 컬럼 | 의미 |
 | --- | --- |
 | country | 국가 |
-| item\_count | 상품 항목 행 수 |
-| high\_amount\_count | 100파운드 이상인 항목 수 |
-| high\_amount\_rate | 고액 항목 비율(%) |
+| item_count | 상품 항목 행 수 |
+| high_amount_count | 100파운드 이상인 항목 수 |
+| high_amount_rate | 고액 항목 비율(%) |
 
 ### 출력 예시 — 가상
 
-| country | item\_count | high\_amount\_count | high\_amount\_rate |
+| country | item_count | high_amount_count | high_amount_rate |
 | --- | --- | --- | --- |
 | Country A | 200 | 50 | 25.00 |
 | Country B | 100 | 10 | 10.00 |
@@ -226,11 +226,11 @@ ORDER BY high_amount_rate DESC, country ASC;
 
 ### 실행 결과·오류
 
-첫 코드의 실제 오류 메시지는 제출되지 않았습니다. SELECT 뒤 쉼표, sales\_item 표 이름, 단가만 비교한 조건을 코드 검토에서 확인했습니다.
+첫 코드의 실제 오류 메시지는 제출되지 않았습니다. SELECT 뒤 쉼표, sales_item 표 이름, 단가만 비교한 조건을 코드 검토에서 확인했습니다.
 
 ### 틀린 이유·수정 사항
 
-unit\_price는 개당 가격입니다. 문제는 상품 항목 전체 금액이므로 quantity × unit\_price를 비교해야 합니다. 수량 20개×단가 6파운드인 행은 120파운드로 고액에 포함됩니다. 고액 항목 수와 비율 분자에 같은 조건을 적용합니다.
+unit_price는 개당 가격입니다. 문제는 상품 항목 전체 금액이므로 quantity × unit_price를 비교해야 합니다. 수량 20개×단가 6파운드인 행은 120파운드로 고액에 포함됩니다. 고액 항목 수와 비율 분자에 같은 조건을 적용합니다.
 
 ### 최종 쿼리
 
@@ -249,7 +249,7 @@ ORDER BY high_amount_rate DESC, country ASC;
 
 ### 검증 — 사용자 실제 출력 전체
 
-| country | item\_count | high\_amount\_count | high\_amount\_rate |
+| country | item_count | high_amount_count | high_amount_rate |
 | --- | --- | --- | --- |
 | Netherlands | 2359 | 1132 | 47.99 |
 | Japan | 321 | 126 | 39.25 |
@@ -295,30 +295,30 @@ Netherlands는 1132/2359×100 = 47.99%. USA와 Unspecified의 0건·0% 포함도
 
 ### 테이블 설명
 
-**sales\_items — 한 행은 주문에 포함된 상품 항목 하나입니다.** 수량·단가가 양수이고 주문번호가 C로 시작하지 않는 원본 기록을 보여 주는 뷰입니다. 원본 중복 행은 제거하지 않았습니다.
+<b>sales_items — 한 행은 주문에 포함된 상품 항목 하나입니다.</b> 수량·단가가 양수이고 주문번호가 C로 시작하지 않는 원본 기록을 보여 주는 뷰입니다. 원본 중복 행은 제거하지 않았습니다.
 
 | 컬럼 | 자료형 | 설명 |
 | --- | --- | --- |
-| source\_row\_id | INT | 원본 상품 항목 행의 고유 번호 |
-| invoice\_header\_id | INT | JOIN용 주문 정보 조합 ID |
-| invoice\_no | VARCHAR(20) | 원본 주문번호, 여러 상품 행에서 반복 가능 |
+| source_row_id | INT | 원본 상품 항목 행의 고유 번호 |
+| invoice_header_id | INT | JOIN용 주문 정보 조합 ID |
+| invoice_no | VARCHAR(20) | 원본 주문번호, 여러 상품 행에서 반복 가능 |
 | quantity | INT | 해당 항목의 판매 수량 |
-| unit\_price | DECIMAL(16,6) | 개당 가격, GBP |
-| customer\_id | VARCHAR(20) | 고객 ID, NULL 허용 |
+| unit_price | DECIMAL(16,6) | 개당 가격, GBP |
+| customer_id | VARCHAR(20) | 고객 ID, NULL 허용 |
 | country | VARCHAR(100) | 국가 이름 |
 
-위는 필요한 주요 컬럼 일부입니다. 상품 항목 금액은 quantity × unit\_price입니다. 수량 6개·단가 2.55이면 한 행의 금액은 15.30파운드이며, 행 수는 1입니다.
+위는 필요한 주요 컬럼 일부입니다. 상품 항목 금액은 quantity × unit_price입니다. 수량 6개·단가 2.55이면 한 행의 금액은 15.30파운드이며, 행 수는 1입니다.
 
-**invoice\_headers — 한 행은 주문번호·일시·고객·국가가 같은 정보 조합 하나입니다.** 원본에서 만든 학습용 표이며 공식 주문 마스터가 아닙니다.
+<b>invoice_headers — 한 행은 주문번호·일시·고객·국가가 같은 정보 조합 하나입니다.</b> 원본에서 만든 학습용 표이며 공식 주문 마스터가 아닙니다.
 
 | 컬럼 | 자료형 | 설명 |
 | --- | --- | --- |
-| invoice\_header\_id | INT | 정보 조합의 고유 ID, 기본키 |
-| invoice\_no | VARCHAR(20) | 원본 주문번호 |
-| customer\_id | VARCHAR(20) | 고객 ID, NULL 허용 |
+| invoice_header_id | INT | 정보 조합의 고유 ID, 기본키 |
+| invoice_no | VARCHAR(20) | 원본 주문번호 |
+| customer_id | VARCHAR(20) | 고객 ID, NULL 허용 |
 | country | VARCHAR(100) | 국가 이름 |
 
-두 표의 invoice\_header\_id가 같으면 해당 상품 항목과 주문 정보가 연결됩니다. 주문 정보 한 행에 상품 항목 여러 행이 붙을 수 있습니다.
+두 표의 invoice_header_id가 같으면 해당 상품 항목과 주문 정보가 연결됩니다. 주문 정보 한 행에 상품 항목 여러 행이 붙을 수 있습니다.
 
 ### 문제
 
@@ -329,22 +329,22 @@ Netherlands는 1132/2359×100 = 47.99%. USA와 Unspecified의 0건·0% 포함도
 - 고객 ID가 NULL인 기록은 제외하고 전체 기간을 사용합니다.
 - 같은 고객의 상품 항목을 모두 합하며 수량 합계가 정확히 100개인 고객도 포함합니다.
 - 항목 수는 행 수이며 주문 수나 판매 수량과 다릅니다.
-- 금액은 quantity × unit\_price 합계이며 최종 소수점 둘째 자리 반올림합니다.
+- 금액은 quantity × unit_price 합계이며 최종 소수점 둘째 자리 반올림합니다.
 - 반올림 금액 내림차순, 같으면 고객 ID 오름차순입니다.
-- 두 표를 연결하고 고객 ID는 invoice\_headers, 수량·단가는 sales\_items에서 가져옵니다.
+- 두 표를 연결하고 고객 ID는 invoice_headers, 수량·단가는 sales_items에서 가져옵니다.
 
 ### 출력 컬럼
 
 | 컬럼 | 의미 |
 | --- | --- |
-| customer\_id | 고객 ID |
-| item\_count | 상품 항목 행 수 |
-| total\_quantity | 수량 합계 |
-| total\_purchase\_amount | 구매금액 합계(GBP) |
+| customer_id | 고객 ID |
+| item_count | 상품 항목 행 수 |
+| total_quantity | 수량 합계 |
+| total_purchase_amount | 구매금액 합계(GBP) |
 
 ### 출력 예시 — 가상
 
-| customer\_id | item\_count | total\_quantity | total\_purchase\_amount |
+| customer_id | item_count | total_quantity | total_purchase_amount |
 | --- | --- | --- | --- |
 | 10001 | 20 | 150 | 1250.00 |
 | 10002 | 10 | 100 | 800.00 |
@@ -370,11 +370,11 @@ ORDER BY total_purchase_amount DESC, h.customer_id ASC;
 
 ### 실행 결과·오류
 
-실행은 됐지만 COUNT(quantity)가 행 수를 세어 item\_count와 total\_quantity가 같았습니다. NULL 고객 그룹도 132220행·1755276.64파운드로 첫 행에 포함됐습니다. 이 그룹은 고객 한 명이 아니라 ID를 알 수 없는 기록의 묶음입니다.
+실행은 됐지만 COUNT(quantity)가 행 수를 세어 item_count와 total_quantity가 같았습니다. NULL 고객 그룹도 132220행·1755276.64파운드로 첫 행에 포함됐습니다. 이 그룹은 고객 한 명이 아니라 ID를 알 수 없는 기록의 묶음입니다.
 
 ### 틀린 이유·수정 사항
 
-COUNT(quantity)는 NULL이 아닌 수량 값의 개수이며 수량 합계가 아닙니다. SUM(s.quantity)로 수정하고, GROUP BY 전에 h.customer\_id IS NOT NULL 조건을 추가했습니다.
+COUNT(quantity)는 NULL이 아닌 수량 값의 개수이며 수량 합계가 아닙니다. SUM(s.quantity)로 수정하고, GROUP BY 전에 h.customer_id IS NOT NULL 조건을 추가했습니다.
 
 JOIN 키·금액 합계·고객별 집계·정렬 방향은 직접 맞췄습니다.
 
@@ -394,7 +394,7 @@ ORDER BY total_purchase_amount DESC, h.customer_id ASC;
 
 ### 검증 — 사용자가 제공한 실제 출력 일부
 
-| customer\_id | item\_count | total\_quantity | total\_purchase\_amount |
+| customer_id | item_count | total_quantity | total_purchase_amount |
 | --- | --- | --- | --- |
 | 14646 | 2076 | 196915 | 280206.02 |
 | 18102 | 431 | 64124 | 259657.30 |
@@ -434,19 +434,19 @@ NULL 고객은 실제 한 사람이 아니다. 고객을 식별하는 분석에�
 
 ### 테이블 설명
 
-**sales\_items — 한 행은 주문에 포함된 상품 항목 하나입니다.** 수량·단가가 양수이고 주문번호가 C로 시작하지 않는 원본 기록을 보여 주는 뷰입니다. 원본 중복 행은 제거하지 않았습니다.
+<b>sales_items — 한 행은 주문에 포함된 상품 항목 하나입니다.</b> 수량·단가가 양수이고 주문번호가 C로 시작하지 않는 원본 기록을 보여 주는 뷰입니다. 원본 중복 행은 제거하지 않았습니다.
 
 | 컬럼 | 자료형 | 설명 |
 | --- | --- | --- |
-| source\_row\_id | INT | 원본 상품 항목 행의 고유 번호 |
-| invoice\_header\_id | INT | JOIN용 주문 정보 조합 ID |
-| invoice\_no | VARCHAR(20) | 원본 주문번호, 여러 상품 행에서 반복 가능 |
+| source_row_id | INT | 원본 상품 항목 행의 고유 번호 |
+| invoice_header_id | INT | JOIN용 주문 정보 조합 ID |
+| invoice_no | VARCHAR(20) | 원본 주문번호, 여러 상품 행에서 반복 가능 |
 | quantity | INT | 해당 항목의 판매 수량 |
-| unit\_price | DECIMAL(16,6) | 개당 가격, GBP |
-| customer\_id | VARCHAR(20) | 고객 ID, NULL 허용 |
+| unit_price | DECIMAL(16,6) | 개당 가격, GBP |
+| customer_id | VARCHAR(20) | 고객 ID, NULL 허용 |
 | country | VARCHAR(100) | 국가 이름 |
 
-위는 필요한 주요 컬럼 일부입니다. 상품 항목 금액은 quantity × unit\_price입니다. 수량 6개·단가 2.55이면 한 행의 금액은 15.30파운드이며, 행 수는 1입니다.
+위는 필요한 주요 컬럼 일부입니다. 상품 항목 금액은 quantity × unit_price입니다. 수량 6개·단가 2.55이면 한 행의 금액은 15.30파운드이며, 행 수는 1입니다.
 
 ### 문제
 
@@ -455,20 +455,20 @@ NULL 고객은 실제 한 사람이 아니다. 고객을 식별하는 분석에�
 ### 조건
 
 - 고객 ID가 NULL인 기록은 제외하고 전체 기간을 사용합니다.
-- 고객의 모든 상품 항목 금액 quantity × unit\_price를 합산합니다.
+- 고객의 모든 상품 항목 금액 quantity × unit_price를 합산합니다.
 - 상품 항목 하나의 금액이 아니라 고객별 누적 금액으로 판단합니다. 정확히 1,000파운드도 포함합니다.
 - 금액은 중간에 반올림하지 않습니다.
-- 조건을 만족하는 고객이 없으면 0. 정렬 없음, sales\_items만 사용합니다.
+- 조건을 만족하는 고객이 없으면 0. 정렬 없음, sales_items만 사용합니다.
 
 ### 출력 컬럼
 
 | 컬럼 | 의미 |
 | --- | --- |
-| customer\_count | 조건을 만족한 고객 수 |
+| customer_count | 조건을 만족한 고객 수 |
 
 ### 출력 예시 — 가상
 
-| customer\_count |
+| customer_count |
 | --- |
 | 2 |
 
@@ -497,7 +497,7 @@ FROM (
 
 ### 검증 — 사용자 실제 출력
 
-| customer\_count |
+| customer_count |
 | --- |
 | 1668 |
 
@@ -505,7 +505,7 @@ FROM (
 
 ### 내 말로 정리·한 행의 의미
 
-안쪽 SELECT에 customer\_id를 출력하지 않아도 GROUP BY customer\_id가 있으므로 한 행은 고객 한 명입니다. 바깥 COUNT는 그 중간 결과의 행을 셉니다.
+안쪽 SELECT에 customer_id를 출력하지 않아도 GROUP BY customer_id가 있으므로 한 행은 고객 한 명입니다. 바깥 COUNT는 그 중간 결과의 행을 셉니다.
 
 안쪽에서 누적 금액 기준으로 고객을 선별하고, 바깥에서 남은 고객 수를 센다.
 </details>
@@ -517,19 +517,19 @@ FROM (
 
 ### 테이블 설명
 
-**sales\_items — 한 행은 주문에 포함된 상품 항목 하나입니다.** 수량·단가가 양수이고 주문번호가 C로 시작하지 않는 원본 기록을 보여 주는 뷰입니다. 원본 중복 행은 제거하지 않았습니다.
+<b>sales_items — 한 행은 주문에 포함된 상품 항목 하나입니다.</b> 수량·단가가 양수이고 주문번호가 C로 시작하지 않는 원본 기록을 보여 주는 뷰입니다. 원본 중복 행은 제거하지 않았습니다.
 
 | 컬럼 | 자료형 | 설명 |
 | --- | --- | --- |
-| source\_row\_id | INT | 원본 상품 항목 행의 고유 번호 |
-| invoice\_header\_id | INT | JOIN용 주문 정보 조합 ID |
-| invoice\_no | VARCHAR(20) | 원본 주문번호, 여러 상품 행에서 반복 가능 |
+| source_row_id | INT | 원본 상품 항목 행의 고유 번호 |
+| invoice_header_id | INT | JOIN용 주문 정보 조합 ID |
+| invoice_no | VARCHAR(20) | 원본 주문번호, 여러 상품 행에서 반복 가능 |
 | quantity | INT | 해당 항목의 판매 수량 |
-| unit\_price | DECIMAL(16,6) | 개당 가격, GBP |
-| customer\_id | VARCHAR(20) | 고객 ID, NULL 허용 |
+| unit_price | DECIMAL(16,6) | 개당 가격, GBP |
+| customer_id | VARCHAR(20) | 고객 ID, NULL 허용 |
 | country | VARCHAR(100) | 국가 이름 |
 
-위는 필요한 주요 컬럼 일부입니다. 상품 항목 금액은 quantity × unit\_price입니다. 수량 6개·단가 2.55이면 한 행의 금액은 15.30파운드이며, 행 수는 1입니다.
+위는 필요한 주요 컬럼 일부입니다. 상품 항목 금액은 quantity × unit_price입니다. 수량 6개·단가 2.55이면 한 행의 금액은 15.30파운드이며, 행 수는 1입니다.
 
 ### 문제
 
@@ -538,20 +538,20 @@ FROM (
 ### 조건
 
 - 고객 ID NULL을 제외하고 전체 기간을 사용합니다.
-- 고객별 누적 금액은 모든 상품 항목의 quantity × unit\_price 합계입니다.
+- 고객별 누적 금액은 모든 상품 항목의 quantity × unit_price 합계입니다.
 - 정확히 1,000파운드인 고객도 포함합니다.
 - 고객별 금액은 중간 반올림하지 않고 최종 평균만 소수점 둘째 자리까지 반올림합니다.
-- 최종 결과 한 행, 정렬 없음, sales\_items만 사용합니다.
+- 최종 결과 한 행, 정렬 없음, sales_items만 사용합니다.
 
 ### 출력 컬럼
 
 | 컬럼 | 의미 |
 | --- | --- |
-| avg\_customer\_total | 대상 고객들의 누적 구매금액 평균(GBP) |
+| avg_customer_total | 대상 고객들의 누적 구매금액 평균(GBP) |
 
 ### 출력 예시 — 가상
 
-| avg\_customer\_total |
+| avg_customer_total |
 | --- |
 | 1500.00 |
 
@@ -580,7 +580,7 @@ FROM (
 
 ### 검증 — 사용자 실제 출력
 
-| avg\_customer\_total |
+| avg_customer_total |
 | --- |
 | 4678.46 |
 
@@ -602,7 +602,7 @@ P4·P5의 중간 결과는 고객별 누적 금액으로 같습니다. 바깥 CO
 | --- | --- |
 | 상품 항목 수 | 행 수 |
 | 판매 수량 | quantity 합계 |
-| 상품 항목 금액 | quantity × unit\_price |
+| 상품 항목 금액 | quantity × unit_price |
 | 고객 누적 구매금액 | 고객별 항목 금액 합계 |
 | 고객 수 | 고객별 중간 결과의 행 수 |
 | 고객당 누적 금액 평균 | 고객별 합계 값들의 평균 |
@@ -611,11 +611,11 @@ P4·P5의 중간 결과는 고객별 누적 금액으로 같습니다. 바깥 CO
 
 ## NULL 고객 처리
 
-국가별 분석 P1·P2는 고객 ID를 몰라도 포함합니다. 고객별 분석 P3\~P5는 customer\_id IS NOT NULL로 제외합니다. 같은 NULL을 상황에 따라 달리 처리한 것이며, 분석 단위가 다르기 때문입니다.
+국가별 분석 P1·P2는 고객 ID를 몰라도 포함합니다. 고객별 분석 P3\~P5는 customer_id IS NOT NULL로 제외합니다. 같은 NULL을 상황에 따라 달리 처리한 것이며, 분석 단위가 다르기 때문입니다.
 
 ## JOIN 후 한 행
 
-sales\_items의 한 행에 invoice\_headers 정보 한 행이 붙는 구조입니다. 같은 주문번호의 서로 다른 정보 조합 때문에 invoice\_no만 JOIN하면 행이 늘어날 수 있으므로 연결용 ID를 사용합니다.
+sales_items의 한 행에 invoice_headers 정보 한 행이 붙는 구조입니다. 같은 주문번호의 서로 다른 정보 조합 때문에 invoice_no만 JOIN하면 행이 늘어날 수 있으므로 연결용 ID를 사용합니다.
 
 ## 서브쿼리 재집계
 

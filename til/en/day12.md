@@ -236,3 +236,9 @@ ORDER BY transaction_count ASC;
 | --- | --- |
 | 1048567 | 884265 |
 
+
+## Audit notes — 2026-11-02
+
+The COUNT/NULL explanation is neutral: COUNT(*) counts rows, COUNT(expression) counts non-NULL expression values, and zero is counted. An inner customer-level grouping makes one row per customer; the outer count counts those rows. Conditional SUM without ELSE 0 can remain NULL for customers with no qualifying transactions. The transaction-frequency distribution reconciles to 884,265 customers and 1,048,567 transactions.
+
+See the [full audit and scope notes](../../docs/audit.en.md).

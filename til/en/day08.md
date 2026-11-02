@@ -2,7 +2,7 @@
 
 [한국어 원기록](../ko/day08.md) · [Index](../../README.md) · [Editorial notes](../../docs/editorial.en.md)
 
-This is an edited English study edition of the Korean Notion journal: all exercises are included, with concise translations of the questions and learning points. Repeated explanations are condensed. SQL and available result tables are transcribed from the source, not rerun for this publication. Historical attempts may be invalid.
+This is an edited English study edition of the Korean Notion journal: all exercises are included, with concise translations of the questions and learning points. Repeated explanations are condensed. SQL and available result tables retain the source record. A separate scoped MySQL replay on 2026-11-02 is documented in the audit notes. Historical attempts may be invalid.
 
 ## Exercise 1
 
@@ -286,3 +286,9 @@ ORDER BY league_name ASC, match_count DESC;
 | Switzerland Super League | Away Win | 53 |
 | Switzerland Super League | Draw | 47 |
 
+
+## Audit notes — 2026-11-02
+
+Exercise 1 returned 109 rows and Exercise 2 returned 62 rows. Day7 Exercise 5 also returned 109, but only 84 teams satisfy both conditions; 25 satisfy each condition alone. MySQL accepts the ORDER BY expression using selected aliases. This is not a correction to an invalid query. All 3,326 season matches have non-NULL scores and the three CASE branches classify every row. ELSE Draw is safe only under the non-NULL premise; missing scores must not silently become draws. CASE ELSE omission is intentional in many conditional COUNT expressions.
+
+See the [full audit and scope notes](../../docs/audit.en.md).

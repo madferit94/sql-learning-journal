@@ -2,7 +2,7 @@
 
 [한국어 원기록](../ko/day11.md) · [Index](../../README.md) · [Editorial notes](../../docs/editorial.en.md)
 
-This is an edited English study edition of the Korean Notion journal: all exercises are included, with concise translations of the questions and learning points. Repeated explanations are condensed. SQL and available result tables are transcribed from the source, not rerun for this publication. Historical attempts may be invalid.
+This is an edited English study edition of the Korean Notion journal: all exercises are included, with concise translations of the questions and learning points. Repeated explanations are condensed. SQL and available result tables retain the source record. A separate scoped MySQL replay on 2026-11-02 is documented in the audit notes. Historical attempts may be invalid.
 
 ## Exercise 1
 
@@ -116,7 +116,7 @@ ORDER BY
 
 **Question.** For 2018 purchases, show each state's total, delivered and canceled order counts, keeping at least one thousand total orders.
 
-**Learning point.** The first attempt omitted THEN and filtered the wrong aggregate. The last recorded query still produced ERROR 1064, attributed in the notes to unusual whitespace. The original snapshot had no successful final result; see the dated follow-up below.
+**Learning point.** The first attempt omitted THEN and filtered the wrong aggregate. A historical paste produced ERROR 1064, attributed in the notes to unusual whitespace. The later successful execution resolves the exercise; the original error remains historical context.
 
 ### Earlier attempt (historical; may be invalid)
 
@@ -137,7 +137,7 @@ ORDER BY
     customer_state ASC;
 ```
 
-### Last recorded query — unresolved ERROR 1064
+### Final query recorded in the journal
 
 ```sql
 SELECT
@@ -161,7 +161,7 @@ GROUP BY c.customer_state
 HAVING total_order_count >= 1000
 ORDER BY
     total_order_count DESC,
-    customer_state ASC;
+    c.customer_state ASC;
 ```
 
 The original snapshot contained no result table. The follow-up below records the later user-run output.
@@ -169,7 +169,7 @@ The original snapshot contained no result table. The follow-up below records the
 
 ### Follow-up verification — 2026-10-10
 
-A later MySQL run after whitespace cleanup returned 10 rows in 0.58 seconds. The recorded values are below. This supersedes the original unresolved execution status; the SQL/error history above is retained. This publication did not rerun Olist, and the whitespace diagnosis itself was not independently reproduced.
+A later MySQL run after whitespace cleanup returned 10 rows in 0.58 seconds. The recorded values are below. This supersedes the original unresolved execution status; the SQL/error history above is retained. The later audit reran this SQL on an isolated Olist backup; the historical whitespace diagnosis itself was not independently reproduced.
 
 | customer_state | total_order_count | delivered_count | canceled_count |
 | --- | --- | --- | --- |
@@ -313,3 +313,9 @@ ORDER BY
 | ES | 1039 | 21 | 2.02 |
 | SC | 1868 | 37 | 1.98 |
 
+
+## Audit notes — 2026-11-02
+
+Exercise 3 is resolved by the later successful execution and by the current isolated-backup replay. The historical ERROR 1064 is preserved; unusual whitespace was the recorded diagnosis, not an independently reproduced sole cause. The final query below follows the current Notion final answer. Customer/state grouping and distinct person IDs remain separate from order IDs.
+
+See the [full audit and scope notes](../../docs/audit.en.md).

@@ -1,3 +1,5 @@
+-- Scoped MySQL 8.4.11 audit: 2026-11-02. See docs/audit.en.md.
+
 -- Day 05: Customer identifiers and joins
 -- Historical final recorded queries, NOT a freshly validated solution set.
 -- See ../til/en/day05.md for questions, context and known limitations.

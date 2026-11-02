@@ -1,3 +1,7 @@
+-- Scoped MySQL 8.4.11 audit: 2026-11-02. See docs/audit.en.md.
+-- BAKU SNAPSHOT ONLY: restrict every source table to session_key = 11377.
+-- Unfiltered execution on the expanded database changes these historical questions.
+
 -- Recorded final queries. Read the matching lesson and schema before running.
 
 -- Exercise 1

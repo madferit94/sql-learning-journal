@@ -195,3 +195,9 @@ FROM (
 | --- |
 | 26455 |
 
+
+## Audit notes — 2026-11-02
+
+Conditional counts and conditional amounts use different THEN values. The customer-total mean is an equally weighted mean of customer sums, not an average transaction amount. Full-query execution checks used the current finance table; original IDs remain pseudonymized and the currency is unspecified.
+
+See the [full audit and scope notes](../../docs/audit.en.md).

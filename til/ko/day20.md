@@ -1,19 +1,21 @@
-# Day 20 — F1 JOIN·CTE·윈도우 함수 기초
+# 🏎️ Day20 — F1 JOIN·CTE·윈도우 함수 기초
 
-[English](../en/day20.md) · [목차](../../README.ko.md)
+[English](../en/day20.md) · [목차](../../README.ko.md) · [검증 기록](../../docs/audit.ko.md)
 
 <details>
 <summary>🏎️ Day20 — F1 JOIN·CTE·윈도우 함수 기초</summary>
+
+<b>재실행 범위:</b> 아래 SQL·결과는 바쿠 단일 세션 11377 기준의 과거 학습 기록입니다. 현재 f1_study에는 19경기가 있어 필터 없이 실행하면 다른 결과가 나옵니다. 이번 재검증은 원본 쿼리를 바꾸지 않고 세션 11377만 노출하는 별도 조회 환경에서 수행했습니다. 직접 재실행할 때는 모든 원본 테이블의 세션을 바쿠로 제한해야 합니다.
 
 # SQL 학습 기록 — Day 20
 
 ## 학습 개요
 
-**환경:** MySQL / f1\_study
-**사용 테이블:** drivers, laps
-**대상:** 현재 적재된 세션 11377
-**범위:** 복합 JOIN 키, CTE, 대상 드라이버 수 계산, 전체 순위, 팀 내 순위. 이어 진행한 5문제를 한 세션으로 묶었습니다.
-**검증 근거:** 사용자 제출 SQL과 공유한 MySQL 실행 결과.
+<b>환경:</b> MySQL / f1_study
+<b>사용 테이블:</b> drivers, laps
+<b>대상:</b> 당시 바쿠 단일 세션 11377
+<b>범위:</b> 복합 JOIN 키, CTE, 대상 드라이버 수 계산, 전체 순위, 팀 내 순위. 이어 진행한 5문제를 한 세션으로 묶었습니다.
+<b>검증 근거:</b> 사용자 제출 SQL과 공유한 MySQL 실행 결과.
 
 ### 접속
 
@@ -35,25 +37,25 @@ drivers는 특정 세션의 드라이버 한 명, laps는 해당 드라이버의
 
 | 테이블 | 컬럼 | 자료형 | NULL 허용 | 의미 |
 | --- | --- | --- | --- | --- |
-| drivers | session\_key | INT | 불가 | 세션 ID |
-| drivers | driver\_number | INT | 불가 | 드라이버 번호 |
-| drivers | full\_name | VARCHAR(100) | 허용 | 이름 |
-| drivers | team\_name | VARCHAR(100) | 허용 | 팀 |
-| laps | session\_key | INT | 불가 | 세션 ID |
-| laps | driver\_number | INT | 불가 | 드라이버 번호 |
-| laps | lap\_number | INT | 불가 | 랩 번호 |
-| laps | lap\_duration | DECIMAL(12,3) | 허용 | 랩타임(초), NULL은 미기록 |
+| drivers | session_key | INT | 불가 | 세션 ID |
+| drivers | driver_number | INT | 불가 | 드라이버 번호 |
+| drivers | full_name | VARCHAR(100) | 허용 | 이름 |
+| drivers | team_name | VARCHAR(100) | 허용 | 팀 |
+| laps | session_key | INT | 불가 | 세션 ID |
+| laps | driver_number | INT | 불가 | 드라이버 번호 |
+| laps | lap_number | INT | 불가 | 랩 번호 |
+| laps | lap_duration | DECIMAL(12,3) | 허용 | 랩타임(초), NULL은 미기록 |
 
-같은 세션·같은 드라이버의 정보에 여러 랩이 연결됩니다. 두 키는 session\_key와 driver\_number입니다.
+같은 세션·같은 드라이버의 정보에 여러 랩이 연결됩니다. 두 키는 session_key와 driver_number입니다.
 
 ### 왜 40랩 이상을 기준으로 사용했는가?
 
-기록이 아주 적은 드라이버와 많은 드라이버를 바로 비교하지 않도록, 이번 학습에서는 **랩타임이 기록된 랩 40개 이상**을 선정 조건으로 사용했습니다. 바쿠의 정규 레이스는 51랩입니다. [F1 공식 서킷 정보](https://www.formula1.com/en/racing/2026/azerbaijan)
+기록이 아주 적은 드라이버와 많은 드라이버를 바로 비교하지 않도록, 이번 학습에서는 <b>랩타임이 기록된 랩 40개 이상</b>을 선정 조건으로 사용했습니다. 바쿠의 정규 레이스는 51랩입니다. [F1 공식 서킷 정보](https://www.formula1.com/en/racing/2026/azerbaijan)
 
 - 40랩은 학습용 임계값이며 F1 공식 기준이나 통계적으로 검증된 기준이 아닙니다.
-- COUNT(lap\_duration)은 NULL이 아닌 기록 수입니다. 공식 완주 랩 수와 항상 같다고 단정하지 않습니다.
+- COUNT(lap_duration)은 NULL이 아닌 기록 수입니다. 공식 완주 랩 수와 항상 같다고 단정하지 않습니다.
 - 40개 이상이어도 타이어, 피트스톱, 세이프티카, 주행 상황 차이가 남으므로 비교 가능성이 보장되지는 않습니다.
-- 결과는 **선정된 드라이버의 평균 랩타임 순위**이며 실제 경기 최종 순위나 실력 순위가 아닙니다.
+- 결과는 <b>선정된 드라이버의 평균 랩타임 순위</b>이며 실제 경기 최종 순위나 실력 순위가 아닙니다.
 - 40랩 조건을 제거하면 기록이 적은 드라이버도 평균 비교에 포함될 수 있지만, 평균 순위가 공식 결과로 바뀌는 것은 아닙니다.
 
 <details>
@@ -67,16 +69,16 @@ drivers의 한 행은 특정 세션에 참가한 드라이버 한 명이며, lap
 
 | 테이블 | 컬럼 | 자료형 | NULL 허용 | 의미 |
 | --- | --- | --- | --- | --- |
-| drivers | session\_key | INT | 불가 | 세션 ID |
-| drivers | driver\_number | INT | 불가 | 드라이버 번호 |
-| drivers | full\_name | VARCHAR(100) | 허용 | 이름 |
-| drivers | team\_name | VARCHAR(100) | 허용 | 팀 |
-| laps | session\_key | INT | 불가 | 세션 ID |
-| laps | driver\_number | INT | 불가 | 드라이버 번호 |
-| laps | lap\_number | INT | 불가 | 랩 번호 |
-| laps | lap\_duration | DECIMAL(12,3) | 허용 | 랩타임(초), NULL은 미기록 |
+| drivers | session_key | INT | 불가 | 세션 ID |
+| drivers | driver_number | INT | 불가 | 드라이버 번호 |
+| drivers | full_name | VARCHAR(100) | 허용 | 이름 |
+| drivers | team_name | VARCHAR(100) | 허용 | 팀 |
+| laps | session_key | INT | 불가 | 세션 ID |
+| laps | driver_number | INT | 불가 | 드라이버 번호 |
+| laps | lap_number | INT | 불가 | 랩 번호 |
+| laps | lap_duration | DECIMAL(12,3) | 허용 | 랩타임(초), NULL은 미기록 |
 
-drivers의 기본키는 session\_key + driver\_number, laps의 기본키는 session\_key + driver\_number + lap\_number입니다. 세션 ID와 드라이버 번호로 연결하는 일대다 관계입니다. 현재 적재된 데이터는 세션 11377 하나입니다. NULL 랩타임은 0초가 아니라 미기록입니다.
+drivers의 기본키는 session_key + driver_number, laps의 기본키는 session_key + driver_number + lap_number입니다. 세션 ID와 드라이버 번호로 연결하는 일대다 관계입니다. 당시 학습 스냅샷은 세션 11377 하나였습니다. NULL 랩타임은 0초가 아니라 미기록입니다.
 
 ### 문제
 
@@ -99,15 +101,15 @@ drivers의 기본키는 session\_key + driver\_number, laps의 기본키는 sess
 
 | 컬럼 | 의미 |
 | --- | --- |
-| driver\_number | 드라이버 번호 |
-| full\_name | 이름 |
-| team\_name | 팀 |
-| timed\_lap\_count | NULL이 아닌 랩타임 기록 수 |
-| avg\_lap\_duration | 평균 랩타임(초), 표시값 소수점 둘째 자리 |
+| driver_number | 드라이버 번호 |
+| full_name | 이름 |
+| team_name | 팀 |
+| timed_lap_count | NULL이 아닌 랩타임 기록 수 |
+| avg_lap_duration | 평균 랩타임(초), 표시값 소수점 둘째 자리 |
 
 ### 가상 출력 예시
 
-| driver\_number | full\_name | team\_name | timed\_lap\_count | avg\_lap\_duration |
+| driver_number | full_name | team_name | timed_lap_count | avg_lap_duration |
 | --- | --- | --- | --- | --- |
 | 10 | DRIVER A | TEAM X | 45 | 108.25 |
 | 20 | DRIVER B | TEAM Y | 40 | 109.10 |
@@ -116,7 +118,7 @@ DRIVER B는 정확히 40개이므로 포함됩니다.
 
 ### 첫 제출과 수정 이유
 
-처음에는 ON l.driver\_number = d.driver\_number만 작성했습니다. 현재 두 테이블에 같은 세션 하나만 있어 출력은 맞았습니다. 여러 세션이 적재되면 다른 경기의 같은 번호 정보까지 연결될 수 있어 세션 키를 추가했습니다.
+처음에는 ON l.driver_number = d.driver_number만 작성했습니다. 현재 두 테이블에 같은 세션 하나만 있어 출력은 맞았습니다. 여러 세션이 적재되면 다른 경기의 같은 번호 정보까지 연결될 수 있어 세션 키를 추가했습니다.
 
 ### 최종 제출 쿼리
 
@@ -138,7 +140,7 @@ ORDER BY avg_lap_duration ASC, driver_number ASC;
 
 ### 실제 결과
 
-| driver\_number | full\_name | team\_name | timed\_lap\_count | avg\_lap\_duration |
+| driver_number | full_name | team_name | timed_lap_count | avg_lap_duration |
 | --- | --- | --- | --- | --- |
 | 63 | George RUSSELL | Mercedes | 51 | 115.34 |
 | 3 | Max VERSTAPPEN | Red Bull Racing | 51 | 115.35 |
@@ -175,20 +177,20 @@ drivers의 한 행은 특정 세션에 참가한 드라이버 한 명이며, lap
 
 | 테이블 | 컬럼 | 자료형 | NULL 허용 | 의미 |
 | --- | --- | --- | --- | --- |
-| drivers | session\_key | INT | 불가 | 세션 ID |
-| drivers | driver\_number | INT | 불가 | 드라이버 번호 |
-| drivers | full\_name | VARCHAR(100) | 허용 | 이름 |
-| drivers | team\_name | VARCHAR(100) | 허용 | 팀 |
-| laps | session\_key | INT | 불가 | 세션 ID |
-| laps | driver\_number | INT | 불가 | 드라이버 번호 |
-| laps | lap\_number | INT | 불가 | 랩 번호 |
-| laps | lap\_duration | DECIMAL(12,3) | 허용 | 랩타임(초), NULL은 미기록 |
+| drivers | session_key | INT | 불가 | 세션 ID |
+| drivers | driver_number | INT | 불가 | 드라이버 번호 |
+| drivers | full_name | VARCHAR(100) | 허용 | 이름 |
+| drivers | team_name | VARCHAR(100) | 허용 | 팀 |
+| laps | session_key | INT | 불가 | 세션 ID |
+| laps | driver_number | INT | 불가 | 드라이버 번호 |
+| laps | lap_number | INT | 불가 | 랩 번호 |
+| laps | lap_duration | DECIMAL(12,3) | 허용 | 랩타임(초), NULL은 미기록 |
 
-drivers의 기본키는 session\_key + driver\_number, laps의 기본키는 session\_key + driver\_number + lap\_number입니다. 세션 ID와 드라이버 번호로 연결하는 일대다 관계입니다. 현재 적재된 데이터는 세션 11377 하나입니다. NULL 랩타임은 0초가 아니라 미기록입니다.
+drivers의 기본키는 session_key + driver_number, laps의 기본키는 session_key + driver_number + lap_number입니다. 세션 ID와 드라이버 번호로 연결하는 일대다 관계입니다. 당시 학습 스냅샷은 세션 11377 하나였습니다. NULL 랩타임은 0초가 아니라 미기록입니다.
 
 ### 문제
 
-드라이버별 랩 통계를 driver\_stats라는 중간 결과로 만든 뒤 40랩 이상인 드라이버를 조회합니다.
+드라이버별 랩 통계를 driver_stats라는 중간 결과로 만든 뒤 40랩 이상인 드라이버를 조회합니다.
 
 ### 조건
 
@@ -208,15 +210,15 @@ drivers의 기본키는 session\_key + driver\_number, laps의 기본키는 sess
 
 | 컬럼 | 의미 |
 | --- | --- |
-| driver\_number | 드라이버 번호 |
-| full\_name | 이름 |
-| team\_name | 팀 |
-| timed\_lap\_count | NULL이 아닌 랩타임 기록 수 |
-| avg\_lap\_duration | 평균 랩타임(초), 표시값 소수점 둘째 자리 |
+| driver_number | 드라이버 번호 |
+| full_name | 이름 |
+| team_name | 팀 |
+| timed_lap_count | NULL이 아닌 랩타임 기록 수 |
+| avg_lap_duration | 평균 랩타임(초), 표시값 소수점 둘째 자리 |
 
 ### 가상 출력 예시
 
-| driver\_number | full\_name | team\_name | timed\_lap\_count | avg\_lap\_duration |
+| driver_number | full_name | team_name | timed_lap_count | avg_lap_duration |
 | --- | --- | --- | --- | --- |
 | 10 | DRIVER A | TEAM X | 45 | 108.25 |
 | 20 | DRIVER B | TEAM Y | 40 | 109.10 |
@@ -258,7 +260,7 @@ ORDER BY avg_lap_duration ASC, driver_number ASC;
 
 사용자가 공유한 16행은 문제 1과 동일합니다. 중복을 줄여 아래에는 실제 앞 3행만 표시합니다.
 
-| driver\_number | full\_name | team\_name | timed\_lap\_count | avg\_lap\_duration |
+| driver_number | full_name | team_name | timed_lap_count | avg_lap_duration |
 | --- | --- | --- | --- | --- |
 | 63 | George RUSSELL | Mercedes | 51 | 115.34 |
 | 3 | Max VERSTAPPEN | Red Bull Racing | 51 | 115.35 |
@@ -268,7 +270,7 @@ ORDER BY avg_lap_duration ASC, driver_number ASC;
 
 ### 바깥 HAVING은 오답인가?
 
-이번 MySQL의 바깥 HAVING은 실행 가능하고 결과도 같습니다. 바깥에서는 새로 집계하지 않고 이미 만들어진 컬럼으로 선별하므로 WHERE timed\_lap\_count >= 40이 역할을 더 명확하게 나타냅니다.
+이번 MySQL의 바깥 HAVING은 실행 가능하고 결과도 같습니다. 바깥에서는 새로 집계하지 않고 이미 만들어진 컬럼으로 선별하므로 WHERE timed_lap_count >= 40이 역할을 더 명확하게 나타냅니다.
 
 ### 반올림 위치
 
@@ -286,16 +288,16 @@ drivers의 한 행은 특정 세션에 참가한 드라이버 한 명이며, lap
 
 | 테이블 | 컬럼 | 자료형 | NULL 허용 | 의미 |
 | --- | --- | --- | --- | --- |
-| drivers | session\_key | INT | 불가 | 세션 ID |
-| drivers | driver\_number | INT | 불가 | 드라이버 번호 |
-| drivers | full\_name | VARCHAR(100) | 허용 | 이름 |
-| drivers | team\_name | VARCHAR(100) | 허용 | 팀 |
-| laps | session\_key | INT | 불가 | 세션 ID |
-| laps | driver\_number | INT | 불가 | 드라이버 번호 |
-| laps | lap\_number | INT | 불가 | 랩 번호 |
-| laps | lap\_duration | DECIMAL(12,3) | 허용 | 랩타임(초), NULL은 미기록 |
+| drivers | session_key | INT | 불가 | 세션 ID |
+| drivers | driver_number | INT | 불가 | 드라이버 번호 |
+| drivers | full_name | VARCHAR(100) | 허용 | 이름 |
+| drivers | team_name | VARCHAR(100) | 허용 | 팀 |
+| laps | session_key | INT | 불가 | 세션 ID |
+| laps | driver_number | INT | 불가 | 드라이버 번호 |
+| laps | lap_number | INT | 불가 | 랩 번호 |
+| laps | lap_duration | DECIMAL(12,3) | 허용 | 랩타임(초), NULL은 미기록 |
 
-drivers의 기본키는 session\_key + driver\_number, laps의 기본키는 session\_key + driver\_number + lap\_number입니다. 세션 ID와 드라이버 번호로 연결하는 일대다 관계입니다. 현재 적재된 데이터는 세션 11377 하나입니다. NULL 랩타임은 0초가 아니라 미기록입니다.
+drivers의 기본키는 session_key + driver_number, laps의 기본키는 session_key + driver_number + lap_number입니다. 세션 ID와 드라이버 번호로 연결하는 일대다 관계입니다. 당시 학습 스냅샷은 세션 11377 하나였습니다. NULL 랩타임은 0초가 아니라 미기록입니다.
 
 ### 문제
 
@@ -303,7 +305,7 @@ drivers의 기본키는 session\_key + driver\_number, laps의 기본키는 sess
 
 ### 조건
 
-- 두 키로 JOIN하고 driver\_stats CTE에서 드라이버별 기록 수를 계산합니다.
+- 두 키로 JOIN하고 driver_stats CTE에서 드라이버별 기록 수를 계산합니다.
 - NULL은 기록 수에서 제외합니다. 정확히 40개도 포함합니다.
 - 선별 조건은 바깥 조회에 작성합니다.
 - 최종 결과는 드라이버 수 한 행, 대상이 없으면 0입니다. 정렬 조건은 없습니다.
@@ -316,7 +318,7 @@ drivers의 기본키는 session\_key + driver\_number, laps의 기본키는 sess
 
 | 컬럼 | 의미 |
 | --- | --- |
-| driver\_count | 조건을 만족한 드라이버 수 |
+| driver_count | 조건을 만족한 드라이버 수 |
 
 ### 가상 예시
 
@@ -330,7 +332,7 @@ drivers의 기본키는 session\_key + driver\_number, laps의 기본키는 sess
 
 A와 B를 포함하여 최종 출력은 다음과 같습니다.
 
-| driver\_count |
+| driver_count |
 | --- |
 | 2 |
 
@@ -356,7 +358,7 @@ WHERE timed_lap_count >= 40;
 
 ### 실제 결과
 
-| driver\_count |
+| driver_count |
 | --- |
 | 16 |
 
@@ -364,7 +366,7 @@ WHERE timed_lap_count >= 40;
 
 ### 핵심 개념
 
-안쪽은 드라이버 한 명당 한 행을 만듭니다. 바깥은 조건을 통과한 행 수를 세므로 드라이버 수입니다. timed\_lap\_count는 안쪽 COUNT가 만든 값이라 NULL이 없어, 이번 COUNT(timed\_lap\_count)와 COUNT(\*)는 같습니다.
+안쪽은 드라이버 한 명당 한 행을 만듭니다. 바깥은 조건을 통과한 행 수를 세므로 드라이버 수입니다. timed_lap_count는 안쪽 COUNT가 만든 값이라 NULL이 없어, 이번 COUNT(timed_lap_count)와 COUNT(\*)는 같습니다.
 </details>
 
 <details>
@@ -378,16 +380,16 @@ drivers의 한 행은 특정 세션에 참가한 드라이버 한 명이며, lap
 
 | 테이블 | 컬럼 | 자료형 | NULL 허용 | 의미 |
 | --- | --- | --- | --- | --- |
-| drivers | session\_key | INT | 불가 | 세션 ID |
-| drivers | driver\_number | INT | 불가 | 드라이버 번호 |
-| drivers | full\_name | VARCHAR(100) | 허용 | 이름 |
-| drivers | team\_name | VARCHAR(100) | 허용 | 팀 |
-| laps | session\_key | INT | 불가 | 세션 ID |
-| laps | driver\_number | INT | 불가 | 드라이버 번호 |
-| laps | lap\_number | INT | 불가 | 랩 번호 |
-| laps | lap\_duration | DECIMAL(12,3) | 허용 | 랩타임(초), NULL은 미기록 |
+| drivers | session_key | INT | 불가 | 세션 ID |
+| drivers | driver_number | INT | 불가 | 드라이버 번호 |
+| drivers | full_name | VARCHAR(100) | 허용 | 이름 |
+| drivers | team_name | VARCHAR(100) | 허용 | 팀 |
+| laps | session_key | INT | 불가 | 세션 ID |
+| laps | driver_number | INT | 불가 | 드라이버 번호 |
+| laps | lap_number | INT | 불가 | 랩 번호 |
+| laps | lap_duration | DECIMAL(12,3) | 허용 | 랩타임(초), NULL은 미기록 |
 
-drivers의 기본키는 session\_key + driver\_number, laps의 기본키는 session\_key + driver\_number + lap\_number입니다. 세션 ID와 드라이버 번호로 연결하는 일대다 관계입니다. 현재 적재된 데이터는 세션 11377 하나입니다. NULL 랩타임은 0초가 아니라 미기록입니다.
+drivers의 기본키는 session_key + driver_number, laps의 기본키는 session_key + driver_number + lap_number입니다. 세션 ID와 드라이버 번호로 연결하는 일대다 관계입니다. 당시 학습 스냅샷은 세션 11377 하나였습니다. NULL 랩타임은 0초가 아니라 미기록입니다.
 
 ### 새 문법: RANK
 
@@ -403,7 +405,7 @@ RANK() OVER (ORDER BY avg_lap_duration ASC)
 
 ### 조건
 
-- 두 키로 JOIN하고 driver\_stats CTE를 사용합니다.
+- 두 키로 JOIN하고 driver_stats CTE를 사용합니다.
 - NULL은 기록 수·평균에서 제외합니다. 정확히 40개도 포함합니다.
 - CTE의 평균은 반올림하지 않습니다.
 - 바깥에서 40개 이상인 드라이버만 선정하여 반올림 전 평균으로 RANK를 계산합니다.
@@ -420,16 +422,16 @@ RANK() OVER (ORDER BY avg_lap_duration ASC)
 
 | 컬럼 | 의미 |
 | --- | --- |
-| driver\_number | 드라이버 번호 |
-| full\_name | 이름 |
-| team\_name | 팀 |
-| timed\_lap\_count | NULL이 아닌 랩타임 기록 수 |
-| avg\_lap\_duration | 평균 랩타임(초), 표시값 소수점 둘째 자리 |
-| lap\_rank | 반올림 전 평균을 기준으로 한 순위 |
+| driver_number | 드라이버 번호 |
+| full_name | 이름 |
+| team_name | 팀 |
+| timed_lap_count | NULL이 아닌 랩타임 기록 수 |
+| avg_lap_duration | 평균 랩타임(초), 표시값 소수점 둘째 자리 |
+| lap_rank | 반올림 전 평균을 기준으로 한 순위 |
 
 ### 가상 출력 예시
 
-| driver\_number | full\_name | team\_name | timed\_lap\_count | avg\_lap\_duration | lap\_rank |
+| driver_number | full_name | team_name | timed_lap_count | avg_lap_duration | lap_rank |
 | --- | --- | --- | --- | --- | --- |
 | 10 | DRIVER A | TEAM X | 45 | 108.25 | 1 |
 | 20 | DRIVER B | TEAM Y | 40 | 109.10 | 2 |
@@ -470,7 +472,7 @@ ORDER BY lap_rank ASC, driver_number ASC;
 
 ### 실제 결과
 
-| driver\_number | full\_name | team\_name | timed\_lap\_count | avg\_lap\_duration | lap\_rank |
+| driver_number | full_name | team_name | timed_lap_count | avg_lap_duration | lap_rank |
 | --- | --- | --- | --- | --- | --- |
 | 63 | George RUSSELL | Mercedes | 51 | 115.34 | 1 |
 | 3 | Max VERSTAPPEN | Red Bull Racing | 51 | 115.35 | 2 |
@@ -514,16 +516,16 @@ drivers의 한 행은 특정 세션에 참가한 드라이버 한 명이며, lap
 
 | 테이블 | 컬럼 | 자료형 | NULL 허용 | 의미 |
 | --- | --- | --- | --- | --- |
-| drivers | session\_key | INT | 불가 | 세션 ID |
-| drivers | driver\_number | INT | 불가 | 드라이버 번호 |
-| drivers | full\_name | VARCHAR(100) | 허용 | 이름 |
-| drivers | team\_name | VARCHAR(100) | 허용 | 팀 |
-| laps | session\_key | INT | 불가 | 세션 ID |
-| laps | driver\_number | INT | 불가 | 드라이버 번호 |
-| laps | lap\_number | INT | 불가 | 랩 번호 |
-| laps | lap\_duration | DECIMAL(12,3) | 허용 | 랩타임(초), NULL은 미기록 |
+| drivers | session_key | INT | 불가 | 세션 ID |
+| drivers | driver_number | INT | 불가 | 드라이버 번호 |
+| drivers | full_name | VARCHAR(100) | 허용 | 이름 |
+| drivers | team_name | VARCHAR(100) | 허용 | 팀 |
+| laps | session_key | INT | 불가 | 세션 ID |
+| laps | driver_number | INT | 불가 | 드라이버 번호 |
+| laps | lap_number | INT | 불가 | 랩 번호 |
+| laps | lap_duration | DECIMAL(12,3) | 허용 | 랩타임(초), NULL은 미기록 |
 
-drivers의 기본키는 session\_key + driver\_number, laps의 기본키는 session\_key + driver\_number + lap\_number입니다. 세션 ID와 드라이버 번호로 연결하는 일대다 관계입니다. 현재 적재된 데이터는 세션 11377 하나입니다. NULL 랩타임은 0초가 아니라 미기록입니다.
+drivers의 기본키는 session_key + driver_number, laps의 기본키는 session_key + driver_number + lap_number입니다. 세션 ID와 드라이버 번호로 연결하는 일대다 관계입니다. 당시 학습 스냅샷은 세션 11377 하나였습니다. NULL 랩타임은 0초가 아니라 미기록입니다.
 
 ### 새 문법: PARTITION BY
 
@@ -542,7 +544,7 @@ RANK() OVER (
 
 ### 조건
 
-- 두 키로 JOIN하고 driver\_stats CTE를 사용합니다.
+- 두 키로 JOIN하고 driver_stats CTE를 사용합니다.
 - NULL은 기록 수·평균에서 제외합니다. 정확히 40개도 포함합니다.
 - CTE 안의 평균은 반올림하지 않습니다.
 - 40개 이상인 드라이버만 팀 내 비교 대상으로 삼습니다.
@@ -558,16 +560,16 @@ RANK() OVER (
 
 | 컬럼 | 의미 |
 | --- | --- |
-| driver\_number | 드라이버 번호 |
-| full\_name | 이름 |
-| team\_name | 팀 |
-| timed\_lap\_count | NULL이 아닌 랩타임 기록 수 |
-| avg\_lap\_duration | 평균 랩타임(초), 표시값 소수점 둘째 자리 |
-| team\_rank | 선정된 드라이버 사이의 팀 내 순위 |
+| driver_number | 드라이버 번호 |
+| full_name | 이름 |
+| team_name | 팀 |
+| timed_lap_count | NULL이 아닌 랩타임 기록 수 |
+| avg_lap_duration | 평균 랩타임(초), 표시값 소수점 둘째 자리 |
+| team_rank | 선정된 드라이버 사이의 팀 내 순위 |
 
 ### 가상 출력 예시
 
-| driver\_number | full\_name | team\_name | timed\_lap\_count | avg\_lap\_duration | team\_rank |
+| driver_number | full_name | team_name | timed_lap_count | avg_lap_duration | team_rank |
 | --- | --- | --- | --- | --- | --- |
 | 10 | DRIVER A | TEAM X | 45 | 108.25 | 1 |
 | 20 | DRIVER B | TEAM X | 40 | 109.10 | 2 |
@@ -609,7 +611,7 @@ ORDER BY team_name ASC, team_rank ASC, driver_number ASC;
 
 ### 실제 결과
 
-| driver\_number | full\_name | team\_name | timed\_lap\_count | avg\_lap\_duration | team\_rank |
+| driver_number | full_name | team_name | timed_lap_count | avg_lap_duration | team_rank |
 | --- | --- | --- | --- | --- | --- |
 | 27 | Nico HULKENBERG | Audi | 51 | 116.00 | 1 |
 | 5 | Gabriel BORTOLETO | Audi | 51 | 116.01 | 2 |
@@ -658,14 +660,14 @@ OVER 안 ORDER BY는 순위의 계산 기준입니다. 마지막 ORDER BY는 결
 
 ## 비교 대상과 순위 의미
 
-기록이 아주 적은 드라이버와 많은 드라이버를 바로 비교하지 않도록, 이번 학습에서는 **랩타임이 기록된 랩 40개 이상**을 선정 조건으로 사용했습니다. 바쿠의 정규 레이스는 51랩입니다. [F1 공식 서킷 정보](https://www.formula1.com/en/racing/2026/azerbaijan)
+기록이 아주 적은 드라이버와 많은 드라이버를 바로 비교하지 않도록, 이번 학습에서는 <b>랩타임이 기록된 랩 40개 이상</b>을 선정 조건으로 사용했습니다. 바쿠의 정규 레이스는 51랩입니다. [F1 공식 서킷 정보](https://www.formula1.com/en/racing/2026/azerbaijan)
 
 - 40랩은 학습용 임계값이며 F1 공식 기준이나 통계적으로 검증된 기준이 아닙니다.
-- COUNT(lap\_duration)은 NULL이 아닌 기록 수입니다. 공식 완주 랩 수와 항상 같다고 단정하지 않습니다.
+- COUNT(lap_duration)은 NULL이 아닌 기록 수입니다. 공식 완주 랩 수와 항상 같다고 단정하지 않습니다.
 - 40개 이상이어도 타이어, 피트스톱, 세이프티카, 주행 상황 차이가 남으므로 비교 가능성이 보장되지는 않습니다.
-- 결과는 **선정된 드라이버의 평균 랩타임 순위**이며 실제 경기 최종 순위나 실력 순위가 아닙니다.
+- 결과는 <b>선정된 드라이버의 평균 랩타임 순위</b>이며 실제 경기 최종 순위나 실력 순위가 아닙니다.
 - 40랩 조건을 제거하면 기록이 적은 드라이버도 평균 비교에 포함될 수 있지만, 평균 순위가 공식 결과로 바뀌는 것은 아닙니다.
-현재 PARTITION BY team\_name을 유지한 채 40랩 조건만 빼면 팀 내 평균 순위입니다. 전체 평균 순위를 원하면 팀 분할도 제거해야 하며, 어느 경우든 공식 최종 순위와는 다릅니다.
+현재 PARTITION BY team_name을 유지한 채 40랩 조건만 빼면 팀 내 평균 순위입니다. 전체 평균 순위를 원하면 팀 분할도 제거해야 하며, 어느 경우든 공식 최종 순위와는 다릅니다.
 </details>
 
 <details>

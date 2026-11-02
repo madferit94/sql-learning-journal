@@ -1,0 +1,1730 @@
+{
+  "audit_date": "2026-11-02",
+  "mysql_version": "8.4.11",
+  "only_full_group_by": true,
+  "queries_checked": 115,
+  "passed": 115,
+  "failed": 0,
+  "recorded_outputs_preserved": true,
+  "checks": [
+    {
+      "day": 1,
+      "exercise_index": 1,
+      "query_sha256": "a836a180d3e41a715529604eeaf694e6dc805b7e9c2b2b2f89aeb7a4a5a95d87",
+      "ok": true,
+      "rows": 10,
+      "columns": [
+        "season",
+        "match_date",
+        "home_team_goal",
+        "away_team_goal"
+      ],
+      "error": "",
+      "scope": "soccer",
+      "adaptation": "Match/date -> matches/match_date"
+    },
+    {
+      "day": 1,
+      "exercise_index": 2,
+      "query_sha256": "ee2c7bebf11cc5b7463e7e3eee5309af43eb633364fc182010a931d9028f14b1",
+      "ok": true,
+      "rows": 10,
+      "columns": [
+        "match_date",
+        "home_team_goal",
+        "away_team_goal"
+      ],
+      "error": "",
+      "scope": "soccer",
+      "adaptation": "Match/date -> matches/match_date"
+    },
+    {
+      "day": 1,
+      "exercise_index": 3,
+      "query_sha256": "1553b37d60ab85de632c4d7c2897aa0cfc4b683dfafe951253071cc8974dca64",
+      "ok": true,
+      "rows": 10,
+      "columns": [
+        "season",
+        "match_date",
+        "home_team_goal",
+        "away_team_goal"
+      ],
+      "error": "",
+      "scope": "soccer",
+      "adaptation": "Match/date -> matches/match_date"
+    },
+    {
+      "day": 1,
+      "exercise_index": 4,
+      "query_sha256": "1a97ad8788d2dcc47e85f67f985aba3eccaca074d0070eff5164d197d42d0729",
+      "ok": true,
+      "rows": 10,
+      "columns": [
+        "match_date",
+        "home_team_goal",
+        "away_team_goal"
+      ],
+      "error": "",
+      "scope": "soccer",
+      "adaptation": "Match/date -> matches/match_date"
+    },
+    {
+      "day": 1,
+      "exercise_index": 5,
+      "query_sha256": "1c18b8d677c8f7556da0d0e0c8a46af9f06106a9e3a15969e5027c626ad6245f",
+      "ok": true,
+      "rows": 10,
+      "columns": [
+        "match_date",
+        "home_team_goal",
+        "away_team_goal"
+      ],
+      "error": "",
+      "scope": "soccer",
+      "adaptation": "Match/date -> matches/match_date"
+    },
+    {
+      "day": 1,
+      "exercise_index": 6,
+      "query_sha256": "53d0bf08cdd4fd093c39ebda12366a00da7790548108f2cb33bc070800bead9d",
+      "ok": true,
+      "rows": 1,
+      "columns": [
+        "match_count"
+      ],
+      "error": "",
+      "scope": "soccer",
+      "adaptation": "Match/date -> matches/match_date"
+    },
+    {
+      "day": 1,
+      "exercise_index": 7,
+      "query_sha256": "4134c70581051cef5fe7b819a14934f873515348080829792f7860e05b774886",
+      "ok": true,
+      "rows": 8,
+      "columns": [
+        "season",
+        "match_count"
+      ],
+      "error": "",
+      "scope": "soccer",
+      "adaptation": "Match/date -> matches/match_date"
+    },
+    {
+      "day": 1,
+      "exercise_index": 8,
+      "query_sha256": "3427e53de1ce26c92cbe354dcb8a8dba660f55067ce4a2bd6acc94a6424c85e9",
+      "ok": true,
+      "rows": 4,
+      "columns": [
+        "season",
+        "match_count"
+      ],
+      "error": "",
+      "scope": "soccer",
+      "adaptation": "Match/date -> matches/match_date"
+    },
+    {
+      "day": 1,
+      "exercise_index": 9,
+      "query_sha256": "11b61db250529aa6e3ce4720b2e13c45715b331234ea6042833aaf1336b601f3",
+      "ok": true,
+      "rows": 8,
+      "columns": [
+        "season",
+        "avg_home_goals"
+      ],
+      "error": "",
+      "scope": "soccer",
+      "adaptation": "Match/date -> matches/match_date"
+    },
+    {
+      "day": 1,
+      "exercise_index": 10,
+      "query_sha256": "291d94d0a6a68d0f91856c3b7f1c8998585ced9383bf6586c4afa61bb2581043",
+      "ok": true,
+      "rows": 8,
+      "columns": [
+        "season",
+        "total_home_goals"
+      ],
+      "error": "",
+      "scope": "soccer",
+      "adaptation": "Match/date -> matches/match_date"
+    },
+    {
+      "day": 2,
+      "exercise_index": 1,
+      "query_sha256": "8372c2b898148df942fd986bf6c48fdb4112be0496995ea9fd727270debe9a85",
+      "ok": true,
+      "rows": 3,
+      "columns": [
+        "season",
+        "avg_away_goals"
+      ],
+      "error": "",
+      "scope": "soccer",
+      "adaptation": "Match/date -> matches/match_date"
+    },
+    {
+      "day": 2,
+      "exercise_index": 2,
+      "query_sha256": "bab82a06d15bad3d590f0cfdef28b123f702c34aebf14017e7dcdbe8db47a987",
+      "ok": true,
+      "rows": 8,
+      "columns": [
+        "season",
+        "avg_total_goals"
+      ],
+      "error": "",
+      "scope": "soccer",
+      "adaptation": "Match/date -> matches/match_date"
+    },
+    {
+      "day": 2,
+      "exercise_index": 3,
+      "query_sha256": "1f66754603de68ed3e268f4965fb215f5849d0d0d098860f010fc44754beb0ba",
+      "ok": true,
+      "rows": 8,
+      "columns": [
+        "season",
+        "high_scoring_home_matches"
+      ],
+      "error": "",
+      "scope": "soccer",
+      "adaptation": "Match/date -> matches/match_date"
+    },
+    {
+      "day": 2,
+      "exercise_index": 4,
+      "query_sha256": "0566717fab6d5a882e728dfba20e71e5ae40fd2e9e205f3082052047321bef0a",
+      "ok": true,
+      "rows": 8,
+      "columns": [
+        "season",
+        "away_win_matches"
+      ],
+      "error": "",
+      "scope": "soccer",
+      "adaptation": "Match/date -> matches/match_date"
+    },
+    {
+      "day": 2,
+      "exercise_index": 5,
+      "query_sha256": "343e418297bad651e62cd1129823139286905eecea37234cabe22e68dbe1164d",
+      "ok": true,
+      "rows": 8,
+      "columns": [
+        "season",
+        "draw_matches"
+      ],
+      "error": "",
+      "scope": "soccer",
+      "adaptation": "Match/date -> matches/match_date"
+    },
+    {
+      "day": 3,
+      "exercise_index": 1,
+      "query_sha256": "87d6df11c57c4f116883caefe5f59ade9f5664be5744813804c9457b9ed8e3fe",
+      "ok": true,
+      "rows": 6,
+      "columns": [
+        "season",
+        "avg_home_goals"
+      ],
+      "error": "",
+      "scope": "soccer",
+      "adaptation": "Match/date -> matches/match_date"
+    },
+    {
+      "day": 3,
+      "exercise_index": 2,
+      "query_sha256": "b015f5ce22c295241673031cad284046e63c093e2f0cda84a188e4fa52e6bb64",
+      "ok": true,
+      "rows": 5,
+      "columns": [
+        "season",
+        "match_count"
+      ],
+      "error": "",
+      "scope": "soccer",
+      "adaptation": "Match/date -> matches/match_date"
+    },
+    {
+      "day": 3,
+      "exercise_index": 3,
+      "query_sha256": "99fe54737803a1249399d7ad3775d87d89832c3dd9b8a5ed9d9c9726a42a817e",
+      "ok": true,
+      "rows": 3,
+      "columns": [
+        "season",
+        "avg_away_goals"
+      ],
+      "error": "",
+      "scope": "soccer",
+      "adaptation": "Match/date -> matches/match_date"
+    },
+    {
+      "day": 3,
+      "exercise_index": 4,
+      "query_sha256": "6333c1268d28c2e73b7aac5286fd667b573fc8fae0f0414c2b8d2d676ad264f1",
+      "ok": true,
+      "rows": 3,
+      "columns": [
+        "season",
+        "total_goals"
+      ],
+      "error": "",
+      "scope": "soccer",
+      "adaptation": "Match/date -> matches/match_date"
+    },
+    {
+      "day": 3,
+      "exercise_index": 5,
+      "query_sha256": "f418b551873d498a035185934224ae664fd306f784dc1636bcfcdf2b2a16212f",
+      "ok": true,
+      "rows": 4,
+      "columns": [
+        "season",
+        "match_count",
+        "avg_home_goals",
+        "total_goals"
+      ],
+      "error": "",
+      "scope": "soccer",
+      "adaptation": "Match/date -> matches/match_date"
+    },
+    {
+      "day": 4,
+      "exercise_index": 1,
+      "query_sha256": "a059aa663d2f7fb94200edec2634ff520192341d88a34eb6d01ba9dc66bb7699",
+      "ok": true,
+      "rows": 10,
+      "columns": [
+        "order_id",
+        "order_status",
+        "order_purchase_timestamp"
+      ],
+      "error": "",
+      "scope": "Olist backup 2026-10-14",
+      "adaptation": "isolated restore"
+    },
+    {
+      "day": 4,
+      "exercise_index": 2,
+      "query_sha256": "f1a945dab86a2cc6cafcd9febc9531c5a8dd763b7f81b98886bf1002e14f8441",
+      "ok": true,
+      "rows": 8,
+      "columns": [
+        "order_status",
+        "order_count"
+      ],
+      "error": "",
+      "scope": "Olist backup 2026-10-14",
+      "adaptation": "isolated restore"
+    },
+    {
+      "day": 4,
+      "exercise_index": 3,
+      "query_sha256": "1a712a8cd13cc797a88246d41a3c150e5efe438265c8d4150511b1b7138e5e86",
+      "ok": true,
+      "rows": 3,
+      "columns": [
+        "order_year",
+        "order_count"
+      ],
+      "error": "",
+      "scope": "Olist backup 2026-10-14",
+      "adaptation": "isolated restore"
+    },
+    {
+      "day": 4,
+      "exercise_index": 4,
+      "query_sha256": "5d5781436ef411725ae2bba3af2ceae2e15282fb799aab6fb70257323ea7eed3",
+      "ok": true,
+      "rows": 2,
+      "columns": [
+        "order_year",
+        "order_count"
+      ],
+      "error": "",
+      "scope": "Olist backup 2026-10-14",
+      "adaptation": "isolated restore"
+    },
+    {
+      "day": 4,
+      "exercise_index": 5,
+      "query_sha256": "3b0a4e102c51acab5c63f80709fc4768a1751402e56efcc0b0a9fb8c159745d4",
+      "ok": true,
+      "rows": 3,
+      "columns": [
+        "order_year",
+        "order_count",
+        "first_order",
+        "last_order"
+      ],
+      "error": "",
+      "scope": "Olist backup 2026-10-14",
+      "adaptation": "isolated restore"
+    },
+    {
+      "day": 5,
+      "exercise_index": 1,
+      "query_sha256": "3f8ef21df31121a81d9346c8836f39970b75499ba0fd3207c0a8e19fe287ebbb",
+      "ok": true,
+      "rows": 0,
+      "columns": [],
+      "error": "",
+      "scope": "Olist backup 2026-10-14",
+      "adaptation": "isolated restore"
+    },
+    {
+      "day": 5,
+      "exercise_index": 2,
+      "query_sha256": "0ea74bf328cab84586c79605f6b4b5d3ea19d9999065eb8a213b3b2774f3a42c",
+      "ok": true,
+      "rows": 10,
+      "columns": [
+        "customer_unique_id",
+        "customer_count"
+      ],
+      "error": "",
+      "scope": "Olist backup 2026-10-14",
+      "adaptation": "isolated restore"
+    },
+    {
+      "day": 5,
+      "exercise_index": 3,
+      "query_sha256": "10ba61fed368a3b1dc854390e99539c19f4f52836b1c89f958e90bf00a4ec5df",
+      "ok": true,
+      "rows": 10,
+      "columns": [
+        "customer_state",
+        "order_count"
+      ],
+      "error": "",
+      "scope": "Olist backup 2026-10-14",
+      "adaptation": "isolated restore"
+    },
+    {
+      "day": 5,
+      "exercise_index": 4,
+      "query_sha256": "cc03ef8a595c6ceab202346c6b6ccb25fa0d9b6825a34781b38b30638d92d920",
+      "ok": true,
+      "rows": 20,
+      "columns": [
+        "order_year",
+        "customer_state",
+        "order_count"
+      ],
+      "error": "",
+      "scope": "Olist backup 2026-10-14",
+      "adaptation": "isolated restore"
+    },
+    {
+      "day": 5,
+      "exercise_index": 5,
+      "query_sha256": "ca15d32eebf2ce44e7ad963d764267167c089a4972b619b679d3d71523f4878f",
+      "ok": true,
+      "rows": 1,
+      "columns": [
+        "joined_delivered_count"
+      ],
+      "error": "",
+      "scope": "Olist backup 2026-10-14",
+      "adaptation": "isolated restore"
+    },
+    {
+      "day": 6,
+      "exercise_index": 1,
+      "query_sha256": "224ee25469291eeb4295e1632703d29c3889458480e3f18ac98a8b48355a384c",
+      "ok": true,
+      "rows": 1,
+      "columns": [
+        "transaction_count",
+        "total_transaction_amount"
+      ],
+      "error": "",
+      "scope": "finance",
+      "adaptation": "none"
+    },
+    {
+      "day": 6,
+      "exercise_index": 2,
+      "query_sha256": "5815225f2e22a7f21b8c0478e0d8ee68753e27c397754b1d9d416abc9c910ba3",
+      "ok": true,
+      "rows": 55,
+      "columns": [
+        "transaction_date",
+        "transaction_count",
+        "total_transaction_amount"
+      ],
+      "error": "",
+      "scope": "finance",
+      "adaptation": "none"
+    },
+    {
+      "day": 6,
+      "exercise_index": 3,
+      "query_sha256": "f5ff6b5cf87df47fd8ad0fd9213282683241f84e5bf99069f3392aaabe7ec008",
+      "ok": true,
+      "rows": 55,
+      "columns": [
+        "transaction_date",
+        "transaction_count",
+        "total_transaction_amount",
+        "avg_transaction_amount"
+      ],
+      "error": "",
+      "scope": "finance",
+      "adaptation": "none"
+    },
+    {
+      "day": 6,
+      "exercise_index": 4,
+      "query_sha256": "2c7e7843752b4c80197bfae1a236dd7f2939df171ff328a8b39c2ff288c81413",
+      "ok": true,
+      "rows": 161,
+      "columns": [
+        "customer_id",
+        "transaction_count",
+        "total_transaction_amount"
+      ],
+      "error": "",
+      "scope": "finance",
+      "adaptation": "none"
+    },
+    {
+      "day": 6,
+      "exercise_index": 5,
+      "query_sha256": "c712b808089675895de3d4f832d27ebf3fd1a14f16c161b2eb763efc2b13e80c",
+      "ok": true,
+      "rows": 3,
+      "columns": [
+        "amount_category",
+        "transaction_count",
+        "total_transaction_amount"
+      ],
+      "error": "",
+      "scope": "finance",
+      "adaptation": "none"
+    },
+    {
+      "day": 7,
+      "exercise_index": 1,
+      "query_sha256": "4903ab0bf0252046fcdeb9dfbfc6c5a452a328f546e95d575cf9d1995f7899bc",
+      "ok": true,
+      "rows": 11,
+      "columns": [
+        "league_name",
+        "match_count"
+      ],
+      "error": "",
+      "scope": "soccer",
+      "adaptation": "none"
+    },
+    {
+      "day": 7,
+      "exercise_index": 2,
+      "query_sha256": "b91a74042b37f51a00eb5ab83a0f9062f41d59c169c456eae2808cd9d25c3c1b",
+      "ok": true,
+      "rows": 7,
+      "columns": [
+        "league_name",
+        "match_count"
+      ],
+      "error": "",
+      "scope": "soccer",
+      "adaptation": "none"
+    },
+    {
+      "day": 7,
+      "exercise_index": 3,
+      "query_sha256": "69abd3840aef18a725ab31dcfa0984475d45c7d6f6aa735cd0e1a838ecebab9b",
+      "ok": true,
+      "rows": 188,
+      "columns": [
+        "team_name",
+        "home_match_count",
+        "total_home_goals"
+      ],
+      "error": "",
+      "scope": "soccer",
+      "adaptation": "none"
+    },
+    {
+      "day": 7,
+      "exercise_index": 4,
+      "query_sha256": "5ff44ec191a0e08719c0b330a10181c71a3de7e92e8e7b56562dcb891ca6e978",
+      "ok": true,
+      "rows": 371,
+      "columns": [
+        "match_date",
+        "home_team",
+        "away_team",
+        "home_goals",
+        "away_goals"
+      ],
+      "error": "",
+      "scope": "soccer",
+      "adaptation": "none"
+    },
+    {
+      "day": 7,
+      "exercise_index": 5,
+      "query_sha256": "cd6c1abfc00162f8019787e555aa2e524079c0a6e9e64020944b5e41df722b83",
+      "ok": true,
+      "rows": 109,
+      "columns": [
+        "team_name",
+        "away_win_count"
+      ],
+      "error": "",
+      "scope": "soccer",
+      "adaptation": "none"
+    },
+    {
+      "day": 8,
+      "exercise_index": 1,
+      "query_sha256": "d61f70ba9f0c64db680b34ddd9ff2a3196205e952b9c464267a98931e0187923",
+      "ok": true,
+      "rows": 109,
+      "columns": [
+        "team_name",
+        "total_away_goals"
+      ],
+      "error": "",
+      "scope": "soccer",
+      "adaptation": "none"
+    },
+    {
+      "day": 8,
+      "exercise_index": 2,
+      "query_sha256": "71a0fa396279d9437ce58e5c298ef353294209a434070bd8a204e4bb1d99edad",
+      "ok": true,
+      "rows": 62,
+      "columns": [
+        "match_date",
+        "home_team",
+        "away_team",
+        "home_goals",
+        "away_goals"
+      ],
+      "error": "",
+      "scope": "soccer",
+      "adaptation": "none"
+    },
+    {
+      "day": 8,
+      "exercise_index": 3,
+      "query_sha256": "40854e5d78242f84621851e64cd0df1690c9b80d4c41b9f9f20c90b485afa8d8",
+      "ok": true,
+      "rows": 8,
+      "columns": [
+        "league_name",
+        "home_win_count"
+      ],
+      "error": "",
+      "scope": "soccer",
+      "adaptation": "none"
+    },
+    {
+      "day": 8,
+      "exercise_index": 4,
+      "query_sha256": "15be8d8a4e34b6b772d731410f2cd25412085bac791dd29a638bc9bd3ec8479d",
+      "ok": true,
+      "rows": 3326,
+      "columns": [
+        "match_date",
+        "home_goals",
+        "away_goals",
+        "result"
+      ],
+      "error": "",
+      "scope": "soccer",
+      "adaptation": "none"
+    },
+    {
+      "day": 8,
+      "exercise_index": 5,
+      "query_sha256": "225a5235fb3e360328db0944dad0bdd754a24d468a2b4251fd917c444dcede9c",
+      "ok": true,
+      "rows": 33,
+      "columns": [
+        "league_name",
+        "result",
+        "match_count"
+      ],
+      "error": "",
+      "scope": "soccer",
+      "adaptation": "none"
+    },
+    {
+      "day": 9,
+      "exercise_index": 1,
+      "query_sha256": "1680fa02686004a2ec9365d243dff7ec5658608452bd266b619f034e79bbb3aa",
+      "ok": true,
+      "rows": 27,
+      "columns": [
+        "customer_state",
+        "order_count"
+      ],
+      "error": "",
+      "scope": "Olist backup 2026-10-14",
+      "adaptation": "isolated restore"
+    },
+    {
+      "day": 9,
+      "exercise_index": 2,
+      "query_sha256": "9cfdbf980820da59f2607e5a17fb681a18f4b82262b444aad6e7c057bf3a6861",
+      "ok": true,
+      "rows": 2997,
+      "columns": [
+        "customer_unique_id",
+        "order_count"
+      ],
+      "error": "",
+      "scope": "Olist backup 2026-10-14",
+      "adaptation": "isolated restore"
+    },
+    {
+      "day": 9,
+      "exercise_index": 3,
+      "query_sha256": "03e3040ef865caf3d870e76160b87d71b8d3a332045902e2099e44e56a428e82",
+      "ok": true,
+      "rows": 12,
+      "columns": [
+        "customer_state",
+        "delivered_order_count"
+      ],
+      "error": "",
+      "scope": "Olist backup 2026-10-14",
+      "adaptation": "isolated restore"
+    },
+    {
+      "day": 9,
+      "exercise_index": 4,
+      "query_sha256": "bcf62bbe874a185db87d96b7a825ea2f5751ed68b8ba4dd6faf20b565dd7e204",
+      "ok": true,
+      "rows": 21,
+      "columns": [
+        "customer_state",
+        "customer_city",
+        "delivered_order_count"
+      ],
+      "error": "",
+      "scope": "Olist backup 2026-10-14",
+      "adaptation": "isolated restore"
+    },
+    {
+      "day": 9,
+      "exercise_index": 5,
+      "query_sha256": "7bdb243ee85083f5562defd04561832c3effc78162ee933788282c389c190eea",
+      "ok": true,
+      "rows": 27,
+      "columns": [
+        "customer_state",
+        "repeat_customer_count"
+      ],
+      "error": "",
+      "scope": "Olist backup 2026-10-14",
+      "adaptation": "isolated restore"
+    },
+    {
+      "day": 10,
+      "exercise_index": 1,
+      "query_sha256": "7273653cf309f804168de5b23e640abb7d3774507604af4bacee5b915d6dca28",
+      "ok": true,
+      "rows": 12,
+      "columns": [
+        "order_month",
+        "delivered_order_count"
+      ],
+      "error": "",
+      "scope": "Olist backup 2026-10-14",
+      "adaptation": "isolated restore"
+    },
+    {
+      "day": 10,
+      "exercise_index": 2,
+      "query_sha256": "286d6d8a52bb54121cd98137bf3aa89375119b1747106e2c7f8675e50182a520",
+      "ok": true,
+      "rows": 12,
+      "columns": [
+        "customer_state",
+        "customer_count"
+      ],
+      "error": "",
+      "scope": "Olist backup 2026-10-14",
+      "adaptation": "isolated restore"
+    },
+    {
+      "day": 10,
+      "exercise_index": 3,
+      "query_sha256": "5417657ae8a6a5c48ccbf8eee8409936922b9602826dacb47da0f7daf8bba8ca",
+      "ok": true,
+      "rows": 25,
+      "columns": [
+        "customer_state",
+        "order_status",
+        "order_count"
+      ],
+      "error": "",
+      "scope": "Olist backup 2026-10-14",
+      "adaptation": "isolated restore"
+    },
+    {
+      "day": 10,
+      "exercise_index": 4,
+      "query_sha256": "8aa75ca599585f14c5120664df36df56022506a5876a87eafdb9a5386a47ce7e",
+      "ok": true,
+      "rows": 252,
+      "columns": [
+        "customer_unique_id",
+        "order_count",
+        "first_order_date",
+        "last_order_date"
+      ],
+      "error": "",
+      "scope": "Olist backup 2026-10-14",
+      "adaptation": "isolated restore"
+    },
+    {
+      "day": 10,
+      "exercise_index": 5,
+      "query_sha256": "25d71a53404a01d6f3cfb49f1afe9abe791d950dfce88e64d581b4b53e41ee06",
+      "ok": true,
+      "rows": 17,
+      "columns": [
+        "customer_state",
+        "total_customers",
+        "repeat_customers",
+        "repeat_rate"
+      ],
+      "error": "",
+      "scope": "Olist backup 2026-10-14",
+      "adaptation": "isolated restore"
+    },
+    {
+      "day": 11,
+      "exercise_index": 1,
+      "query_sha256": "5546c179e38d3f100ca72c6edbd9b07b4b00c7ff801fb8580d1f47f294eb5d84",
+      "ok": true,
+      "rows": 7,
+      "columns": [
+        "customer_state",
+        "delivered_order_count"
+      ],
+      "error": "",
+      "scope": "Olist backup 2026-10-14",
+      "adaptation": "isolated restore"
+    },
+    {
+      "day": 11,
+      "exercise_index": 2,
+      "query_sha256": "f718a70b7d5c5bd6c10bb952d0700ac608fadb03fed9f4856a0c8da570e9459e",
+      "ok": true,
+      "rows": 10,
+      "columns": [
+        "customer_state",
+        "order_count",
+        "customer_count"
+      ],
+      "error": "",
+      "scope": "Olist backup 2026-10-14",
+      "adaptation": "isolated restore"
+    },
+    {
+      "day": 11,
+      "exercise_index": 3,
+      "query_sha256": "a49c6e2c07520c225409a45d30e9127cfd8cee7a5863de0db103cf4b74df0be7",
+      "ok": true,
+      "rows": 10,
+      "columns": [
+        "customer_state",
+        "total_order_count",
+        "delivered_count",
+        "canceled_count"
+      ],
+      "error": "",
+      "scope": "Olist backup 2026-10-14",
+      "adaptation": "isolated restore"
+    },
+    {
+      "day": 11,
+      "exercise_index": 4,
+      "query_sha256": "2e4786db08e64b824d0a94b7a0d3176d1f315aeb46b1a7c4ef290d7bdcc1a427",
+      "ok": true,
+      "rows": 14,
+      "columns": [
+        "customer_state",
+        "repeat_customer_count"
+      ],
+      "error": "",
+      "scope": "Olist backup 2026-10-14",
+      "adaptation": "isolated restore"
+    },
+    {
+      "day": 11,
+      "exercise_index": 5,
+      "query_sha256": "2309fa721f4ba289046abe7f88c545db1e5da5d305a93bc04c3484429afccfb5",
+      "ok": true,
+      "rows": 10,
+      "columns": [
+        "customer_state",
+        "total_customers",
+        "repeat_customers",
+        "repeat_rate"
+      ],
+      "error": "",
+      "scope": "Olist backup 2026-10-14",
+      "adaptation": "isolated restore"
+    },
+    {
+      "day": 12,
+      "exercise_index": 1,
+      "query_sha256": "03c1cfb24041e1f41e947b203db6d705a7743114688159ed5cd0b614186dc409",
+      "ok": true,
+      "rows": 161,
+      "columns": [
+        "customer_id",
+        "transaction_count",
+        "total_transaction_amount",
+        "avg_transaction_amount"
+      ],
+      "error": "",
+      "scope": "finance",
+      "adaptation": "none"
+    },
+    {
+      "day": 12,
+      "exercise_index": 2,
+      "query_sha256": "65b00f0b85dd16962a73d0e52f764551988960d7390490d0f03a1e31020bba83",
+      "ok": true,
+      "rows": 682,
+      "columns": [
+        "customer_id",
+        "transaction_count",
+        "avg_transaction_amount"
+      ],
+      "error": "",
+      "scope": "finance",
+      "adaptation": "none"
+    },
+    {
+      "day": 12,
+      "exercise_index": 3,
+      "query_sha256": "1fbad5cf9ad65bf6db0b4de351033498135cc2240c0b054d6ab37bca38499f27",
+      "ok": true,
+      "rows": 161,
+      "columns": [
+        "customer_id",
+        "total_transaction_count",
+        "high_amount_count"
+      ],
+      "error": "",
+      "scope": "finance",
+      "adaptation": "none"
+    },
+    {
+      "day": 12,
+      "exercise_index": 4,
+      "query_sha256": "50e1439b9d7f1b9d41a1be1109cd5f99c8963954fa5dd8bb9a9e5d509fac5668",
+      "ok": true,
+      "rows": 161,
+      "columns": [
+        "customer_id",
+        "total_transaction_count",
+        "high_amount_count",
+        "high_amount_rate"
+      ],
+      "error": "",
+      "scope": "finance",
+      "adaptation": "none"
+    },
+    {
+      "day": 12,
+      "exercise_index": 5,
+      "query_sha256": "dcf229043854cd92f2badd4a431aa846c3dc807aa7905b618f07d89cc1261f41",
+      "ok": true,
+      "rows": 6,
+      "columns": [
+        "transaction_count",
+        "customer_count"
+      ],
+      "error": "",
+      "scope": "finance",
+      "adaptation": "none"
+    },
+    {
+      "day": 13,
+      "exercise_index": 1,
+      "query_sha256": "3485ebb63a35d560dcb074d66c9d9ab214ad1e576ef860af4dbb8c8126293c9a",
+      "ok": true,
+      "rows": 586,
+      "columns": [
+        "customer_id",
+        "high_amount_count",
+        "high_amount_total"
+      ],
+      "error": "",
+      "scope": "finance",
+      "adaptation": "none"
+    },
+    {
+      "day": 13,
+      "exercise_index": 2,
+      "query_sha256": "64befee3c009a25cf7dce7ff5a22337cee06b499238d7750be9ad9d4c6731c19",
+      "ok": true,
+      "rows": 161,
+      "columns": [
+        "customer_id",
+        "total_transaction_count",
+        "small_amount_count",
+        "small_amount_total"
+      ],
+      "error": "",
+      "scope": "finance",
+      "adaptation": "none"
+    },
+    {
+      "day": 13,
+      "exercise_index": 3,
+      "query_sha256": "f84d2b70445d9c46e67f05a8505892414d9850e5faca61a8aeb86a6adc327384",
+      "ok": true,
+      "rows": 161,
+      "columns": [
+        "customer_id",
+        "total_transaction_count",
+        "small_amount_count",
+        "small_amount_rate"
+      ],
+      "error": "",
+      "scope": "finance",
+      "adaptation": "none"
+    },
+    {
+      "day": 13,
+      "exercise_index": 4,
+      "query_sha256": "1652b11ddf1eda1ec54d610e44f7f81af05ee2e260d92147486953eb156b455c",
+      "ok": true,
+      "rows": 1,
+      "columns": [
+        "avg_customer_total"
+      ],
+      "error": "",
+      "scope": "finance",
+      "adaptation": "none"
+    },
+    {
+      "day": 13,
+      "exercise_index": 5,
+      "query_sha256": "41dfd5095234e0e284986467c44afc46f13bd8bb73af59f5d412c177901254ca",
+      "ok": true,
+      "rows": 1,
+      "columns": [
+        "customer_count"
+      ],
+      "error": "",
+      "scope": "finance",
+      "adaptation": "none"
+    },
+    {
+      "day": 14,
+      "exercise_index": 1,
+      "query_sha256": "4c2f2b024fad81bcd29a27b05aba5592ff7281e558851a46e1cfdd21fadd426e",
+      "ok": true,
+      "rows": 16,
+      "columns": [
+        "driver_number",
+        "full_name",
+        "timed_lap_count",
+        "avg_lap_duration"
+      ],
+      "error": "",
+      "scope": "Baku 11377",
+      "adaptation": "snapshot-scoped views"
+    },
+    {
+      "day": 14,
+      "exercise_index": 2,
+      "query_sha256": "cb1fbf41dff679539c4bc16a8b54a4e570cba1e3647470d3d27589cc771e817d",
+      "ok": true,
+      "rows": 16,
+      "columns": [
+        "driver_number",
+        "full_name",
+        "team_name",
+        "timed_lap_count",
+        "avg_lap_duration"
+      ],
+      "error": "",
+      "scope": "Baku 11377",
+      "adaptation": "snapshot-scoped views"
+    },
+    {
+      "day": 14,
+      "exercise_index": 3,
+      "query_sha256": "b2c9f504ae8d72ad172d6fc4b13cecfc5cae513672681739dcc99d3c52aba2dc",
+      "ok": true,
+      "rows": 16,
+      "columns": [
+        "driver_number",
+        "full_name",
+        "timed_lap_count",
+        "under_110_count"
+      ],
+      "error": "",
+      "scope": "Baku 11377",
+      "adaptation": "snapshot-scoped views"
+    },
+    {
+      "day": 14,
+      "exercise_index": 4,
+      "query_sha256": "5f6fdbf7ce86d6cede61098b1c9ac0fab56eb6b65b3fa8a9cb25da763f451d90",
+      "ok": true,
+      "rows": 9,
+      "columns": [
+        "team_name",
+        "timed_lap_count",
+        "under_110_count",
+        "under_110_rate"
+      ],
+      "error": "",
+      "scope": "Baku 11377",
+      "adaptation": "snapshot-scoped views"
+    },
+    {
+      "day": 14,
+      "exercise_index": 5,
+      "query_sha256": "c8e49aac1e2dda1005fa3ced03dd3fbfaa7dc19dc9e426c18fd5cad4c13c2607",
+      "ok": true,
+      "rows": 1,
+      "columns": [
+        "driver_count"
+      ],
+      "error": "",
+      "scope": "Baku 11377",
+      "adaptation": "snapshot-scoped views"
+    },
+    {
+      "day": 15,
+      "exercise_index": 1,
+      "query_sha256": "7c719caada945ba6529abd2ae41786fdc085f000770c5cb70c95532aec1993ae",
+      "ok": true,
+      "rows": 16,
+      "columns": [
+        "driver_number",
+        "timed_lap_count",
+        "under_109_count"
+      ],
+      "error": "",
+      "scope": "Baku 11377",
+      "adaptation": "snapshot-scoped views"
+    },
+    {
+      "day": 15,
+      "exercise_index": 2,
+      "query_sha256": "19b2714f839d2fc58bfe10f1bce3f527269767959df599a7fe7a2a6a1b9836d1",
+      "ok": true,
+      "rows": 16,
+      "columns": [
+        "driver_number",
+        "timed_lap_count",
+        "under_109_count",
+        "under_109_rate"
+      ],
+      "error": "",
+      "scope": "Baku 11377",
+      "adaptation": "snapshot-scoped views"
+    },
+    {
+      "day": 15,
+      "exercise_index": 3,
+      "query_sha256": "40bbfde290df294c39a459179b3751a716cc41f434706210cd493fe2d3850d6d",
+      "ok": true,
+      "rows": 7,
+      "columns": [
+        "team_name",
+        "timed_lap_count",
+        "avg_lap_duration",
+        "fastest_lap_duration"
+      ],
+      "error": "",
+      "scope": "Baku 11377",
+      "adaptation": "snapshot-scoped views"
+    },
+    {
+      "day": 15,
+      "exercise_index": 4,
+      "query_sha256": "8f5c78704ff9e3c9364aa130e9490ea9f026a2f77ac60065deaae877ff209d43",
+      "ok": true,
+      "rows": 1,
+      "columns": [
+        "driver_count"
+      ],
+      "error": "",
+      "scope": "Baku 11377",
+      "adaptation": "snapshot-scoped views"
+    },
+    {
+      "day": 15,
+      "exercise_index": 5,
+      "query_sha256": "cc6b9bfc7406c9c40b87531f49e92de37b2f87f7a9e0c0af724a3b4ebec39f99",
+      "ok": true,
+      "rows": 1,
+      "columns": [
+        "avg_driver_lap_duration"
+      ],
+      "error": "",
+      "scope": "Baku 11377",
+      "adaptation": "snapshot-scoped views"
+    },
+    {
+      "day": 16,
+      "exercise_index": 1,
+      "query_sha256": "0be4def0d27b0602d910d9d6b0fb8158606f2b3fa159c3144a7579f8a526f6ea",
+      "ok": true,
+      "rows": 28,
+      "columns": [
+        "country",
+        "total_quantity",
+        "total_sales_amount"
+      ],
+      "error": "",
+      "scope": "retail_study",
+      "adaptation": "none"
+    },
+    {
+      "day": 16,
+      "exercise_index": 2,
+      "query_sha256": "57dae12d1b4703ce65d8b7400a2a658b6ca185772de7fa68bbea307380c7643c",
+      "ok": true,
+      "rows": 29,
+      "columns": [
+        "country",
+        "item_count",
+        "high_amount_count",
+        "high_amount_rate"
+      ],
+      "error": "",
+      "scope": "retail_study",
+      "adaptation": "none"
+    },
+    {
+      "day": 16,
+      "exercise_index": 3,
+      "query_sha256": "3bfaa5261df421e4678d62923515e13a27f291608a06caeb083b3cde8e56e169",
+      "ok": true,
+      "rows": 3716,
+      "columns": [
+        "customer_id",
+        "item_count",
+        "total_quantity",
+        "total_purchase_amount"
+      ],
+      "error": "",
+      "scope": "retail_study",
+      "adaptation": "none"
+    },
+    {
+      "day": 16,
+      "exercise_index": 4,
+      "query_sha256": "97d617be6259e2a1b0289a937ca2ab8415cbe59b1b3e14554a0b7c6a23b9a41a",
+      "ok": true,
+      "rows": 1,
+      "columns": [
+        "customer_count"
+      ],
+      "error": "",
+      "scope": "retail_study",
+      "adaptation": "none"
+    },
+    {
+      "day": 16,
+      "exercise_index": 5,
+      "query_sha256": "a6a062e79c2d4d46813330d581cf55e75c6d1fa043b1d2ce23a0a1dda750f974",
+      "ok": true,
+      "rows": 1,
+      "columns": [
+        "avg_customer_total"
+      ],
+      "error": "",
+      "scope": "retail_study",
+      "adaptation": "none"
+    },
+    {
+      "day": 17,
+      "exercise_index": 1,
+      "query_sha256": "0ae91e22d4d42443d24982bed4d3da338e2de1aa9924d6b47d5b58a41cf0cd7d",
+      "ok": true,
+      "rows": 13,
+      "columns": [
+        "purchase_month",
+        "total_quantity",
+        "total_sales_amount"
+      ],
+      "error": "",
+      "scope": "retail_study",
+      "adaptation": "none"
+    },
+    {
+      "day": 17,
+      "exercise_index": 2,
+      "query_sha256": "80eb2fabb1e5d02c869a179381e9f7e69f0f388ee0ac058c0e35c4cf8b5f02d3",
+      "ok": true,
+      "rows": 13,
+      "columns": [
+        "purchase_month",
+        "item_count",
+        "high_amount_count",
+        "high_amount_rate"
+      ],
+      "error": "",
+      "scope": "retail_study",
+      "adaptation": "none"
+    },
+    {
+      "day": 17,
+      "exercise_index": 3,
+      "query_sha256": "aa2dc41a05aae40619f657e0f0d392589b5e03d9d8c08f5a1e0c34e876ebe2d3",
+      "ok": true,
+      "rows": 29,
+      "columns": [
+        "country",
+        "item_count",
+        "total_quantity",
+        "total_sales_amount"
+      ],
+      "error": "",
+      "scope": "retail_study",
+      "adaptation": "none"
+    },
+    {
+      "day": 17,
+      "exercise_index": 4,
+      "query_sha256": "e78b3323958a3d6da50a34a186d6868f8509f2197e6348b7dc594e545dd1db67",
+      "ok": true,
+      "rows": 1,
+      "columns": [
+        "customer_count"
+      ],
+      "error": "",
+      "scope": "retail_study",
+      "adaptation": "none"
+    },
+    {
+      "day": 17,
+      "exercise_index": 5,
+      "query_sha256": "f0100c59ab8c2317d2f58347d9728fd196b9ef578d7b4081ee1a61a686f89817",
+      "ok": true,
+      "rows": 1,
+      "columns": [
+        "avg_customer_total"
+      ],
+      "error": "",
+      "scope": "retail_study",
+      "adaptation": "none"
+    },
+    {
+      "day": 18,
+      "exercise_index": 1,
+      "query_sha256": "e7c138d969cb8ee4dfe044918d7c7a4117cefb1498d225e2149a4293a47173d3",
+      "ok": true,
+      "rows": 3,
+      "columns": [
+        "transaction_month",
+        "transaction_count",
+        "total_transaction_amount",
+        "avg_transaction_amount"
+      ],
+      "error": "",
+      "scope": "finance",
+      "adaptation": "none"
+    },
+    {
+      "day": 18,
+      "exercise_index": 2,
+      "query_sha256": "33cd9f2fc5b832d82ea30340e5973599b3474c55a155da21c50cb5fc6ceee86d",
+      "ok": true,
+      "rows": 3,
+      "columns": [
+        "transaction_month",
+        "transaction_count",
+        "high_amount_count",
+        "high_amount_rate"
+      ],
+      "error": "",
+      "scope": "finance",
+      "adaptation": "none"
+    },
+    {
+      "day": 18,
+      "exercise_index": 3,
+      "query_sha256": "59204942eb958d0d993ed1a11dae11a972708595508e1d98ccb168e4a50d14fb",
+      "ok": true,
+      "rows": 17685,
+      "columns": [
+        "customer_id",
+        "transaction_count",
+        "active_day_count",
+        "total_transaction_amount"
+      ],
+      "error": "",
+      "scope": "finance",
+      "adaptation": "none"
+    },
+    {
+      "day": 18,
+      "exercise_index": 4,
+      "query_sha256": "c9538934d952cc6bdc04ff067ee4b110e095b2504bb4d3cd67cde6734ff178d6",
+      "ok": true,
+      "rows": 1,
+      "columns": [
+        "customer_count"
+      ],
+      "error": "",
+      "scope": "finance",
+      "adaptation": "none"
+    },
+    {
+      "day": 18,
+      "exercise_index": 5,
+      "query_sha256": "dfe1079b5bd4263cf8c6af6cb495191fb65e6a86eadf3415f9c2909b6e75ff74",
+      "ok": true,
+      "rows": 1,
+      "columns": [
+        "avg_customer_total"
+      ],
+      "error": "",
+      "scope": "finance",
+      "adaptation": "none"
+    },
+    {
+      "day": 19,
+      "exercise_index": 1,
+      "query_sha256": "e7c138d969cb8ee4dfe044918d7c7a4117cefb1498d225e2149a4293a47173d3",
+      "ok": true,
+      "rows": 3,
+      "columns": [
+        "transaction_month",
+        "transaction_count",
+        "total_transaction_amount",
+        "avg_transaction_amount"
+      ],
+      "error": "",
+      "scope": "finance",
+      "adaptation": "none"
+    },
+    {
+      "day": 19,
+      "exercise_index": 2,
+      "query_sha256": "f33229746f726ef7f3ac2872160bdc2b1237c837e06221677dff5add347c9eff",
+      "ok": true,
+      "rows": 3,
+      "columns": [
+        "transaction_month",
+        "transaction_count",
+        "high_amount_count",
+        "high_amount_total",
+        "high_amount_rate"
+      ],
+      "error": "",
+      "scope": "finance",
+      "adaptation": "none"
+    },
+    {
+      "day": 19,
+      "exercise_index": 3,
+      "query_sha256": "43fcdf6c274ffe922ef9ede76e4c50a72d9dc9d8ecddc18c47de06f77e7d6360",
+      "ok": true,
+      "rows": 1642,
+      "columns": [
+        "customer_id",
+        "transaction_count",
+        "active_day_count",
+        "total_transaction_amount"
+      ],
+      "error": "",
+      "scope": "finance",
+      "adaptation": "none"
+    },
+    {
+      "day": 19,
+      "exercise_index": 4,
+      "query_sha256": "a8decfa75f638563f026b2aa0ee3838f2bb752a16789eee86475a09271f34fd7",
+      "ok": true,
+      "rows": 884265,
+      "columns": [
+        "customer_id",
+        "total_amount"
+      ],
+      "error": "",
+      "scope": "finance",
+      "adaptation": "none"
+    },
+    {
+      "day": 19,
+      "exercise_index": 5,
+      "query_sha256": "63515acbd226d04ebfb13313aeb4156f9eebb24965ea712897b26e38b5845f24",
+      "ok": true,
+      "rows": 26455,
+      "columns": [
+        "customer_id",
+        "total_amount"
+      ],
+      "error": "",
+      "scope": "finance",
+      "adaptation": "none"
+    },
+    {
+      "day": 20,
+      "exercise_index": 1,
+      "query_sha256": "b783340be14cf84b7e55234e8de3239753a8b62a8ba7027f56bd7cc1f3e3f207",
+      "ok": true,
+      "rows": 16,
+      "columns": [
+        "driver_number",
+        "full_name",
+        "team_name",
+        "timed_lap_count",
+        "avg_lap_duration"
+      ],
+      "error": "",
+      "scope": "Baku 11377",
+      "adaptation": "snapshot-scoped views"
+    },
+    {
+      "day": 20,
+      "exercise_index": 2,
+      "query_sha256": "39d2c8682507c4507a28c198931f2fb139fbb33bf2131d036efde7f931010748",
+      "ok": true,
+      "rows": 16,
+      "columns": [
+        "driver_number",
+        "full_name",
+        "team_name",
+        "timed_lap_count",
+        "avg_lap_duration"
+      ],
+      "error": "",
+      "scope": "Baku 11377",
+      "adaptation": "snapshot-scoped views"
+    },
+    {
+      "day": 20,
+      "exercise_index": 3,
+      "query_sha256": "095ebfe9bfbea2c9fce3bd4abaa5e85ae008fd14d60b05ba41ea7d04024c6fd7",
+      "ok": true,
+      "rows": 1,
+      "columns": [
+        "driver_count"
+      ],
+      "error": "",
+      "scope": "Baku 11377",
+      "adaptation": "snapshot-scoped views"
+    },
+    {
+      "day": 20,
+      "exercise_index": 4,
+      "query_sha256": "e309ae960463c9ccc1ce21afd30d7fb84c09bfb8180dfa4e4bba8aaf018115ea",
+      "ok": true,
+      "rows": 16,
+      "columns": [
+        "driver_number",
+        "full_name",
+        "team_name",
+        "timed_lap_count",
+        "avg_lap_duration",
+        "lap_rank"
+      ],
+      "error": "",
+      "scope": "Baku 11377",
+      "adaptation": "snapshot-scoped views"
+    },
+    {
+      "day": 20,
+      "exercise_index": 5,
+      "query_sha256": "72dd1ba50be0c19fcc640622c1d5c220f5d64d593f8f5ee5f8cb39b033a56847",
+      "ok": true,
+      "rows": 16,
+      "columns": [
+        "driver_number",
+        "full_name",
+        "team_name",
+        "timed_lap_count",
+        "avg_lap_duration",
+        "team_rank"
+      ],
+      "error": "",
+      "scope": "Baku 11377",
+      "adaptation": "snapshot-scoped views"
+    },
+    {
+      "day": 21,
+      "exercise_index": 1,
+      "query_sha256": "fa9c3dba1ee2799055241e9c19e9daf309180227144010bdc9ff8a67c30b5d4f",
+      "ok": true,
+      "rows": 19,
+      "columns": [
+        "race_position",
+        "driver_number",
+        "full_name",
+        "team_name",
+        "completed_laps",
+        "points"
+      ],
+      "error": "",
+      "scope": "18 main races through Austin",
+      "adaptation": "snapshot-scoped views"
+    },
+    {
+      "day": 21,
+      "exercise_index": 2,
+      "query_sha256": "489d05f8149baef3243478e9aa2bf528a8afef89a5c01b32d87a9e41b7a09f27",
+      "ok": true,
+      "rows": 11,
+      "columns": [
+        "team_name",
+        "driver_count",
+        "total_laps",
+        "total_points"
+      ],
+      "error": "",
+      "scope": "18 main races through Austin",
+      "adaptation": "snapshot-scoped views"
+    },
+    {
+      "day": 21,
+      "exercise_index": 3,
+      "query_sha256": "0f5619804a27645b3008bfbea19bee390cdc2d62fcd2bad191bf25dd62175644",
+      "ok": true,
+      "rows": 8,
+      "columns": [
+        "driver_number",
+        "full_name",
+        "race_count",
+        "total_points"
+      ],
+      "error": "",
+      "scope": "18 main races through Austin",
+      "adaptation": "snapshot-scoped views"
+    },
+    {
+      "day": 21,
+      "exercise_index": 4,
+      "query_sha256": "fa64105ac118aa0b0c48b1a9da17ebe6bf2a29ceb7f7fa4634dfde91ab365ac1",
+      "ok": true,
+      "rows": 23,
+      "columns": [
+        "points_rank",
+        "driver_number",
+        "full_name",
+        "race_count",
+        "total_points"
+      ],
+      "error": "",
+      "scope": "18 main races through Austin",
+      "adaptation": "snapshot-scoped views"
+    },
+    {
+      "day": 21,
+      "exercise_index": 5,
+      "query_sha256": "296147ee74654d3573308f3937fb08badaa195f03042b306d34d3cf05c8eab24",
+      "ok": true,
+      "rows": 24,
+      "columns": [
+        "team_name",
+        "team_rank",
+        "driver_number",
+        "full_name",
+        "race_count",
+        "total_points"
+      ],
+      "error": "",
+      "scope": "18 main races through Austin",
+      "adaptation": "snapshot-scoped views"
+    },
+    {
+      "day": 22,
+      "exercise_index": 1,
+      "query_sha256": "489d05f8149baef3243478e9aa2bf528a8afef89a5c01b32d87a9e41b7a09f27",
+      "ok": true,
+      "rows": 11,
+      "columns": [
+        "team_name",
+        "driver_count",
+        "total_laps",
+        "total_points"
+      ],
+      "error": "",
+      "scope": "f1_study",
+      "adaptation": "none"
+    },
+    {
+      "day": 22,
+      "exercise_index": 2,
+      "query_sha256": "844b45bd76ff84057d28d56bee8dbc45d360b902cf6479e3824ae7e9f369649d",
+      "ok": true,
+      "rows": 8,
+      "columns": [
+        "driver_number",
+        "full_name",
+        "race_count",
+        "total_points"
+      ],
+      "error": "",
+      "scope": "f1_study",
+      "adaptation": "none"
+    },
+    {
+      "day": 22,
+      "exercise_index": 3,
+      "query_sha256": "67b8d1bca4972fad7193a7ab1b3e8abbf8ff08b7040e5dcb4d0938624c2a425c",
+      "ok": true,
+      "rows": 1668,
+      "columns": [
+        "customer_id",
+        "item_count",
+        "total_purchase_amount"
+      ],
+      "error": "",
+      "scope": "retail_study",
+      "adaptation": "none"
+    },
+    {
+      "day": 22,
+      "exercise_index": 4,
+      "query_sha256": "16c1fbc66698bff374f178c99d14fe4cb68b17b4e23fcda7396fb7a21a724ec4",
+      "ok": true,
+      "rows": 4338,
+      "columns": [
+        "purchase_rank",
+        "customer_id",
+        "item_count",
+        "total_purchase_amount"
+      ],
+      "error": "",
+      "scope": "retail_study",
+      "adaptation": "none"
+    },
+    {
+      "day": 22,
+      "exercise_index": 5,
+      "query_sha256": "c55eebaaa17de1dc1d82be4a4ba3d11b1e831b85ba545a8d062a7a272a7180c7",
+      "ok": true,
+      "rows": 4346,
+      "columns": [
+        "country",
+        "country_rank",
+        "customer_id",
+        "item_count",
+        "total_purchase_amount"
+      ],
+      "error": "",
+      "scope": "retail_study",
+      "adaptation": "none"
+    }
+  ]
+}

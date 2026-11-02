@@ -2,7 +2,7 @@
 
 [한국어 원기록](../ko/day09.md) · [Index](../../README.md) · [Editorial notes](../../docs/editorial.en.md)
 
-This is an edited English study edition of the Korean Notion journal: all exercises are included, with concise translations of the questions and learning points. Repeated explanations are condensed. SQL and available result tables are transcribed from the source, not rerun for this publication. Historical attempts may be invalid.
+This is an edited English study edition of the Korean Notion journal: all exercises are included, with concise translations of the questions and learning points. Repeated explanations are condensed. SQL and available result tables retain the source record. A separate scoped MySQL replay on 2026-11-02 is documented in the audit notes. Historical attempts may be invalid.
 
 ## Exercise 1
 
@@ -259,3 +259,9 @@ ORDER BY repeat_customer_count DESC,
 | AP | 1 |
 | RR | 1 |
 
+
+## Audit notes — 2026-11-02
+
+Olist replay used the isolated backup. Orders and customers each contain 99,441 rows; all orders match one customer_id row, so this join does not multiply orders. customer_unique_id identifies a person across orders. State/person grouping measures the person within each state, not a globally unique assignment of a person to one state.
+
+See the [full audit and scope notes](../../docs/audit.en.md).

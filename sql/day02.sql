@@ -1,3 +1,6 @@
+-- Scoped MySQL 8.4.11 audit: 2026-11-02. See docs/audit.en.md.
+-- Historical Match/date names map to current soccer.matches/match_date.
+
 -- Day 02: Aggregation and row filters
 -- Historical final recorded queries, NOT a freshly validated solution set.
 -- See ../til/en/day02.md for questions, context and known limitations.

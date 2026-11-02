@@ -1,6 +1,6 @@
-# Day 11 — Olist 집계·조건부 COUNT·서브쿼리
+# 🛒 Day11 — Olist 집계·조건부 COUNT·서브쿼리
 
-[English](../en/day11.md) · [목차](../../README.ko.md)
+[English](../en/day11.md) · [목차](../../README.ko.md) · [검증 기록](../../docs/audit.ko.md)
 
 <details>
 <summary>🛒 Day11 — Olist 집계·조건부 COUNT·서브쿼리</summary>
@@ -14,7 +14,6 @@
 
 <details>
 <summary>📚 문제 1\~3 — GROUP BY·HAVING·조건부 집계</summary>
-
 
 📚 문제 1\~3 — GROUP BY·HAVING·조건부 집계\</summary>
 
@@ -100,7 +99,7 @@ ORDER BY
 
 ## 실제 결과
 
-| customer\_state | delivered\_order\_count |
+| customer_state | delivered_order_count |
 | --- | --- |
 | SP | 17071 |
 | RJ | 5968 |
@@ -219,7 +218,7 @@ ORDER BY
 
 ## 실제 결과
 
-| customer\_state | order\_count | customer\_count |
+| customer_state | order_count | customer_count |
 | --- | --- | --- |
 | SP | 23871 | 23289 |
 | RJ | 6571 | 6400 |
@@ -259,17 +258,17 @@ SP 실제 고객 수 = 23,289
 
 # 문제 3 — 2018년 주별 전체·배송 완료·취소 주문 수
 
-**학습일:** <date start="2026-09-30" />
+<b>학습일:</b> 2026-09-30
 
-**최종 검증일:** <date start="2026-10-10" />
+<b>최종 검증일:</b> 2026-10-10
 
-**누적 SQL Day 번호:** Day11 — 기존 원문 상위 토글에서 확인
+<b>누적 SQL Day 번호:</b> Day11 — 기존 원문 상위 토글에서 확인
 
-**문제 번호:** P3 / 5
+<b>문제 번호:</b> P3 / 5
 
-**해결 상태:** ✅ 검증 완료 — 사용자 직접 재실행 결과 기준
+<b>해결 상태:</b> ✅ 검증 완료 — 사용자 직접 재실행 결과 기준
 
-**기록 근거:** MySQL 실행 기록의 결과표와 실행 시간.
+<b>기록 근거:</b> MySQL 실행 기록의 결과표와 실행 시간.
 
 ---
 
@@ -350,7 +349,7 @@ ERROR 1064 (42000):
 You have an error in your SQL syntax
 ```
 
-사용자가 제공한 해결 기록에 따르면 오류 위치는 `JOIN customers` 부근이었고, 복사 과정에서 일반 공백이 아닌 특수 공백이 포함된 것이 원인으로 확인됐다.
+과거 오류 위치는 `JOIN customers` 부근으로 기록되어 있습니다. 공백 정리 후 정상 실행했으나 당시 실패 입력의 원문 바이트가 없어 특수 공백을 유일한 원인으로 독립 재현하지는 못했습니다. 공백 문제는 당시 해결 기록의 진단으로 구분합니다.
 
 ---
 
@@ -392,7 +391,7 @@ COUNT(
 
 조건을 만족하면 1을 반환하고, ELSE를 생략했으므로 조건에 맞지 않으면 NULL을 반환한다. COUNT는 NULL을 제외하므로 해당 상태의 주문 수만 계산한다.
 
-### 오류 3. 특수 공백 문제
+### 실행 환경 점검: 특수 공백 가능성
 
 SQL 분석 논리가 올바르더라도 특수 공백이 포함되면 MySQL에서 문법 오류가 발생할 수 있다. 이 문제는 SQL 집계 논리 오류와 별개로 기록한다.
 
@@ -400,7 +399,7 @@ SQL 분석 논리가 올바르더라도 특수 공백이 포함되면 MySQL에�
 
 ## 5. 수정 쿼리 — 최종 답안
 
-특수 공백을 제거한 최종 실행 쿼리입니다.
+공백을 정리한 최종 실행 쿼리입니다. 이 SQL은 이번 Olist 백업 재검증에서도 정상 실행됐습니다.
 
 ```sql
 SELECT
@@ -437,10 +436,10 @@ ORDER BY
 
 ## 6. 검증
 
-### 최초 학습일 — <date start="2026-09-30" />
+### 최초 학습일 — 2026-09-30
 
 - 정답 논리 완성
-- 특수 공백으로 실행 오류 발생
+- 문법 오류 발생, 당시 해결 기록에서는 특수 공백 가능성으로 진단
 - 최종 결과표 미확인
 
 당시 상태를 이력으로 보존한다.
@@ -450,13 +449,13 @@ ORDER BY
 실제 최종 결과 검증 ❌
 ```
 
-### 재검증일 — <date start="2026-10-10" />
+### 재검증일 — 2026-10-10
 
 정리된 SQL을 MySQL에서 재실행했습니다.
 
-**실제 실행 결과 — 사용자 제공:**
+<b>실제 실행 결과 — 사용자 제공:</b>
 
-| customer\_state | total\_order\_count | delivered\_count | canceled\_count |
+| customer_state | total_order_count | delivered_count | canceled_count |
 | --- | --- | --- | --- |
 | SP | 23871 | 23335 | 188 |
 | RJ | 6571 | 6342 | 37 |
@@ -485,7 +484,7 @@ ORDER BY
 - [x] MySQL 정상 실행
 - [x] 실제 출력 결과 확인
 
-**최종 상태: 검증 완료**
+<b>최종 상태: 검증 완료</b>
 
 ---
 
@@ -531,11 +530,11 @@ HAVING에서는 어떤 집계값을 기준으로 필터링하라는 문제인지
 다시 풀 때 확인할 질문:
 
 1. `COUNT(*)`와 `COUNT(CASE WHEN...)`의 차이는?
-2. 왜 GROUP BY에는 customer\_state만 사용하는가?
-3. 왜 HAVING canceled\_count >= 1000이 틀렸는가?
+2. 왜 GROUP BY에는 customer_state만 사용하는가?
+3. 왜 HAVING canceled_count >= 1000이 틀렸는가?
 4. 전체 주문 수와 delivered + canceled가 다른 이유는?
 
-**복습 권장:** 이전 정답을 보지 않고 주별 주문 상태별 조건부 집계를 다시 작성하기.
+<b>복습 권장:</b> 이전 정답을 보지 않고 주별 주문 상태별 조건부 집계를 다시 작성하기.
 
 ---
 
@@ -588,7 +587,7 @@ ORDER BY
 
 ## 실제 결과
 
-| customer\_state | repeat\_customer\_count |
+| customer_state | repeat_customer_count |
 | --- | --- |
 | SP | 1296 |
 | RJ | 421 |
@@ -864,7 +863,7 @@ ORDER BY
 
 ## 실제 결과
 
-| customer\_state | total\_customers | repeat\_customers | repeat\_rate |
+| customer_state | total_customers | repeat_customers | repeat_rate |
 | --- | --- | --- | --- |
 | DF | 1182 | 30 | 2.54 |
 | RJ | 6400 | 158 | 2.47 |
@@ -1373,10 +1372,12 @@ GROUP BY / HAVING
 
 오늘 가장 중요한 문장:
 
-> **서브쿼리는 최종 결과를 계산하기 전에 필요한 중간 표를 만드는 방법이다.**
+> <b>서브쿼리는 최종 결과를 계산하기 전에 필요한 중간 표를 만드는 방법이다.</b>
 
 그리고:
 
-> **COUNT(\*)의 의미는 함수 자체가 아니라 현재 한 행이 무엇을 뜻하는지에 따라 달라진다.**
+> <b>COUNT(\*)의 의미는 함수 자체가 아니라 현재 한 행이 무엇을 뜻하는지에 따라 달라진다.</b>
 </details>
 </details>
+
+---

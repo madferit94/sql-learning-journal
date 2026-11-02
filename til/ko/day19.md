@@ -1,6 +1,6 @@
-# Day 19 — Finance 집계 복습·CTE 기초
+# 💳 Day19 — Finance 집계 복습·CTE 기초
 
-[English](../en/day19.md) · [목차](../../README.ko.md)
+[English](../en/day19.md) · [목차](../../README.ko.md) · [검증 기록](../../docs/audit.ko.md)
 
 <details>
 <summary>💳 Day19 — Finance 집계 복습·CTE 기초</summary>
@@ -9,10 +9,10 @@
 
 ## 학습 개요
 
-**환경:** MySQL / finance / bank\_transactions
-**학습 내용:** 월별 집계, 조건부 집계, 거래 날짜 중복 제거, 고객별 누적 금액, CTE 기초
-**진행 범위:** 금융 복습 3문제와 CTE 기초 연습 2개. 이어 진행한 학습을 한 세션으로 묶었습니다.
-**검증 근거:** 제출 SQL 검토 및 사용자가 공유한 MySQL 실행 결과
+<b>환경:</b> MySQL / finance / bank_transactions
+<b>학습 내용:</b> 월별 집계, 조건부 집계, 거래 날짜 중복 제거, 고객별 누적 금액, CTE 기초
+<b>진행 범위:</b> 금융 복습 3문제와 CTE 기초 연습 2개. 이어 진행한 학습을 한 세션으로 묶었습니다.
+<b>검증 근거:</b> 제출 SQL 검토 및 사용자가 공유한 MySQL 실행 결과
 
 ### 접속 방법
 
@@ -30,14 +30,14 @@ USE finance;
 
 ### 데이터 설명
 
-bank\_transactions의 한 행은 거래 한 건이며 같은 고객이 같은 날짜에 여러 번 거래할 수 있습니다.
+bank_transactions의 한 행은 거래 한 건이며 같은 고객이 같은 날짜에 여러 번 거래할 수 있습니다.
 
 | 컬럼 | 자료형 | 의미 |
 | --- | --- | --- |
-| transaction\_id | VARCHAR(20) | 거래 ID, 기본키 |
-| customer\_id | VARCHAR(20) | 고객 ID |
-| transaction\_date | DATE | 거래 날짜 |
-| transaction\_amount | DECIMAL(15,2) | 거래금액 |
+| transaction_id | VARCHAR(20) | 거래 ID, 기본키 |
+| customer_id | VARCHAR(20) | 고객 ID |
+| transaction_date | DATE | 거래 날짜 |
+| transaction_amount | DECIMAL(15,2) | 거래금액 |
 
 위 컬럼에는 NULL이 없습니다. 금액 통화는 이번 기록에서 별도로 확정하지 않습니다.
 
@@ -48,14 +48,14 @@ bank\_transactions의 한 행은 거래 한 건이며 같은 고객이 같은 �
 
 ### 테이블 설명
 
-bank\_transactions의 한 행은 금융 거래 한 건입니다. 같은 고객이 같은 날 여러 번 거래할 수 있습니다. 아래는 필요한 컬럼 일부이며 NULL이 없습니다.
+bank_transactions의 한 행은 금융 거래 한 건입니다. 같은 고객이 같은 날 여러 번 거래할 수 있습니다. 아래는 필요한 컬럼 일부이며 NULL이 없습니다.
 
 | 컬럼 | 자료형 | 의미 |
 | --- | --- | --- |
-| transaction\_id | VARCHAR(20) | 거래 ID, 기본키 |
-| customer\_id | VARCHAR(20) | 고객 ID |
-| transaction\_date | DATE | 거래 날짜 |
-| transaction\_amount | DECIMAL(15,2) | 거래금액 |
+| transaction_id | VARCHAR(20) | 거래 ID, 기본키 |
+| customer_id | VARCHAR(20) | 고객 ID |
+| transaction_date | DATE | 거래 날짜 |
+| transaction_amount | DECIMAL(15,2) | 거래금액 |
 
 금액의 통화는 이번 기록에서 별도로 확정하지 않습니다.
 
@@ -75,14 +75,14 @@ bank\_transactions의 한 행은 금융 거래 한 건입니다. 같은 고객�
 
 | 컬럼 | 의미 |
 | --- | --- |
-| transaction\_month | 거래 연월 |
-| transaction\_count | 전체 거래 건수 |
-| total\_transaction\_amount | 총 거래금액 |
-| avg\_transaction\_amount | 거래 한 건당 평균 금액 |
+| transaction_month | 거래 연월 |
+| transaction_count | 전체 거래 건수 |
+| total_transaction_amount | 총 거래금액 |
+| avg_transaction_amount | 거래 한 건당 평균 금액 |
 
 ### 가상 출력 예시
 
-| transaction\_month | transaction\_count | total\_transaction\_amount | avg\_transaction\_amount |
+| transaction_month | transaction_count | total_transaction_amount | avg_transaction_amount |
 | --- | --- | --- | --- |
 | 2016-08 | 4 | 10000.00 | 2500.00 |
 
@@ -103,7 +103,7 @@ ORDER BY transaction_month ASC;
 
 ### 실제 실행 결과
 
-| transaction\_month | transaction\_count | total\_transaction\_amount | avg\_transaction\_amount |
+| transaction_month | transaction_count | total_transaction_amount | avg_transaction_amount |
 | --- | --- | --- | --- |
 | 2016-08 | 653933 | 1030599493.84 | 1576.00 |
 | 2016-09 | 390975 | 612531219.10 | 1566.68 |
@@ -113,9 +113,9 @@ ORDER BY transaction_month ASC;
 
 ### 검증 및 핵심 개념
 
-**첫 제출 쿼리 정답·사용자 실행 결과 확인.** 월별 그룹화, 전체 거래 건수, 총 거래금액, 거래 한 건당 평균과 연월 오름차순 정렬을 모두 충족합니다. 이번 보완 과정에서 AI도 로컬 finance DB에서 같은 SELECT를 읽기 전용으로 실행하여, 3개 월의 모든 집계값이 사용자 출력과 일치함을 확인했습니다.
+<b>첫 제출 쿼리 정답·사용자 실행 결과 확인.</b> 월별 그룹화, 전체 거래 건수, 총 거래금액, 거래 한 건당 평균과 연월 오름차순 정렬을 모두 충족합니다. 이번 보완 과정에서 AI도 로컬 finance DB에서 같은 SELECT를 읽기 전용으로 실행하여, 3개 월의 모든 집계값이 사용자 출력과 일치함을 확인했습니다.
 
-transaction\_amount가 소수점 두 자리인 DECIMAL 자료형이므로 합계도 소수점 두 자리로 계산됩니다.
+transaction_amount가 소수점 두 자리인 DECIMAL 자료형이므로 합계도 소수점 두 자리로 계산됩니다.
 
 ---
 
@@ -123,14 +123,14 @@ transaction\_amount가 소수점 두 자리인 DECIMAL 자료형이므로 합계
 
 ### 테이블 설명
 
-bank\_transactions의 한 행은 금융 거래 한 건입니다. 같은 고객이 같은 날 여러 번 거래할 수 있습니다. 아래는 필요한 컬럼 일부이며 NULL이 없습니다.
+bank_transactions의 한 행은 금융 거래 한 건입니다. 같은 고객이 같은 날 여러 번 거래할 수 있습니다. 아래는 필요한 컬럼 일부이며 NULL이 없습니다.
 
 | 컬럼 | 자료형 | 의미 |
 | --- | --- | --- |
-| transaction\_id | VARCHAR(20) | 거래 ID, 기본키 |
-| customer\_id | VARCHAR(20) | 고객 ID |
-| transaction\_date | DATE | 거래 날짜 |
-| transaction\_amount | DECIMAL(15,2) | 거래금액 |
+| transaction_id | VARCHAR(20) | 거래 ID, 기본키 |
+| customer_id | VARCHAR(20) | 고객 ID |
+| transaction_date | DATE | 거래 날짜 |
+| transaction_amount | DECIMAL(15,2) | 거래금액 |
 
 금액의 통화는 이번 기록에서 별도로 확정하지 않습니다.
 
@@ -152,17 +152,17 @@ bank\_transactions의 한 행은 금융 거래 한 건입니다. 같은 고객�
 
 | 컬럼 | 의미 |
 | --- | --- |
-| transaction\_month | 거래 연월 |
-| transaction\_count | 전체 거래 건수 |
-| high\_amount\_count | 고액 거래 건수 |
-| high\_amount\_total | 고액 거래금액 합계 |
-| high\_amount\_rate | 고액 거래 비율(%) |
+| transaction_month | 거래 연월 |
+| transaction_count | 전체 거래 건수 |
+| high_amount_count | 고액 거래 건수 |
+| high_amount_total | 고액 거래금액 합계 |
+| high_amount_rate | 고액 거래 비율(%) |
 
 ### 가상 예시
 
 한 달의 거래금액이 1000, 5000, 7000, 2000이면 다음과 같습니다.
 
-| transaction\_month | transaction\_count | high\_amount\_count | high\_amount\_total | high\_amount\_rate |
+| transaction_month | transaction_count | high_amount_count | high_amount_total | high_amount_rate |
 | --- | --- | --- | --- | --- |
 | 2016-08 | 4 | 2 | 12000.00 | 50.00 |
 
@@ -170,7 +170,7 @@ bank\_transactions의 한 행은 금융 거래 한 건입니다. 같은 고객�
 
 ### 최종 답안 정리본
 
-비율의 분모는 COUNT(transaction\_date)입니다. 날짜에 NULL이 없어 전체 거래 건수와 같습니다.
+비율의 분모는 COUNT(transaction_date)입니다. 날짜에 NULL이 없어 전체 거래 건수와 같습니다.
 
 ```sql
 SELECT
@@ -197,7 +197,7 @@ ORDER BY transaction_month ASC;
 
 사용자가 공유한 실행 결과에서 요구된 컬럼만 정리했습니다. 아래 정리본 SQL을 별도로 재실행한 결과라고 주장하지 않습니다.
 
-| transaction\_month | transaction\_count | high\_amount\_count | high\_amount\_total | high\_amount\_rate |
+| transaction_month | transaction_count | high_amount_count | high_amount_total | high_amount_rate |
 | --- | --- | --- | --- | --- |
 | 2016-08 | 653933 | 35767 | 556043304.17 | 5.47 |
 | 2016-09 | 390975 | 21446 | 329052383.08 | 5.49 |
@@ -206,9 +206,9 @@ ORDER BY transaction_month ASC;
 ### 핵심 개념
 
 - COUNT(\*)는 거래 건수를 셉니다.
-- COUNT(DISTINCT transaction\_date)는 서로 다른 거래 날짜 수를 셉니다.
+- COUNT(DISTINCT transaction_date)는 서로 다른 거래 날짜 수를 셉니다.
 - 조건부 금액 합계는 조건을 만족하면 거래금액을, 아니면 0을 반환하여 더합니다.
-- 날짜에 NULL이 없으므로 이번 분모의 COUNT(transaction\_date)와 COUNT(\*)는 같습니다.
+- 날짜에 NULL이 없으므로 이번 분모의 COUNT(transaction_date)와 COUNT(\*)는 같습니다.
 실제 출력에는 고액 0건인 월이 없어 해당 경우를 실제 결과로 검증했다고 기록하지 않습니다.
 
 ---
@@ -217,14 +217,14 @@ ORDER BY transaction_month ASC;
 
 ### 테이블 설명
 
-bank\_transactions의 한 행은 금융 거래 한 건입니다. 같은 고객이 같은 날 여러 번 거래할 수 있습니다. 아래는 필요한 컬럼 일부이며 NULL이 없습니다.
+bank_transactions의 한 행은 금융 거래 한 건입니다. 같은 고객이 같은 날 여러 번 거래할 수 있습니다. 아래는 필요한 컬럼 일부이며 NULL이 없습니다.
 
 | 컬럼 | 자료형 | 의미 |
 | --- | --- | --- |
-| transaction\_id | VARCHAR(20) | 거래 ID, 기본키 |
-| customer\_id | VARCHAR(20) | 고객 ID |
-| transaction\_date | DATE | 거래 날짜 |
-| transaction\_amount | DECIMAL(15,2) | 거래금액 |
+| transaction_id | VARCHAR(20) | 거래 ID, 기본키 |
+| customer_id | VARCHAR(20) | 고객 ID |
+| transaction_date | DATE | 거래 날짜 |
+| transaction_amount | DECIMAL(15,2) | 거래금액 |
 
 금액의 통화는 이번 기록에서 별도로 확정하지 않습니다.
 
@@ -245,18 +245,18 @@ bank\_transactions의 한 행은 금융 거래 한 건입니다. 같은 고객�
 
 | 컬럼 | 의미 |
 | --- | --- |
-| customer\_id | 고객 ID |
-| transaction\_count | 전체 거래 건수 |
-| active\_day\_count | 서로 다른 거래 날짜 수 |
-| total\_transaction\_amount | 누적 거래금액 |
+| customer_id | 고객 ID |
+| transaction_count | 전체 거래 건수 |
+| active_day_count | 서로 다른 거래 날짜 수 |
+| total_transaction_amount | 누적 거래금액 |
 
 ### 가상 예시
 
 한 고객이 서로 다른 3일에 4000씩 거래했다면 다음처럼 포함됩니다.
 
-| customer\_id | transaction\_count | active\_day\_count | total\_transaction\_amount |
+| customer_id | transaction_count | active_day_count | total_transaction_amount |
 | --- | --- | --- | --- |
-| CUSTOMER\_A | 3 | 3 | 12000.00 |
+| CUSTOMER_A | 3 | 3 | 12000.00 |
 
 ### 첫 시도에서 수정한 부분
 
@@ -284,7 +284,7 @@ ORDER BY
 
 ### 실제 결과 일부
 
-| customer\_id | transaction\_count | active\_day\_count | total\_transaction\_amount |
+| customer_id | transaction_count | active_day_count | total_transaction_amount |
 | --- | --- | --- | --- |
 | FIN_CUSTOMER_027 | 6 | 6 | 14758.39 |
 | FIN_CUSTOMER_028 | 6 | 6 | 12800.00 |
@@ -311,14 +311,14 @@ SUM(CASE WHEN transaction_amount >= 10000
 
 ### 테이블 설명
 
-bank\_transactions의 한 행은 금융 거래 한 건입니다. 같은 고객이 같은 날 여러 번 거래할 수 있습니다. 아래는 필요한 컬럼 일부이며 NULL이 없습니다.
+bank_transactions의 한 행은 금융 거래 한 건입니다. 같은 고객이 같은 날 여러 번 거래할 수 있습니다. 아래는 필요한 컬럼 일부이며 NULL이 없습니다.
 
 | 컬럼 | 자료형 | 의미 |
 | --- | --- | --- |
-| transaction\_id | VARCHAR(20) | 거래 ID, 기본키 |
-| customer\_id | VARCHAR(20) | 고객 ID |
-| transaction\_date | DATE | 거래 날짜 |
-| transaction\_amount | DECIMAL(15,2) | 거래금액 |
+| transaction_id | VARCHAR(20) | 거래 ID, 기본키 |
+| customer_id | VARCHAR(20) | 고객 ID |
+| transaction_date | DATE | 거래 날짜 |
+| transaction_amount | DECIMAL(15,2) | 거래금액 |
 
 금액의 통화는 이번 기록에서 별도로 확정하지 않습니다.
 
@@ -338,10 +338,10 @@ FROM 중간결과이름;
 
 ### 문제 및 조건
 
-고객별 전체 거래금액을 합산하는 customer\_totals CTE를 만들고 고객 ID와 누적 금액을 조회합니다.
+고객별 전체 거래금액을 합산하는 customer_totals CTE를 만들고 고객 ID와 누적 금액을 조회합니다.
 
 - 전체 기간의 모든 거래를 사용합니다.
-- CTE 이름은 customer\_totals입니다.
+- CTE 이름은 customer_totals입니다.
 - 누적 금액 내림차순, 고객 ID 오름차순으로 정렬합니다.
 - 중간 결과의 한 행은 고객 한 명입니다.
 
@@ -349,8 +349,8 @@ FROM 중간결과이름;
 
 | 컬럼 | 의미 |
 | --- | --- |
-| customer\_id | 고객 ID |
-| total\_amount | 고객별 누적 거래금액 |
+| customer_id | 고객 ID |
+| total_amount | 고객별 누적 거래금액 |
 
 ### 가상 예시
 
@@ -375,7 +375,7 @@ ORDER BY total_amount DESC, customer_id ASC;
 
 ### 실제 결과 일부
 
-| customer\_id | total\_amount |
+| customer_id | total_amount |
 | --- | --- |
 | FIN_CUSTOMER_030 | 1560034.99 |
 | FIN_CUSTOMER_031 | 1380002.88 |
@@ -393,24 +393,24 @@ ORDER BY total_amount DESC, customer_id ASC;
 
 ### 테이블 설명
 
-bank\_transactions의 한 행은 금융 거래 한 건입니다. 같은 고객이 같은 날 여러 번 거래할 수 있습니다. 아래는 필요한 컬럼 일부이며 NULL이 없습니다.
+bank_transactions의 한 행은 금융 거래 한 건입니다. 같은 고객이 같은 날 여러 번 거래할 수 있습니다. 아래는 필요한 컬럼 일부이며 NULL이 없습니다.
 
 | 컬럼 | 자료형 | 의미 |
 | --- | --- | --- |
-| transaction\_id | VARCHAR(20) | 거래 ID, 기본키 |
-| customer\_id | VARCHAR(20) | 고객 ID |
-| transaction\_date | DATE | 거래 날짜 |
-| transaction\_amount | DECIMAL(15,2) | 거래금액 |
+| transaction_id | VARCHAR(20) | 거래 ID, 기본키 |
+| customer_id | VARCHAR(20) | 고객 ID |
+| transaction_date | DATE | 거래 날짜 |
+| transaction_amount | DECIMAL(15,2) | 거래금액 |
 
 금액의 통화는 이번 기록에서 별도로 확정하지 않습니다.
 
 ### CTE 결과 설명
 
-customer\_totals의 한 행은 고객 한 명의 누적 거래금액입니다. customer\_id와 total\_amount 두 컬럼을 만듭니다.
+customer_totals의 한 행은 고객 한 명의 누적 거래금액입니다. customer_id와 total_amount 두 컬럼을 만듭니다.
 
 ### 문제
 
-고객별 전체 거래금액을 합산한 customer\_totals CTE를 만들고, 누적 금액이 10000 이상인 고객을 조회합니다. 이번 작성 연습에서는 선별 조건을 CTE 바깥쪽 조회에 작성합니다.
+고객별 전체 거래금액을 합산한 customer_totals CTE를 만들고, 누적 금액이 10000 이상인 고객을 조회합니다. 이번 작성 연습에서는 선별 조건을 CTE 바깥쪽 조회에 작성합니다.
 
 ### 조건
 
@@ -422,8 +422,8 @@ customer\_totals의 한 행은 고객 한 명의 누적 거래금액입니다. c
 
 | 컬럼 | 의미 |
 | --- | --- |
-| customer\_id | 고객 ID |
-| total\_amount | 고객별 누적 거래금액 |
+| customer_id | 고객 ID |
+| total_amount | 고객별 누적 거래금액 |
 
 ### 가상 예시
 
@@ -453,7 +453,7 @@ FROM customer_totals
 ORDER BY total_amount DESC, customer_id ASC;
 ```
 
-**이 쿼리는 계산 논리상 정답입니다.** 고객별 합계를 계산하고 10000 이상인 고객을 정확히 선별합니다. 다만 이번 연습에서 지정한 ‘바깥쪽에 조건 작성’과는 작성 위치가 달랐습니다.
+<b>이 쿼리는 계산 논리상 정답입니다.</b> 고객별 합계를 계산하고 10000 이상인 고객을 정확히 선별합니다. 다만 이번 연습에서 지정한 ‘바깥쪽에 조건 작성’과는 작성 위치가 달랐습니다.
 
 ### 바깥 WHERE 방식으로 작성
 
@@ -477,7 +477,7 @@ ORDER BY total_amount DESC, customer_id ASC;
 
 두 방식의 실행 결과 앞부분은 동일합니다.
 
-| customer\_id | total\_amount |
+| customer_id | total_amount |
 | --- | --- |
 | FIN_CUSTOMER_030 | 1560034.99 |
 | FIN_CUSTOMER_031 | 1380002.88 |
@@ -490,7 +490,7 @@ ORDER BY total_amount DESC, customer_id ASC;
 | CTE 안 | HAVING | 고객별 집계 결과 |
 | CTE 밖 | WHERE | CTE에 이미 만들어진 금액 컬럼 |
 
-**이번 두 쿼리는 같은 결과를 계산합니다.** HAVING을 WHERE로 바꾼 것은 잘못된 계산을 고친 것이 아니라 CTE 결과를 일반 테이블처럼 사용하는 연습입니다.
+<b>이번 두 쿼리는 같은 결과를 계산합니다.</b> HAVING을 WHERE로 바꾼 것은 잘못된 계산을 고친 것이 아니라 CTE 결과를 일반 테이블처럼 사용하는 연습입니다.
 두 쿼리는 같은 고객별 합계에 같은 조건을 적용하므로 결과가 같습니다.
 </details>
 
@@ -502,8 +502,8 @@ ORDER BY total_amount DESC, customer_id ASC;
 | 표현 | 의미 |
 | --- | --- |
 | COUNT(\*) | 거래 행 수 |
-| COUNT(DISTINCT transaction\_date) | 서로 다른 거래 날짜 수 |
-| SUM(transaction\_amount) | 모든 거래금액 합계 |
+| COUNT(DISTINCT transaction_date) | 서로 다른 거래 날짜 수 |
+| SUM(transaction_amount) | 모든 거래금액 합계 |
 
 ## 거래 조건과 고객 조건
 
@@ -512,7 +512,7 @@ ORDER BY total_amount DESC, customer_id ASC;
 
 ## CTE의 중간 결과
 
-원본의 한 행은 거래 한 건입니다. 고객별로 집계한 CTE의 한 행은 고객 한 명입니다. total\_amount는 CTE 안에서 계산하지만 바깥 조회에서는 이미 존재하는 컬럼처럼 사용할 수 있습니다.
+원본의 한 행은 거래 한 건입니다. 고객별로 집계한 CTE의 한 행은 고객 한 명입니다. total_amount는 CTE 안에서 계산하지만 바깥 조회에서는 이미 존재하는 컬럼처럼 사용할 수 있습니다.
 
 ## HAVING을 쓴 첫 코드도 논리는 맞음
 

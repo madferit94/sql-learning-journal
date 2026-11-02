@@ -4,20 +4,14 @@
 
 ## Current scope
 
-The manual Notion snapshot on 2026-10-27 covers 21 sessions and 110 final recorded queries. Days18–21 are added in Korean and English, and Days11–20 reflect the latest note cleanup. Coaching dialogue, paste-correction narration and unsupported proficiency evaluations are excluded; useful SQL mistakes, fixes, actual outputs and metric caveats remain.
+The manual snapshot on 2026-11-02 contains 22 sessions and 115 final queries. Korean follows the detailed Notion source; English is an edited translation with the same exercises, final SQL and recorded outputs. Coaching assessments and paste-correction narration are excluded; useful SQL errors, fixes and interpretation remain.
 
-Korean follows the detailed source. English is a condensed translation with the same exercises, exact final queries and recorded numeric outputs. Repetition may be condensed. Finance customer IDs are pseudonymized; private exports, original identifier maps, raw datasets, dumps, credentials and machine-specific paths are excluded.
+## Historical runs and current audit
 
-## Evidence and checks
+Existing result tables/timings remain historical. This update separately reran all 115 final queries using explicit snapshot and schema adaptations. See the [audit](audit.en.md) and [per-query evidence](audit-results.json). A successful current run does not independently reproduce the byte-level cause of an old error. Day11 Exercise 3 is resolved, retaining its historical ERROR 1064 and later successful result.
 
-Recorded result tables are historical executions. This publication checks file structure, both language editions, SQL hashes, result-table correspondence, links, Markdown fences and privacy exclusions. It does not rerun the exercise SQL. Day19 Exercise 1 includes the later supplied result and its recorded read-only DB cross-check. F1 ingestion validation is a separate data-preparation check described in the data notes.
+query-manifest.json records final SQL hashes; the validation script checks both languages, query files, recorded table alignment, links, fences, counts and exclusions. Earlier attempts may be invalid and are not final runnable solutions. Document validation does not itself execute SQL; execution evidence is in the separate audit report.
 
-query-manifest.json maps day/exercise numbers to final query hashes. Earlier attempts are not runnable solutions. Day11 Exercise 3 retains ERROR 1064 and the successful follow-up; a suspected whitespace cause is not independently reproduced by this publication.
+## Publication and interpretation
 
-## Interpretation
-
-- Verify output grain, composite keys, missing rows, duplicate joins, date scope and denominators.
-- Repeat-purchase percentages are not cohort retention or causal loyalty measures.
-- Intermediate rounding can change averages of averages or ranks; keep precision when the question requires it.
-- SQL name resolution and functional dependencies depend on the database; a successful example is not a portable guarantee.
-- The 40-lap threshold and time cutoffs are instructional. Main-race points and RANK ties are not the official championship.
+Retain existing finance pseudonyms. Do not publish private Notion exports, raw datasets, dumps, original ID maps, credentials or machine-specific paths. Keep row grain, keys, NULL behavior, denominators, date/snapshot scope and precision explicit. Repeat-purchase percentages are not cohort retention. Lap cutoffs are instructional; main-race points and RANK do not implement official championship countback.

@@ -2,7 +2,7 @@
 
 [한국어 원기록](../ko/day04.md) · [Index](../../README.md) · [Editorial notes](../../docs/editorial.en.md)
 
-This is an edited English study edition of the Korean Notion journal: all exercises are included, with concise translations of the questions and learning points. Repeated explanations are condensed. SQL and available result tables are transcribed from the source, not rerun for this publication. Historical attempts may be invalid.
+This is an edited English study edition of the Korean Notion journal: all exercises are included, with concise translations of the questions and learning points. Repeated explanations are condensed. SQL and available result tables retain the source record. A separate scoped MySQL replay on 2026-11-02 is documented in the audit notes. Historical attempts may be invalid.
 
 ## Exercise 1
 
@@ -199,3 +199,9 @@ ORDER BY order_year;
 | 2017 | 43428 | 2017-01-05 11:56:06 | 2017-12-31 23:29:31 |
 | 2018 | 52783 | 2018-01-01 02:48:41 | 2018-08-29 15:00:37 |
 
+
+## Audit notes — 2026-11-02
+
+Historical queries were organized for MySQL syntax; the exact original execution environment is not independently confirmed. Current checks restored the pre-deletion Olist backup into an isolated temporary database, without overwriting study databases. Recorded execution timings were retained, not replaced by current timings.
+
+See the [full audit and scope notes](../../docs/audit.en.md).

@@ -1,6 +1,6 @@
-# Day 13 — Finance 조건부 집계·비율·서브쿼리
+# 💳 Day13 — Finance 조건부 집계·비율·서브쿼리
 
-[English](../en/day13.md) · [목차](../../README.ko.md)
+[English](../en/day13.md) · [목차](../../README.ko.md) · [검증 기록](../../docs/audit.ko.md)
 
 <details>
 <summary>💳 Day13 — Finance 조건부 집계·비율·서브쿼리</summary>
@@ -9,11 +9,11 @@
 
 ## 학습 개요
 
-**환경:** MySQL / finance / bank\_transactions
+<b>환경:</b> MySQL / finance / bank_transactions
 
-**범위:** 조건부 집계·비율·서브쿼리 2단계 집계, P1\~P5.
+<b>범위:</b> 조건부 집계·비율·서브쿼리 2단계 집계, P1\~P5.
 
-**검증 근거:** 사용자 직접 실행 결과.  첫 시도의 논리는 보존하고 SQL 줄바꿈·마지막 세미콜론은 가독성을 위해 정리했다.
+<b>검증 근거:</b> 사용자 직접 실행 결과.  첫 시도의 논리는 보존하고 SQL 줄바꿈·마지막 세미콜론은 가독성을 위해 정리했다.
 
 ### 접속
 
@@ -32,8 +32,8 @@ DESCRIBE bank_transactions;
 
 | 컬럼 | 타입 | NULL 허용 | 의미 |
 | --- | --- | --- | --- |
-| customer\_id | VARCHAR(20) | 아니요 | 고객 ID |
-| transaction\_amount | DECIMAL(15,2) | 아니요 | 거래 금액 |
+| customer_id | VARCHAR(20) | 아니요 | 고객 ID |
+| transaction_amount | DECIMAL(15,2) | 아니요 | 거래 금액 |
 
 원본 한 행 = 거래 1건.
 
@@ -44,9 +44,9 @@ DESCRIBE bank_transactions;
 
 ### 문제
 
-금액이 5,000 이상인 거래를 2건 이상 한 고객을 조회한다. 고객 ID, 고액 거래 건수(high\_amount\_count), 고액 거래 금액 합계(high\_amount\_total)를 출력한다. 합계 내림차순, 고객 ID 오름차순으로 정렬한다.
+금액이 5,000 이상인 거래를 2건 이상 한 고객을 조회한다. 고객 ID, 고액 거래 건수(high_amount_count), 고액 거래 금액 합계(high_amount_total)를 출력한다. 합계 내림차순, 고객 ID 오름차순으로 정렬한다.
 
-결과 한 행 = 조건을 만족한 고객 한 명. JOIN 없음. GROUP BY 기준 = customer\_id.
+결과 한 행 = 조건을 만족한 고객 한 명. JOIN 없음. GROUP BY 기준 = customer_id.
 
 ### 내 첫 시도
 
@@ -85,7 +85,7 @@ ORDER BY high_amount_total DESC, customer_id ASC;
 
 사용자가 제공한 실제 결과 일부:
 
-| customer\_id | high\_amount\_count | high\_amount\_total |
+| customer_id | high_amount_count | high_amount_total |
 | --- | --- | --- |
 | FIN_CUSTOMER_021 | 2 | 317471.25 |
 | FIN_CUSTOMER_017 | 2 | 309093.00 |
@@ -107,7 +107,7 @@ SQL 논리가 요구사항에 부합한다. 제공된 결과에서 건수 조건
 
 ### 문제
 
-전체 거래가 5건 이상인 고객의 전체 거래 건수(total\_transaction\_count), 1,000 미만 소액 거래 건수(small\_amount\_count), 소액 거래 금액 합계(small\_amount\_total)를 조회한다. 소액 거래가 없는 고객도 포함하고 건수·합계는 0으로 표시한다. 소액 거래 건수 내림차순, 고객 ID 오름차순.
+전체 거래가 5건 이상인 고객의 전체 거래 건수(total_transaction_count), 1,000 미만 소액 거래 건수(small_amount_count), 소액 거래 금액 합계(small_amount_total)를 조회한다. 소액 거래가 없는 고객도 포함하고 건수·합계는 0으로 표시한다. 소액 거래 건수 내림차순, 고객 ID 오름차순.
 
 결과 한 행 = 고객 한 명. 전체 거래를 유지하면서 일부 거래만 따로 집계한다.
 
@@ -130,7 +130,7 @@ ORDER BY small_amount_count DESC, customer_id ASC;
 
 ### 틀린 이유
 
-MySQL에서 WHEN transaction\_amount는 0이 아닌 금액을 참으로 취급한다. 전체 거래 건수에는 조건 없이 COUNT(\*)를 사용한다. SUM에도 소액 조건이 필요하다. 1,000 미만인 거래 5건의 합계는 5,000 미만이어야 한다.
+MySQL에서 WHEN transaction_amount는 0이 아닌 금액을 참으로 취급한다. 전체 거래 건수에는 조건 없이 COUNT(\*)를 사용한다. SUM에도 소액 조건이 필요하다. 1,000 미만인 거래 5건의 합계는 5,000 미만이어야 한다.
 
 ### 수정 쿼리
 
@@ -149,7 +149,7 @@ ORDER BY small_amount_count DESC, customer_id ASC;
 
 사용자가 제공한 실제 결과 일부:
 
-| customer\_id | total\_transaction\_count | small\_amount\_count | small\_amount\_total |
+| customer_id | total_transaction_count | small_amount_count | small_amount_total |
 | --- | --- | --- | --- |
 | FIN_CUSTOMER_005 | 6 | 5 | 2091.00 |
 | FIN_CUSTOMER_008 | 5 | 5 | 1826.00 |
@@ -168,7 +168,7 @@ C6222360의 합계가 5825.00에서 525.00으로 변경됐다. SQL 구조상 소
 
 ### 문제
 
-전체 거래가 5건 이상인 고객의 전체 거래 건수, 1,000 미만 소액 거래 건수, 소액 거래 비율(small\_amount\_rate)을 조회한다. 소액 거래가 없는 고객도 포함하고 비율은 0으로 표시한다. 소수점 둘째 자리까지 반올림한 비율 내림차순, 고객 ID 오름차순.
+전체 거래가 5건 이상인 고객의 전체 거래 건수, 1,000 미만 소액 거래 건수, 소액 거래 비율(small_amount_rate)을 조회한다. 소액 거래가 없는 고객도 포함하고 비율은 0으로 표시한다. 소수점 둘째 자리까지 반올림한 비율 내림차순, 고객 ID 오름차순.
 
 비율(%) = 소액 거래 건수 ÷ 전체 거래 건수 × 100.
 
@@ -200,7 +200,7 @@ ORDER BY small_amount_rate DESC, customer_id ASC;
 
 사용자가 제공한 실제 결과 일부:
 
-| customer\_id | total\_transaction\_count | small\_amount\_count | small\_amount\_rate |
+| customer_id | total_transaction_count | small_amount_count | small_amount_rate |
 | --- | --- | --- | --- |
 | FIN_CUSTOMER_008 | 5 | 5 | 100.00 |
 | FIN_CUSTOMER_009 | 5 | 5 | 100.00 |
@@ -221,7 +221,7 @@ ORDER BY small_amount_rate DESC, customer_id ASC;
 
 ### 문제
 
-모든 고객의 전체 기간 총 거래 금액을 구한 뒤, 그 고객별 총액들의 평균을 소수점 둘째 자리까지 반올림한다. 출력 컬럼 avg\_customer\_total, 결과 한 행, 정렬 조건 없음.
+모든 고객의 전체 기간 총 거래 금액을 구한 뒤, 그 고객별 총액들의 평균을 소수점 둘째 자리까지 반올림한다. 출력 컬럼 avg_customer_total, 결과 한 행, 정렬 조건 없음.
 
 ### 내 첫 시도 — 중간 표
 
@@ -249,7 +249,7 @@ GROUP BY customer_id;
 
 실제 결과 일부:
 
-| customer\_id | total\_transaction\_amount |
+| customer_id | total_transaction_amount |
 | --- | --- |
 | FIN_CUSTOMER_001 | 5106.00 |
 | FIN_CUSTOMER_002 | 1499.00 |
@@ -260,7 +260,7 @@ GROUP BY customer_id;
 
 ### 최종 쿼리
 
-바깥 AVG의 대상은 고객별 누적 금액 컬럼인 total\_transaction\_amount입니다.
+바깥 AVG의 대상은 고객별 누적 금액 컬럼인 total_transaction_amount입니다.
 
 ```sql
 SELECT ROUND(AVG(total_transaction_amount), 2) AS avg_customer_total
@@ -274,7 +274,7 @@ FROM (
 
 ### 검증
 
-| avg\_customer\_total |
+| avg_customer_total |
 | --- |
 | 1866.86 |
 
@@ -292,7 +292,7 @@ FROM (
 
 ### 문제
 
-전체 기간의 누적 거래 금액이 10,000 이상인 고객 수를 조회한다. 고객의 모든 거래를 합산해서 판단하며, 거래 한 건의 금액 조건이 아니다. 출력 컬럼 customer\_count, 결과 한 행, 정렬 조건 없음.
+전체 기간의 누적 거래 금액이 10,000 이상인 고객 수를 조회한다. 고객의 모든 거래를 합산해서 판단하며, 거래 한 건의 금액 조건이 아니다. 출력 컬럼 customer_count, 결과 한 행, 정렬 조건 없음.
 
 ### 내 첫 시도 — 중간 표
 
@@ -328,7 +328,7 @@ FROM (
 
 ### 검증
 
-| customer\_count |
+| customer_count |
 | --- |
 | 26455 |
 
@@ -340,7 +340,7 @@ FROM (
 
 가상 예시에서 A의 거래 3건과 B의 거래 2건을 고객별로 합산하면 고객 한 명당 한 행이므로 중간 결과는 2행입니다.
 
-**확인된 이해:** A·B로 묶으면 중간 표가 2행이라는 점을 설명했다. 정확한 단위는 거래 2건이 아니라 고객 2명에 해당하는 2행이다.
+<b>확인된 이해:</b> A·B로 묶으면 중간 표가 2행이라는 점을 설명했다. 정확한 단위는 거래 2건이 아니라 고객 2명에 해당하는 2행이다.
 </details>
 
 <details>
@@ -350,7 +350,7 @@ FROM (
 
 CASE는 각 거래에서 사용할 값을 정하고 SUM은 반환된 숫자를 더한다. 다음은 설명용 가상 예시다.
 
-| 원본 금액 | THEN 1 ELSE 0 | THEN transaction\_amount ELSE 0 |
+| 원본 금액 | THEN 1 ELSE 0 | THEN transaction_amount ELSE 0 |
 | --- | --- | --- |
 | 200 | 1 | 200 |
 | 600 | 1 | 600 |
@@ -390,10 +390,10 @@ FROM bank_transactions;
 | 목적 | 방법 |
 | --- | --- |
 | 전체 거래 수 | 원본에서 COUNT(\*) |
-| 전체 고유 고객 수 | 원본에서 COUNT(DISTINCT customer\_id) |
+| 전체 고유 고객 수 | 원본에서 COUNT(DISTINCT customer_id) |
 | 누적 금액 조건에 맞는 고객 수 | 고객별 합산·필터링 후 바깥 COUNT(\*) |
 
-COUNT(DISTINCT customer\_id)는 오늘 설명에 사용했으며 별도 실행 결과는 제출되지 않았다.
+COUNT(DISTINCT customer_id)는 오늘 설명에 사용했으며 별도 실행 결과는 제출되지 않았다.
 
 ## 서브쿼리의 한 행 의미
 
@@ -401,7 +401,7 @@ COUNT(DISTINCT customer\_id)는 오늘 설명에 사용했으며 별도 실행 �
 
 이는 계산을 이해하기 위한 논리적 순서이며 DB의 물리적 실행 순서를 단정하지 않는다.
 
-단순 고유 고객 수만 필요하면 GROUP BY 없이 COUNT(DISTINCT customer\_id)로 구할 수 있다. P5는 고객별 누적 금액 조건이 있으므로 먼저 고객별 합계가 필요하다.
+단순 고유 고객 수만 필요하면 GROUP BY 없이 COUNT(DISTINCT customer_id)로 구할 수 있다. P5는 고객별 누적 금액 조건이 있으므로 먼저 고객별 합계가 필요하다.
 </details>
 
 <details>
@@ -436,6 +436,6 @@ P5 — 누적 거래 금액이 10,000 이상인 고객 수.
 - [ ] 중간 결과 한 행의 의미 설명
 - [ ] 바깥 쿼리로 고객 수 계산
 
-**재풀이 상태: 미실행.** 이후 결과를 확인하기 전까지 독립 해결로 기록하지 않는다.
+<b>재풀이 상태: 미실행.</b> 이후 결과를 확인하기 전까지 독립 해결로 기록하지 않는다.
 </details>
 </details>

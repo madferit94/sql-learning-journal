@@ -2,7 +2,7 @@
 
 [한국어 원기록](../ko/day03.md) · [Index](../../README.md) · [Editorial notes](../../docs/editorial.en.md)
 
-This is an edited English study edition of the Korean Notion journal: all exercises are included, with concise translations of the questions and learning points. Repeated explanations are condensed. SQL and available result tables are transcribed from the source, not rerun for this publication. Historical attempts may be invalid.
+This is an edited English study edition of the Korean Notion journal: all exercises are included, with concise translations of the questions and learning points. Repeated explanations are condensed. SQL and available result tables retain the source record. A separate scoped MySQL replay on 2026-11-02 is documented in the audit notes. Historical attempts may be invalid.
 
 ## Exercise 16
 
@@ -50,9 +50,9 @@ ORDER BY avg_home_goals DESC;
 ### Earlier attempt (historical; may be invalid)
 
 ```sql
-SELECT season, COUNT(**) AS match_count*
-*FROM `Match`*
-*HAVING COUNT(**) >= 3250;
+SELECT season, COUNT(*) AS match_count
+FROM `Match`
+HAVING COUNT(*) >= 3250;
 ```
 
 ### Final query recorded in the journal
@@ -175,3 +175,9 @@ ORDER BY total_goals DESC;
 | 2014/2015 | 3325 | 1.5203007518797 | 8897 |
 | 2010/2011 | 3260 | 1.54846625766871 | 8749 |
 
+
+## Audit notes — 2026-11-02
+
+Malformed Markdown inside COUNT and FROM was repaired without replacing the underlying learning mistakes. Comparison signs are > (strictly greater) and >= (inclusive). HAVING COUNT(*) is valid SQL but tests a nonzero count; it does not implement the required >= 3250 condition. Original ungrouped-season outputs have an unverified historical environment and are not valid successes under current ONLY_FULL_GROUP_BY. Prose accidentally inside a SQL fence was separated from executable examples.
+
+See the [full audit and scope notes](../../docs/audit.en.md).

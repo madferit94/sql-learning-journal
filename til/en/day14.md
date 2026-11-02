@@ -283,3 +283,9 @@ FROM (
 ## Race scope and interpretation
 
 These are Baku-only historical queries. After a local multi-race expansion, add a session filter or use the original single-session snapshot. The normal Baku race is 51 laps; recorded non-NULL times need not equal officially completed laps. None of these all-lap averages or threshold counts is an official race or ability ranking.
+
+## Audit notes — 2026-11-02
+
+These are historical Baku-only queries (11377), not unfiltered queries for the present 19-race database. Verification exposed only session 11377 through isolated views, preserving the recorded SQL. All source tables must be restricted to Baku when rerunning. The 40-lap, team-80-lap and under-110-count thresholds are distinct instructional conditions, not official classification rules.
+
+See the [full audit and scope notes](../../docs/audit.en.md).

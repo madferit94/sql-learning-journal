@@ -281,3 +281,9 @@ Read existing result columns when the requested value is already stored. Aggrega
 - Rebuild the two result grains without the previous answer.
 - Explain why the overall ranking has 23 drivers but the driver-team ranking has 24 rows.
 - Distinguish stored official positions, aggregate points ranks and official championship tie-breaking.
+
+## Audit notes — 2026-11-02
+
+These recorded totals cover 18 main races through Austin, not the later 19-race database. Verification excluded Mexico session 11404 through scoped views and reproduced 19/11/8/23/24 rows across the five exercises. The original SQL and execution times remain historical. Main-race-only points and RANK ties are not official championship totals or countback.
+
+See the [full audit and scope notes](../../docs/audit.en.md).

@@ -243,3 +243,9 @@ FROM (
 | --- |
 | 4678.46 |
 
+
+## Audit notes — 2026-11-02
+
+The sales_items view contains positive quantity/price and non-cancellation invoice records; these are gross positive sales, not net revenue after returns. Header joins use invoice_header_id, not invoice_no alone. Customer count 1668 and the mean qualifying customer total 4678.46 were reproduced.
+
+See the [full audit and scope notes](../../docs/audit.en.md).

@@ -1,3 +1,5 @@
+-- Scoped MySQL 8.4.11 audit: 2026-11-02. See docs/audit.en.md.
+
 -- Day17: historical final queries from Notion. Not rerun for publication.
 
 -- Exercise 1: Monthly quantities and sales amounts

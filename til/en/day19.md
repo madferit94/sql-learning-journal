@@ -201,3 +201,9 @@ ORDER BY total_amount DESC, customer_id ASC;
 Distinguish per-row conditions from aggregate conditions. Inside a grouped query, HAVING filters group results. In the outer query, total_amount already exists and WHERE filters its rows. The first CTE example and both threshold placements have recorded execution results. Window-function practice is covered in the next session.
 
 Practice later without looking at the solution. This publication preserves recorded executions; it does not execute the exercise SQL or claim production experience.
+
+## Audit notes — 2026-11-02
+
+This session covers review plus CTE foundations, not completed window-function study. CTE results expose ordinary columns to the outer WHERE; repeating GROUP BY is unnecessary. A high-amount SUM changes which amounts are included, whereas an outer filter on a customer total selects customers after totaling all their transactions.
+
+See the [full audit and scope notes](../../docs/audit.en.md).

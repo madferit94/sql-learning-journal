@@ -1,6 +1,6 @@
-# Day 18 — Finance 월별 집계·거래일 수·서브쿼리
+# 💳 Day18 — Finance 월별 집계·거래일 수·서브쿼리
 
-[English](../en/day18.md) · [목차](../../README.ko.md)
+[English](../en/day18.md) · [목차](../../README.ko.md) · [검증 기록](../../docs/audit.ko.md)
 
 <details>
 <summary>💳 Day18 — Finance 월별 집계·거래일 수·서브쿼리</summary>
@@ -9,10 +9,9 @@
 
 ## 학습 개요
 
-**환경:** MySQL / finance / bank\_transactions
-**학습 범위:** 월별 거래 통계, 조건부 집계, 서로 다른 거래 날짜 수, 고객별 누적 금액 재집계.
-**검증 근거:** 사용자가 직접 공유한 MySQL 결과. 업로드 전 AI가 읽기 전용 재집계로 월별 통계와 문제 4·5의 고객 수·평균을 대조하여 일치를 확인했습니다.
-
+<b>환경:</b> MySQL / finance / bank_transactions
+<b>학습 범위:</b> 월별 거래 통계, 조건부 집계, 서로 다른 거래 날짜 수, 고객별 누적 금액 재집계.
+<b>검증 근거:</b> 사용자가 직접 공유한 MySQL 결과. 업로드 전 AI가 읽기 전용 재집계로 월별 통계와 문제 4·5의 고객 수·평균을 대조하여 일치를 확인했습니다.
 
 ### 접속
 
@@ -33,14 +32,14 @@ SHOW TABLES;
 
 ### 데이터와 한 행의 의미
 
-**bank\_transactions — 한 행은 금융 거래 한 건입니다.** 같은 고객이 같은 날짜에 여러 번 거래할 수 있습니다. 아래는 이번 문제에 필요한 컬럼 일부입니다.
+<b>bank_transactions — 한 행은 금융 거래 한 건입니다.</b> 같은 고객이 같은 날짜에 여러 번 거래할 수 있습니다. 아래는 이번 문제에 필요한 컬럼 일부입니다.
 
 | 컬럼명 | 자료형 | 의미 |
 | --- | --- | --- |
-| transaction\_id | VARCHAR(20) | 거래 ID, 기본키 |
-| customer\_id | VARCHAR(20) | 고객 ID |
-| transaction\_date | DATE | 거래 날짜, 시각 없음 |
-| transaction\_amount | DECIMAL(15,2) | 거래금액 |
+| transaction_id | VARCHAR(20) | 거래 ID, 기본키 |
+| customer_id | VARCHAR(20) | 고객 ID |
+| transaction_date | DATE | 거래 날짜, 시각 없음 |
+| transaction_amount | DECIMAL(15,2) | 거래금액 |
 
 위 컬럼에는 NULL이 없습니다. 데이터의 날짜 범위는 2016-08-01부터 2016-10-21까지입니다. 금액의 통화는 이번 기록에서 별도로 확정하지 않습니다.
 현재 전체 거래는 1048567행이며 거래 ID는 중복되지 않습니다. 월별 통계는 거래 한 건을, 문제 4·5의 바깥 집계는 고객별 중간 결과를 대상으로 합니다.
@@ -52,14 +51,14 @@ SHOW TABLES;
 
 ### 테이블 설명
 
-**bank\_transactions — 한 행은 금융 거래 한 건입니다.** 같은 고객이 같은 날짜에 여러 번 거래할 수 있습니다. 아래는 이번 문제에 필요한 컬럼 일부입니다.
+<b>bank_transactions — 한 행은 금융 거래 한 건입니다.</b> 같은 고객이 같은 날짜에 여러 번 거래할 수 있습니다. 아래는 이번 문제에 필요한 컬럼 일부입니다.
 
 | 컬럼명 | 자료형 | 의미 |
 | --- | --- | --- |
-| transaction\_id | VARCHAR(20) | 거래 ID, 기본키 |
-| customer\_id | VARCHAR(20) | 고객 ID |
-| transaction\_date | DATE | 거래 날짜, 시각 없음 |
-| transaction\_amount | DECIMAL(15,2) | 거래금액 |
+| transaction_id | VARCHAR(20) | 거래 ID, 기본키 |
+| customer_id | VARCHAR(20) | 고객 ID |
+| transaction_date | DATE | 거래 날짜, 시각 없음 |
+| transaction_amount | DECIMAL(15,2) | 거래금액 |
 
 위 컬럼에는 NULL이 없습니다. 데이터의 날짜 범위는 2016-08-01부터 2016-10-21까지입니다. 금액의 통화는 이번 기록에서 별도로 확정하지 않습니다.
 
@@ -73,20 +72,20 @@ SHOW TABLES;
 - 전체 거래 행 수, 금액 합계와 평균을 계산합니다.
 - 총액과 평균은 소수점 둘째 자리까지 표시합니다.
 - 기록이 있는 연월만 출력하고 거래 연월 오름차순으로 정렬합니다.
-- 최소 건수·금액 조건이 없으며 bank\_transactions만 사용합니다.
+- 최소 건수·금액 조건이 없으며 bank_transactions만 사용합니다.
 
 ### 출력 컬럼
 
 | 컬럼 | 의미 |
 | --- | --- |
-| transaction\_month | 거래 연월, YYYY-MM |
-| transaction\_count | 거래 건수 |
-| total\_transaction\_amount | 총 거래금액 |
-| avg\_transaction\_amount | 거래 한 건당 평균 금액 |
+| transaction_month | 거래 연월, YYYY-MM |
+| transaction_count | 거래 건수 |
+| total_transaction_amount | 총 거래금액 |
+| avg_transaction_amount | 거래 한 건당 평균 금액 |
 
 ### 출력 예시 — 가상
 
-| transaction\_month | transaction\_count | total\_transaction\_amount | avg\_transaction\_amount |
+| transaction_month | transaction_count | total_transaction_amount | avg_transaction_amount |
 | --- | --- | --- | --- |
 | 2016-08 | 200 | 100000.00 | 500.00 |
 | 2016-09 | 100 | 75000.00 | 750.00 |
@@ -110,7 +109,7 @@ ORDER BY transaction_month ASC;
 
 ### 검증
 
-| transaction\_month | transaction\_count | total\_transaction\_amount | avg\_transaction\_amount |
+| transaction_month | transaction_count | total_transaction_amount | avg_transaction_amount |
 | --- | --- | --- | --- |
 | 2016-08 | 653933 | 1030599493.84 | 1576.00 |
 | 2016-09 | 390975 | 612531219.10 | 1566.68 |
@@ -120,7 +119,7 @@ ORDER BY transaction_month ASC;
 
 ### 핵심 개념 정리
 
-날짜를 연월로 바꾼 값을 그룹화 기준으로 사용했습니다. transaction\_amount는 소수점 두 자리의 정확한 DECIMAL이어서 SUM도 소수점 두 자리의 합계를 반환합니다. 이번 데이터에서 총액에 ROUND를 추가하지 않아도 결과 조건을 충족합니다.
+날짜를 연월로 바꾼 값을 그룹화 기준으로 사용했습니다. transaction_amount는 소수점 두 자리의 정확한 DECIMAL이어서 SUM도 소수점 두 자리의 합계를 반환합니다. 이번 데이터에서 총액에 ROUND를 추가하지 않아도 결과 조건을 충족합니다.
 
 ---
 
@@ -128,14 +127,14 @@ ORDER BY transaction_month ASC;
 
 ### 테이블 설명
 
-**bank\_transactions — 한 행은 금융 거래 한 건입니다.** 같은 고객이 같은 날짜에 여러 번 거래할 수 있습니다. 아래는 이번 문제에 필요한 컬럼 일부입니다.
+<b>bank_transactions — 한 행은 금융 거래 한 건입니다.</b> 같은 고객이 같은 날짜에 여러 번 거래할 수 있습니다. 아래는 이번 문제에 필요한 컬럼 일부입니다.
 
 | 컬럼명 | 자료형 | 의미 |
 | --- | --- | --- |
-| transaction\_id | VARCHAR(20) | 거래 ID, 기본키 |
-| customer\_id | VARCHAR(20) | 고객 ID |
-| transaction\_date | DATE | 거래 날짜, 시각 없음 |
-| transaction\_amount | DECIMAL(15,2) | 거래금액 |
+| transaction_id | VARCHAR(20) | 거래 ID, 기본키 |
+| customer_id | VARCHAR(20) | 고객 ID |
+| transaction_date | DATE | 거래 날짜, 시각 없음 |
+| transaction_amount | DECIMAL(15,2) | 거래금액 |
 
 위 컬럼에는 NULL이 없습니다. 데이터의 날짜 범위는 2016-08-01부터 2016-10-21까지입니다. 금액의 통화는 이번 기록에서 별도로 확정하지 않습니다.
 
@@ -156,14 +155,14 @@ ORDER BY transaction_month ASC;
 
 | 컬럼 | 의미 |
 | --- | --- |
-| transaction\_month | 거래 연월 |
-| transaction\_count | 전체 거래 건수 |
-| high\_amount\_count | 5000 이상 거래 건수 |
-| high\_amount\_rate | 고액 거래 비율(%) |
+| transaction_month | 거래 연월 |
+| transaction_count | 전체 거래 건수 |
+| high_amount_count | 5000 이상 거래 건수 |
+| high_amount_rate | 고액 거래 비율(%) |
 
 ### 출력 예시 — 가상
 
-| transaction\_month | transaction\_count | high\_amount\_count | high\_amount\_rate |
+| transaction_month | transaction_count | high_amount_count | high_amount_rate |
 | --- | --- | --- | --- |
 | 2016-08 | 200 | 20 | 10.00 |
 | 2016-09 | 100 | 5 | 5.00 |
@@ -192,7 +191,7 @@ ORDER BY transaction_month ASC;
 
 ### 검증
 
-| transaction\_month | transaction\_count | high\_amount\_count | high\_amount\_rate |
+| transaction_month | transaction_count | high_amount_count | high_amount_rate |
 | --- | --- | --- | --- |
 | 2016-08 | 653933 | 35767 | 5.47 |
 | 2016-09 | 390975 | 21446 | 5.49 |
@@ -210,14 +209,14 @@ ORDER BY transaction_month ASC;
 
 ### 테이블 설명
 
-**bank\_transactions — 한 행은 금융 거래 한 건입니다.** 같은 고객이 같은 날짜에 여러 번 거래할 수 있습니다. 아래는 이번 문제에 필요한 컬럼 일부입니다.
+<b>bank_transactions — 한 행은 금융 거래 한 건입니다.</b> 같은 고객이 같은 날짜에 여러 번 거래할 수 있습니다. 아래는 이번 문제에 필요한 컬럼 일부입니다.
 
 | 컬럼명 | 자료형 | 의미 |
 | --- | --- | --- |
-| transaction\_id | VARCHAR(20) | 거래 ID, 기본키 |
-| customer\_id | VARCHAR(20) | 고객 ID |
-| transaction\_date | DATE | 거래 날짜, 시각 없음 |
-| transaction\_amount | DECIMAL(15,2) | 거래금액 |
+| transaction_id | VARCHAR(20) | 거래 ID, 기본키 |
+| customer_id | VARCHAR(20) | 고객 ID |
+| transaction_date | DATE | 거래 날짜, 시각 없음 |
+| transaction_amount | DECIMAL(15,2) | 거래금액 |
 
 위 컬럼에는 NULL이 없습니다. 데이터의 날짜 범위는 2016-08-01부터 2016-10-21까지입니다. 금액의 통화는 이번 기록에서 별도로 확정하지 않습니다.
 
@@ -238,18 +237,18 @@ ORDER BY transaction_month ASC;
 
 | 컬럼 | 의미 |
 | --- | --- |
-| customer\_id | 고객 ID |
-| transaction\_count | 전체 거래 건수 |
-| active\_day\_count | 서로 다른 거래 날짜 수 |
-| total\_transaction\_amount | 총 거래금액 |
+| customer_id | 고객 ID |
+| transaction_count | 전체 거래 건수 |
+| active_day_count | 서로 다른 거래 날짜 수 |
+| total_transaction_amount | 총 거래금액 |
 
 ### 출력 예시 — 가상
 
-| customer\_id | transaction\_count | active\_day\_count | total\_transaction\_amount |
+| customer_id | transaction_count | active_day_count | total_transaction_amount |
 | --- | --- | --- | --- |
-| CUSTOMER\_A | 5 | 4 | 8000.00 |
-| CUSTOMER\_B | 6 | 3 | 12000.00 |
-| CUSTOMER\_C | 3 | 3 | 5000.00 |
+| CUSTOMER_A | 5 | 4 | 8000.00 |
+| CUSTOMER_B | 6 | 3 | 12000.00 |
+| CUSTOMER_C | 3 | 3 | 5000.00 |
 
 ### 예시 설명
 
@@ -271,7 +270,7 @@ ORDER BY active_day_count DESC, total_transaction_amount DESC, customer_id ASC;
 
 ### 검증 — 실제 출력 일부
 
-| customer\_id | transaction\_count | active\_day\_count | total\_transaction\_amount |
+| customer_id | transaction_count | active_day_count | total_transaction_amount |
 | --- | --- | --- | --- |
 | FIN_CUSTOMER_027 | 6 | 6 | 14758.39 |
 | FIN_CUSTOMER_028 | 6 | 6 | 12800.00 |
@@ -297,14 +296,14 @@ C1113684는 거래 6건·거래 날짜 5일입니다. DATE 컬럼에는 시각�
 
 ### 테이블 설명
 
-**bank\_transactions — 한 행은 금융 거래 한 건입니다.** 같은 고객이 같은 날짜에 여러 번 거래할 수 있습니다. 아래는 이번 문제에 필요한 컬럼 일부입니다.
+<b>bank_transactions — 한 행은 금융 거래 한 건입니다.</b> 같은 고객이 같은 날짜에 여러 번 거래할 수 있습니다. 아래는 이번 문제에 필요한 컬럼 일부입니다.
 
 | 컬럼명 | 자료형 | 의미 |
 | --- | --- | --- |
-| transaction\_id | VARCHAR(20) | 거래 ID, 기본키 |
-| customer\_id | VARCHAR(20) | 고객 ID |
-| transaction\_date | DATE | 거래 날짜, 시각 없음 |
-| transaction\_amount | DECIMAL(15,2) | 거래금액 |
+| transaction_id | VARCHAR(20) | 거래 ID, 기본키 |
+| customer_id | VARCHAR(20) | 고객 ID |
+| transaction_date | DATE | 거래 날짜, 시각 없음 |
+| transaction_amount | DECIMAL(15,2) | 거래금액 |
 
 위 컬럼에는 NULL이 없습니다. 데이터의 날짜 범위는 2016-08-01부터 2016-10-21까지입니다. 금액의 통화는 이번 기록에서 별도로 확정하지 않습니다.
 
@@ -317,17 +316,17 @@ C1113684는 거래 6건·거래 날짜 5일입니다. DATE 컬럼에는 시각�
 - 같은 날짜 여러 거래는 날짜 수로 1일입니다.
 - 정확히 3일도 포함하고 연속일 필요는 없습니다.
 - 고객 목록이나 날짜 수 합계가 아니라 고객 수를 출력합니다.
-- 대상 고객이 없으면 0입니다. 정렬 조건 없이 bank\_transactions만 사용합니다.
+- 대상 고객이 없으면 0입니다. 정렬 조건 없이 bank_transactions만 사용합니다.
 
 ### 출력 컬럼
 
 | 컬럼 | 의미 |
 | --- | --- |
-| customer\_count | 조건을 만족한 고객 수 |
+| customer_count | 조건을 만족한 고객 수 |
 
 ### 출력 예시 — 가상
 
-| customer\_count |
+| customer_count |
 | --- |
 | 2 |
 
@@ -353,7 +352,7 @@ FROM (
 
 ### 검증
 
-| customer\_count |
+| customer_count |
 | --- |
 | 17685 |
 
@@ -371,14 +370,14 @@ FROM (
 
 ### 테이블 설명
 
-**bank\_transactions — 한 행은 금융 거래 한 건입니다.** 같은 고객이 같은 날짜에 여러 번 거래할 수 있습니다. 아래는 이번 문제에 필요한 컬럼 일부입니다.
+<b>bank_transactions — 한 행은 금융 거래 한 건입니다.</b> 같은 고객이 같은 날짜에 여러 번 거래할 수 있습니다. 아래는 이번 문제에 필요한 컬럼 일부입니다.
 
 | 컬럼명 | 자료형 | 의미 |
 | --- | --- | --- |
-| transaction\_id | VARCHAR(20) | 거래 ID, 기본키 |
-| customer\_id | VARCHAR(20) | 고객 ID |
-| transaction\_date | DATE | 거래 날짜, 시각 없음 |
-| transaction\_amount | DECIMAL(15,2) | 거래금액 |
+| transaction_id | VARCHAR(20) | 거래 ID, 기본키 |
+| customer_id | VARCHAR(20) | 고객 ID |
+| transaction_date | DATE | 거래 날짜, 시각 없음 |
+| transaction_amount | DECIMAL(15,2) | 거래금액 |
 
 위 컬럼에는 NULL이 없습니다. 데이터의 날짜 범위는 2016-08-01부터 2016-10-21까지입니다. 금액의 통화는 이번 기록에서 별도로 확정하지 않습니다.
 
@@ -392,17 +391,17 @@ FROM (
 - 같은 날짜의 여러 거래는 날짜 수로 1일이며 정확히 3일도 포함합니다. 날짜는 연속일 필요가 없습니다.
 - 고객별 누적 금액에는 같은 날의 거래도 모두 합합니다.
 - 고객별 합계는 중간 반올림하지 않고 최종 평균만 소수점 둘째 자리까지 반올림합니다.
-- bank\_transactions만 사용하며 최종 결과 한 행, 정렬 없음입니다.
+- bank_transactions만 사용하며 최종 결과 한 행, 정렬 없음입니다.
 
 ### 출력 컬럼
 
 | 컬럼 | 의미 |
 | --- | --- |
-| avg\_customer\_total | 대상 고객별 누적 거래금액의 평균 |
+| avg_customer_total | 대상 고객별 누적 거래금액의 평균 |
 
 ### 출력 예시 — 가상
 
-| avg\_customer\_total |
+| avg_customer_total |
 | --- |
 | 1500.00 |
 
@@ -428,7 +427,7 @@ FROM (
 
 ### 검증
 
-| avg\_customer\_total |
+| avg_customer_total |
 | --- |
 | 4878.81 |
 
@@ -436,12 +435,12 @@ FROM (
 
 ### 결과 해석
 
-문제 4의 대상 고객 17685명 각각의 전체 기간 총거래금액을 평균 낸 값입니다. **4878.81은 고객 한 명당 평균 누적 금액**이며 거래 한 건당·하루당 평균이 아닙니다.
+문제 4의 대상 고객 17685명 각각의 전체 기간 총거래금액을 평균 낸 값입니다. <b>4878.81은 고객 한 명당 평균 누적 금액</b>이며 거래 한 건당·하루당 평균이 아닙니다.
 
 ### 핵심 개념 정리
 
-active\_customer는 중간 표의 별칭이고 total\_transaction\_amount는 그 표의 금액 컬럼입니다. AVG는 표 이름 자체가 아니라 고객별 합계 컬럼을 읽습니다.
-**해결 상태:** 최종 쿼리 정답·사용자 실행 확인. 평균 대상 컬럼과 표 별칭의 차이는 설명을 통해 점검했습니다.
+active_customer는 중간 표의 별칭이고 total_transaction_amount는 그 표의 금액 컬럼입니다. AVG는 표 이름 자체가 아니라 고객별 합계 컬럼을 읽습니다.
+<b>해결 상태:</b> 최종 쿼리 정답·사용자 실행 확인. 평균 대상 컬럼과 표 별칭의 차이는 설명을 통해 점검했습니다.
 </details>
 
 <details>
@@ -452,8 +451,8 @@ active\_customer는 중간 표의 별칭이고 total\_transaction\_amount는 그
 | 표현 | 역할 |
 | --- | --- |
 | COUNT(\*) | 모든 행 수 |
-| COUNT(transaction\_date) | NULL이 아닌 날짜 값 수. 반복 날짜도 셈 |
-| COUNT(DISTINCT transaction\_date) | NULL을 제외하고 서로 다른 날짜를 한 번씩 셈 |
+| COUNT(transaction_date) | NULL이 아닌 날짜 값 수. 반복 날짜도 셈 |
+| COUNT(DISTINCT transaction_date) | NULL을 제외하고 서로 다른 날짜를 한 번씩 셈 |
 
 COUNT는 NULL이 아닌 값이면 0도 셉니다. DISTINCT는 값이 반복될 때 한 번만 반영합니다. COUNT(DISTINCT 컬럼)에도 0이 있으면 한 번 포함되므로 두 개념을 별개로 구분합니다.
 예를 들어 날짜가 8월1일·8월1일·8월5일이면 거래는 3건이고 서로 다른 날짜는 2일입니다.
@@ -471,7 +470,7 @@ COUNT는 NULL이 아닌 값이면 0도 셉니다. DISTINCT는 값이 반복될 �
 
 ## 표 별칭과 컬럼
 
-FROM ( ... ) AS active\_customer에서 active\_customer는 표 이름입니다. 그 표 안에 만든 total\_transaction\_amount가 바깥 AVG의 대상입니다.
+FROM ( ... ) AS active_customer에서 active_customer는 표 이름입니다. 그 표 안에 만든 total_transaction_amount가 바깥 AVG의 대상입니다.
 </details>
 
 <details>

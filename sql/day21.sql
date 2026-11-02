@@ -1,3 +1,6 @@
+-- Scoped MySQL 8.4.11 audit: 2026-11-02. See docs/audit.en.md.
+-- Historical scope: 18 main races through Austin; exclude Mexico session 11404.
+
 -- Final recorded queries; 2026 main races through Austin, no Sprint points.
 
 -- Exercise 1

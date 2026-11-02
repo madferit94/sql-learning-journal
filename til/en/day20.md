@@ -261,3 +261,9 @@ Recorded execution: 16 rows in set (0.06 sec).
 The 40-timed-lap threshold is an instructional selection rule intended to avoid comparing extremely short records directly with long ones. It is not an official F1 or statistically validated rule. Baku is normally 51 race laps; timed-record count need not equal officially completed laps. Tyres, pits, safety cars and traffic remain uncontrolled. Removing the cutoff changes eligibility, not the metric into an official classification.
 
 Practice later without looking at the solution. This publication preserves recorded executions; it does not execute the exercise SQL or claim production experience.
+
+## Audit notes — 2026-11-02
+
+The source snapshot was Baku session 11377 only. Current replay used isolated Baku views; the present unfiltered database has 19 races. Window ranks use unrounded driver means, while the final result displays two decimals. The 40 timed-lap rule is instructional and does not reproduce official race classification.
+
+See the [full audit and scope notes](../../docs/audit.en.md).

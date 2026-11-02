@@ -1,3 +1,5 @@
+-- Scoped MySQL 8.4.11 audit: 2026-11-02. See docs/audit.en.md.
+
 -- Recorded final queries. Read the matching lesson and schema before running.
 
 -- Exercise 1

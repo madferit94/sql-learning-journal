@@ -1,4 +1,8 @@
--- Historical final queries transcribed from the study journal. Not rerun for publication.
+-- Scoped MySQL 8.4.11 audit: 2026-11-02. See docs/audit.en.md.
+-- BAKU SNAPSHOT ONLY: restrict every source table to session_key = 11377.
+-- Unfiltered execution on the expanded database changes these historical questions.
+
+-- Historical final queries transcribed from the study journal; later audited with explicit snapshot/schema adaptations.
 
 -- Exercise 1: Driver lap-time statistics
 SELECT driver_number, full_name,

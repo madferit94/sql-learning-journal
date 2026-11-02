@@ -170,3 +170,9 @@ Recorded execution: 1 row in set (1.75 sec).
 COUNT(*) counts rows. COUNT(date) excludes NULL but retains repeated dates; COUNT(DISTINCT date) also removes repeats. A derived-table name is not a numeric column: the outer AVG must read the customer-total column.
 
 Practice later without looking at the solution. This publication preserves recorded executions; it does not execute the exercise SQL or claim production experience.
+
+## Audit notes — 2026-11-02
+
+Distinct transaction dates are active days because transaction_date is DATE. Counts of non-NULL dates do not deduplicate repeated transactions on the same date. Verification reproduced 17685 customers active on at least three distinct dates and a mean customer total of 4878.81.
+
+See the [full audit and scope notes](../../docs/audit.en.md).

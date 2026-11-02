@@ -1,6 +1,6 @@
-# Day 17 — Online Retail 월별 집계·날짜 필터·서브쿼리
+# 🛒 Day17 — Online Retail 월별 집계·날짜 필터·서브쿼리
 
-[English](../en/day17.md) · [목차](../../README.ko.md)
+[English](../en/day17.md) · [목차](../../README.ko.md) · [검증 기록](../../docs/audit.ko.md)
 
 <details>
 <summary>🛒 Day17 — Online Retail 월별 집계·날짜 필터·서브쿼리</summary>
@@ -9,11 +9,11 @@
 
 ## 학습 개요
 
-**환경:** MySQL / retail\_study / sales\_items·invoice\_headers
+<b>환경:</b> MySQL / retail_study / sales_items·invoice_headers
 
-**학습 범위:** DATE\_FORMAT, 연월별 집계, 날짜 범위 필터, JOIN, 서로 다른 구매 월 수, 고객별 총액 재집계.
+<b>학습 범위:</b> DATE_FORMAT, 연월별 집계, 날짜 범위 필터, JOIN, 서로 다른 구매 월 수, 고객별 총액 재집계.
 
-**검증 근거:** 사용자 직접 MySQL 실행 결과.
+<b>검증 근거:</b> 사용자 직접 MySQL 실행 결과.
 
 ### 접속
 
@@ -34,38 +34,38 @@ SHOW TABLES;
 
 ### 데이터와 한 행의 의미
 
-**sales\_items — 한 행은 주문에 포함된 상품 항목 하나입니다.** 수량·단가가 양수이고 주문번호가 C로 시작하지 않는 원본 기록을 보여 주는 뷰입니다. 아래는 필요한 컬럼 일부입니다.
+<b>sales_items — 한 행은 주문에 포함된 상품 항목 하나입니다.</b> 수량·단가가 양수이고 주문번호가 C로 시작하지 않는 원본 기록을 보여 주는 뷰입니다. 아래는 필요한 컬럼 일부입니다.
 
 | 컬럼 | 자료형 | 설명 |
 | --- | --- | --- |
-| invoice\_header\_id | INT | 연결할 주문 정보의 ID |
-| invoice\_date | DATETIME | 구매 일시 |
-| customer\_id | VARCHAR(20) | 고객 ID, NULL 허용 |
+| invoice_header_id | INT | 연결할 주문 정보의 ID |
+| invoice_date | DATETIME | 구매 일시 |
+| customer_id | VARCHAR(20) | 고객 ID, NULL 허용 |
 | quantity | INT | 해당 상품 항목의 수량 |
-| unit\_price | DECIMAL(16,6) | 개당 가격, GBP |
+| unit_price | DECIMAL(16,6) | 개당 가격, GBP |
 
-상품 항목 금액은 quantity × unit\_price입니다. 행 수·수량 합계·고유 주문 수는 서로 다릅니다.
+상품 항목 금액은 quantity × unit_price입니다. 행 수·수량 합계·고유 주문 수는 서로 다릅니다.
 
-**invoice\_headers — 한 행은 주문번호·일시·고객·국가의 고유 정보 조합입니다.** 원본에서 만든 학습용 표입니다.
+<b>invoice_headers — 한 행은 주문번호·일시·고객·국가의 고유 정보 조합입니다.</b> 원본에서 만든 학습용 표입니다.
 
 | 컬럼 | 자료형 | 설명 |
 | --- | --- | --- |
-| invoice\_header\_id | INT | 정보 조합의 고유 ID |
-| invoice\_date | DATETIME | 구매 일시 |
-| customer\_id | VARCHAR(20) | 고객 ID, NULL 허용 |
+| invoice_header_id | INT | 정보 조합의 고유 ID |
+| invoice_date | DATETIME | 구매 일시 |
+| customer_id | VARCHAR(20) | 고객 ID, NULL 허용 |
 | country | VARCHAR(100) | 국가 이름 |
 
-두 표는 invoice\_header\_id가 같으면 연결됩니다. 정보 한 행에 상품 항목 여러 행이 연결됩니다.
+두 표는 invoice_header_id가 같으면 연결됩니다. 정보 한 행에 상품 항목 여러 행이 연결됩니다.
 
-sales\_items는 530104행이며 기간은 2010-12-01부터 2011-12-09까지입니다. 여러 연도의 같은 달을 구분해야 합니다. 원본 중복 행은 보존돼 있으므로 연습용 판매금액을 정제된 확정 매출과 동일시하지 않습니다.
+sales_items는 530104행이며 기간은 2010-12-01부터 2011-12-09까지입니다. 여러 연도의 같은 달을 구분해야 합니다. 원본 중복 행은 보존돼 있으므로 연습용 판매금액을 정제된 확정 매출과 동일시하지 않습니다.
 
-invoice\_headers는 고유 주문번호와 일대일이 아닐 수 있어 invoice\_header\_id로 연결합니다.
+invoice_headers는 고유 주문번호와 일대일이 아닐 수 있어 invoice_header_id로 연결합니다.
 
 원본: [UCI Online Retail](https://archive.ics.uci.edu/dataset/352/online+retail), 단가 단위 GBP.
 
-### DATE\_FORMAT 기본
+### DATE_FORMAT 기본
 
-DATE\_FORMAT은 날짜를 지정한 형식의 문자열로 바꿉니다. %Y는 네 자리 연도, %m은 두 자리 월입니다.
+DATE_FORMAT은 날짜를 지정한 형식의 문자열로 바꿉니다. %Y는 네 자리 연도, %m은 두 자리 월입니다.
 
 ```sql
 DATE_FORMAT(invoice_date, '%Y-%m')
@@ -80,17 +80,17 @@ DATE_FORMAT(invoice_date, '%Y-%m')
 
 ### 테이블 설명
 
-**sales\_items — 한 행은 주문에 포함된 상품 항목 하나입니다.** 수량·단가가 양수이고 주문번호가 C로 시작하지 않는 원본 기록을 보여 주는 뷰입니다. 아래는 필요한 컬럼 일부입니다.
+<b>sales_items — 한 행은 주문에 포함된 상품 항목 하나입니다.</b> 수량·단가가 양수이고 주문번호가 C로 시작하지 않는 원본 기록을 보여 주는 뷰입니다. 아래는 필요한 컬럼 일부입니다.
 
 | 컬럼 | 자료형 | 설명 |
 | --- | --- | --- |
-| invoice\_header\_id | INT | 연결할 주문 정보의 ID |
-| invoice\_date | DATETIME | 구매 일시 |
-| customer\_id | VARCHAR(20) | 고객 ID, NULL 허용 |
+| invoice_header_id | INT | 연결할 주문 정보의 ID |
+| invoice_date | DATETIME | 구매 일시 |
+| customer_id | VARCHAR(20) | 고객 ID, NULL 허용 |
 | quantity | INT | 해당 상품 항목의 수량 |
-| unit\_price | DECIMAL(16,6) | 개당 가격, GBP |
+| unit_price | DECIMAL(16,6) | 개당 가격, GBP |
 
-상품 항목 금액은 quantity × unit\_price입니다. 행 수·수량 합계·고유 주문 수는 서로 다릅니다.
+상품 항목 금액은 quantity × unit_price입니다. 행 수·수량 합계·고유 주문 수는 서로 다릅니다.
 
 ### 문제
 
@@ -99,22 +99,22 @@ DATE_FORMAT(invoice_date, '%Y-%m')
 ### 조건
 
 - 연월은 YYYY-MM 형식으로 출력하고 서로 다른 연도의 같은 달을 구분합니다.
-- 수량은 quantity 합계, 금액은 quantity × unit\_price 합계이며 금액만 소수점 둘째 자리까지 반올림합니다.
+- 수량은 quantity 합계, 금액은 quantity × unit_price 합계이며 금액만 소수점 둘째 자리까지 반올림합니다.
 - 고객 ID가 NULL인 기록도 포함합니다.
 - 기록이 있는 연월만 출력하고 연월 오름차순 정렬합니다.
-- 최소 금액·최소 수량 조건은 없으며 sales\_items만 사용합니다.
+- 최소 금액·최소 수량 조건은 없으며 sales_items만 사용합니다.
 
 ### 출력 컬럼
 
 | 컬럼 | 의미 |
 | --- | --- |
-| purchase\_month | 구매 연월 |
-| total\_quantity | 수량 합계 |
-| total\_sales\_amount | 판매금액 합계(GBP) |
+| purchase_month | 구매 연월 |
+| total_quantity | 수량 합계 |
+| total_sales_amount | 판매금액 합계(GBP) |
 
 ### 출력 예시 — 가상
 
-| purchase\_month | total\_quantity | total\_sales\_amount |
+| purchase_month | total_quantity | total_sales_amount |
 | --- | --- | --- |
 | 2010-12 | 1200 | 6000.00 |
 | 2011-01 | 1500 | 7500.00 |
@@ -137,7 +137,7 @@ ORDER BY total_sales_amount DESC;
 
 ### 실행 결과·오류
 
-ERROR 1064 (42000)가 FORM sales\_items 부근에서 발생했습니다.
+ERROR 1064 (42000)가 FORM sales_items 부근에서 발생했습니다.
 
 ### 틀린 이유
 
@@ -156,7 +156,7 @@ ORDER BY purchase_month ASC;
 
 ### 검증
 
-| purchase\_month | total\_quantity | total\_sales\_amount |
+| purchase_month | total_quantity | total_sales_amount |
 | --- | --- | --- |
 | 2010-12 | 359239 | 823746.14 |
 | 2011-01 | 387785 | 691364.56 |
@@ -176,7 +176,7 @@ ORDER BY purchase_month ASC;
 
 ### 핵심 개념 정리
 
-SELECT에서 만든 purchase\_month를 GROUP BY와 ORDER BY에서 사용할 수 있습니다. 같은 12월이라도 2010-12와 2011-12는 별도 그룹입니다.
+SELECT에서 만든 purchase_month를 GROUP BY와 ORDER BY에서 사용할 수 있습니다. 같은 12월이라도 2010-12와 2011-12는 별도 그룹입니다.
 
 ---
 
@@ -184,17 +184,17 @@ SELECT에서 만든 purchase\_month를 GROUP BY와 ORDER BY에서 사용할 수 
 
 ### 테이블 설명
 
-**sales\_items — 한 행은 주문에 포함된 상품 항목 하나입니다.** 수량·단가가 양수이고 주문번호가 C로 시작하지 않는 원본 기록을 보여 주는 뷰입니다. 아래는 필요한 컬럼 일부입니다.
+<b>sales_items — 한 행은 주문에 포함된 상품 항목 하나입니다.</b> 수량·단가가 양수이고 주문번호가 C로 시작하지 않는 원본 기록을 보여 주는 뷰입니다. 아래는 필요한 컬럼 일부입니다.
 
 | 컬럼 | 자료형 | 설명 |
 | --- | --- | --- |
-| invoice\_header\_id | INT | 연결할 주문 정보의 ID |
-| invoice\_date | DATETIME | 구매 일시 |
-| customer\_id | VARCHAR(20) | 고객 ID, NULL 허용 |
+| invoice_header_id | INT | 연결할 주문 정보의 ID |
+| invoice_date | DATETIME | 구매 일시 |
+| customer_id | VARCHAR(20) | 고객 ID, NULL 허용 |
 | quantity | INT | 해당 상품 항목의 수량 |
-| unit\_price | DECIMAL(16,6) | 개당 가격, GBP |
+| unit_price | DECIMAL(16,6) | 개당 가격, GBP |
 
-상품 항목 금액은 quantity × unit\_price입니다. 행 수·수량 합계·고유 주문 수는 서로 다릅니다.
+상품 항목 금액은 quantity × unit_price입니다. 행 수·수량 합계·고유 주문 수는 서로 다릅니다.
 
 ### 문제
 
@@ -203,24 +203,24 @@ SELECT에서 만든 purchase\_month를 GROUP BY와 ORDER BY에서 사용할 수 
 ### 조건
 
 - 연월은 YYYY-MM, 항목 수는 행 수입니다. 판매 수량이나 주문 수가 아닙니다.
-- 항목 금액 quantity × unit\_price가 정확히 100파운드인 경우도 고액입니다.
+- 항목 금액 quantity × unit_price가 정확히 100파운드인 경우도 고액입니다.
 - 비율(%) = 고액 항목 수 / 전체 항목 수 × 100. 소수점 둘째 자리까지 반올림합니다.
 - 고객 NULL도 포함합니다. 고액 항목이 없는 연월도 건수·비율 0으로 포함합니다.
 - 기록이 있는 연월만 출력하며 최소 항목 수 조건 없이 연월 오름차순 정렬합니다.
-- sales\_items만 사용합니다.
+- sales_items만 사용합니다.
 
 ### 출력 컬럼
 
 | 컬럼 | 의미 |
 | --- | --- |
-| purchase\_month | 연월 |
-| item\_count | 전체 항목 행 수 |
-| high\_amount\_count | 100파운드 이상 항목 수 |
-| high\_amount\_rate | 고액 항목 비율(%) |
+| purchase_month | 연월 |
+| item_count | 전체 항목 행 수 |
+| high_amount_count | 100파운드 이상 항목 수 |
+| high_amount_rate | 고액 항목 비율(%) |
 
 ### 출력 예시 — 가상
 
-| purchase\_month | item\_count | high\_amount\_count | high\_amount\_rate |
+| purchase_month | item_count | high_amount_count | high_amount_rate |
 | --- | --- | --- | --- |
 | 2010-12 | 200 | 50 | 25.00 |
 | 2011-01 | 100 | 10 | 10.00 |
@@ -251,7 +251,7 @@ ORDER BY purchase_month ASC;
 
 ### 검증
 
-| purchase\_month | item\_count | high\_amount\_count | high\_amount\_rate |
+| purchase_month | item_count | high_amount_count | high_amount_rate |
 | --- | --- | --- | --- |
 | 2010-12 | 41480 | 1056 | 2.55 |
 | 2011-01 | 34306 | 794 | 2.31 |
@@ -281,28 +281,28 @@ ORDER BY purchase_month ASC;
 
 ### 테이블 설명
 
-**sales\_items — 한 행은 주문에 포함된 상품 항목 하나입니다.** 수량·단가가 양수이고 주문번호가 C로 시작하지 않는 원본 기록을 보여 주는 뷰입니다. 아래는 필요한 컬럼 일부입니다.
+<b>sales_items — 한 행은 주문에 포함된 상품 항목 하나입니다.</b> 수량·단가가 양수이고 주문번호가 C로 시작하지 않는 원본 기록을 보여 주는 뷰입니다. 아래는 필요한 컬럼 일부입니다.
 
 | 컬럼 | 자료형 | 설명 |
 | --- | --- | --- |
-| invoice\_header\_id | INT | 연결할 주문 정보의 ID |
-| invoice\_date | DATETIME | 구매 일시 |
-| customer\_id | VARCHAR(20) | 고객 ID, NULL 허용 |
+| invoice_header_id | INT | 연결할 주문 정보의 ID |
+| invoice_date | DATETIME | 구매 일시 |
+| customer_id | VARCHAR(20) | 고객 ID, NULL 허용 |
 | quantity | INT | 해당 상품 항목의 수량 |
-| unit\_price | DECIMAL(16,6) | 개당 가격, GBP |
+| unit_price | DECIMAL(16,6) | 개당 가격, GBP |
 
-상품 항목 금액은 quantity × unit\_price입니다. 행 수·수량 합계·고유 주문 수는 서로 다릅니다.
+상품 항목 금액은 quantity × unit_price입니다. 행 수·수량 합계·고유 주문 수는 서로 다릅니다.
 
-**invoice\_headers — 한 행은 주문번호·일시·고객·국가의 고유 정보 조합입니다.** 원본에서 만든 학습용 표입니다.
+<b>invoice_headers — 한 행은 주문번호·일시·고객·국가의 고유 정보 조합입니다.</b> 원본에서 만든 학습용 표입니다.
 
 | 컬럼 | 자료형 | 설명 |
 | --- | --- | --- |
-| invoice\_header\_id | INT | 정보 조합의 고유 ID |
-| invoice\_date | DATETIME | 구매 일시 |
-| customer\_id | VARCHAR(20) | 고객 ID, NULL 허용 |
+| invoice_header_id | INT | 정보 조합의 고유 ID |
+| invoice_date | DATETIME | 구매 일시 |
+| customer_id | VARCHAR(20) | 고객 ID, NULL 허용 |
 | country | VARCHAR(100) | 국가 이름 |
 
-두 표는 invoice\_header\_id가 같으면 연결됩니다. 정보 한 행에 상품 항목 여러 행이 연결됩니다.
+두 표는 invoice_header_id가 같으면 연결됩니다. 정보 한 행에 상품 항목 여러 행이 연결됩니다.
 
 ### 문제
 
@@ -314,22 +314,22 @@ ORDER BY purchase_month ASC;
 - 항목 행 수가 100개 이상인 국가만 포함합니다. 수량 합계의 조건이 아닙니다.
 - 수량 SUM, 항목 금액 합계는 소수점 둘째 자리까지 반올림합니다.
 - 고객 NULL을 포함하고 반올림 금액 내림차순, 국가 이름 오름차순으로 정렬합니다.
-- 국가·일시는 invoice\_headers, 수량·단가는 sales\_items에서 가져오며 두 표를 연결합니다.
+- 국가·일시는 invoice_headers, 수량·단가는 sales_items에서 가져오며 두 표를 연결합니다.
 
-**결과 한 행:** 국가 하나의 2011년 판매 통계.
+<b>결과 한 행:</b> 국가 하나의 2011년 판매 통계.
 
 ### 출력 컬럼
 
 | 컬럼 | 의미 |
 | --- | --- |
 | country | 국가 |
-| item\_count | 항목 행 수 |
-| total\_quantity | 수량 합계 |
-| total\_sales\_amount | 판매금액 합계(GBP) |
+| item_count | 항목 행 수 |
+| total_quantity | 수량 합계 |
+| total_sales_amount | 판매금액 합계(GBP) |
 
 ### 출력 예시 — 가상
 
-| country | item\_count | total\_quantity | total\_sales\_amount |
+| country | item_count | total_quantity | total_sales_amount |
 | --- | --- | --- | --- |
 | Country A | 200 | 1200 | 6000.00 |
 | Country B | 100 | 800 | 4500.00 |
@@ -362,7 +362,7 @@ ORDER BY total_sales_amount DESC, h.country ASC;
 - 날짜는 개별 기록의 조건이므로 GROUP BY 이전 WHERE에서 제한합니다.
 - 날짜 리터럴에는 따옴표가 필요합니다. 원래 DATETIME에 날짜 범위를 직접 비교할 수 있습니다.
 - 곱셈 전체를 백틱으로 감싸면 계산식이 아니라 그 이름의 컬럼으로 인식합니다.
-- total\_sales\_amount 별칭의 공백을 제거했습니다.
+- total_sales_amount 별칭의 공백을 제거했습니다.
 
 ### 최종 쿼리
 
@@ -381,7 +381,7 @@ ORDER BY total_sales_amount DESC, h.country ASC;
 
 ### 검증
 
-| country | item\_count | total\_quantity | total\_sales\_amount |
+| country | item_count | total_quantity | total_sales_amount |
 | --- | --- | --- | --- |
 | United Kingdom | 445899 | 4348230 | 8276953.10 |
 | Netherlands | 2287 | 193550 | 276661.86 |
@@ -427,17 +427,17 @@ WHERE는 원본 기록의 기간을 제한하고 HAVING은 국가별 집계가 �
 
 ### 테이블 설명
 
-**sales\_items — 한 행은 주문에 포함된 상품 항목 하나입니다.** 수량·단가가 양수이고 주문번호가 C로 시작하지 않는 원본 기록을 보여 주는 뷰입니다. 아래는 필요한 컬럼 일부입니다.
+<b>sales_items — 한 행은 주문에 포함된 상품 항목 하나입니다.</b> 수량·단가가 양수이고 주문번호가 C로 시작하지 않는 원본 기록을 보여 주는 뷰입니다. 아래는 필요한 컬럼 일부입니다.
 
 | 컬럼 | 자료형 | 설명 |
 | --- | --- | --- |
-| invoice\_header\_id | INT | 연결할 주문 정보의 ID |
-| invoice\_date | DATETIME | 구매 일시 |
-| customer\_id | VARCHAR(20) | 고객 ID, NULL 허용 |
+| invoice_header_id | INT | 연결할 주문 정보의 ID |
+| invoice_date | DATETIME | 구매 일시 |
+| customer_id | VARCHAR(20) | 고객 ID, NULL 허용 |
 | quantity | INT | 해당 상품 항목의 수량 |
-| unit\_price | DECIMAL(16,6) | 개당 가격, GBP |
+| unit_price | DECIMAL(16,6) | 개당 가격, GBP |
 
-상품 항목 금액은 quantity × unit\_price입니다. 행 수·수량 합계·고유 주문 수는 서로 다릅니다.
+상품 항목 금액은 quantity × unit_price입니다. 행 수·수량 합계·고유 주문 수는 서로 다릅니다.
 
 ### 문제
 
@@ -450,17 +450,17 @@ WHERE는 원본 기록의 기간을 제한하고 HAVING은 국가별 집계가 �
 - 같은 달의 여러 구매·상품 항목은 구매 월 수로 1개월입니다.
 - 정확히 3개월도 포함하며 월이 연속일 필요는 없습니다.
 - 고객 목록이나 구매 월 수 합계가 아닌 고객 수를 한 행으로 출력합니다.
-- 대상 고객이 없으면 0, 정렬 없음, sales\_items만 사용합니다.
+- 대상 고객이 없으면 0, 정렬 없음, sales_items만 사용합니다.
 
 ### 출력 컬럼
 
 | 컬럼 | 의미 |
 | --- | --- |
-| customer\_count | 서로 다른 3개월 이상 구매한 고객 수 |
+| customer_count | 서로 다른 3개월 이상 구매한 고객 수 |
 
 ### 출력 예시 — 가상
 
-| customer\_count |
+| customer_count |
 | --- |
 | 2 |
 
@@ -485,7 +485,7 @@ FROM (
 
 첫 쿼리는 4220을 출력했습니다(1.22 sec). 안쪽이 상품 항목 행 수를 계산했고 NULL 고객 제외·3개월 조건이 없었습니다.
 
-DISTINCT DATE\_FORMAT을 반영한 두 번째 시도도 NULL 제외·HAVING이 없어 4220이었습니다(0.94 sec). 월 수를 계산하기만 하고 고객을 선별하지 않으면 바깥 행 수는 바뀌지 않습니다.
+DISTINCT DATE_FORMAT을 반영한 두 번째 시도도 NULL 제외·HAVING이 없어 4220이었습니다(0.94 sec). 월 수를 계산하기만 하고 고객을 선별하지 않으면 바깥 행 수는 바뀌지 않습니다.
 
 ### 틀린 이유·수정 사항
 
@@ -508,7 +508,7 @@ FROM (
 
 ### 검증
 
-| customer\_count |
+| customer_count |
 | --- |
 | 1692 |
 
@@ -516,7 +516,7 @@ FROM (
 
 ### 내 말로 정리·이해 확인
 
-일시 세 개가 같은 달에 두 번·다른 달 한 번이면 서로 다른 일시는 3개지만 연월은 2개입니다. DATE\_FORMAT으로 월 단위 값을 만들고 DISTINCT로 반복 월을 제외한 후 COUNT합니다.
+일시 세 개가 같은 달에 두 번·다른 달 한 번이면 서로 다른 일시는 3개지만 연월은 2개입니다. DATE_FORMAT으로 월 단위 값을 만들고 DISTINCT로 반복 월을 제외한 후 COUNT합니다.
 
 문장의 “NULL 고객 제외”는 IS NOT NULL, “서로 다른 월”·“같은 달은 한 번”은 중복 제외, “3개월 이상”은 집계 후 조건의 단서입니다. 특정 구현 하나를 강제하는 것은 아닙니다.
 </details>
@@ -528,17 +528,17 @@ FROM (
 
 ### 테이블 설명
 
-**sales\_items — 한 행은 주문에 포함된 상품 항목 하나입니다.** 수량·단가가 양수이고 주문번호가 C로 시작하지 않는 원본 기록을 보여 주는 뷰입니다. 아래는 필요한 컬럼 일부입니다.
+<b>sales_items — 한 행은 주문에 포함된 상품 항목 하나입니다.</b> 수량·단가가 양수이고 주문번호가 C로 시작하지 않는 원본 기록을 보여 주는 뷰입니다. 아래는 필요한 컬럼 일부입니다.
 
 | 컬럼 | 자료형 | 설명 |
 | --- | --- | --- |
-| invoice\_header\_id | INT | 연결할 주문 정보의 ID |
-| invoice\_date | DATETIME | 구매 일시 |
-| customer\_id | VARCHAR(20) | 고객 ID, NULL 허용 |
+| invoice_header_id | INT | 연결할 주문 정보의 ID |
+| invoice_date | DATETIME | 구매 일시 |
+| customer_id | VARCHAR(20) | 고객 ID, NULL 허용 |
 | quantity | INT | 해당 상품 항목의 수량 |
-| unit\_price | DECIMAL(16,6) | 개당 가격, GBP |
+| unit_price | DECIMAL(16,6) | 개당 가격, GBP |
 
-상품 항목 금액은 quantity × unit\_price입니다. 행 수·수량 합계·고유 주문 수는 서로 다릅니다.
+상품 항목 금액은 quantity × unit_price입니다. 행 수·수량 합계·고유 주문 수는 서로 다릅니다.
 
 ### 문제
 
@@ -550,17 +550,17 @@ FROM (
 - 같은 달 여러 구매는 1개월, 정확히 3개월도 포함하며 연속일 필요는 없습니다.
 - 고객별 누적 금액은 그 고객의 2011년 모든 항목 금액을 합합니다.
 - 고객별 금액은 중간 반올림하지 않고 최종 평균만 소수점 둘째 자리까지 반올림합니다.
-- 최종 한 행, 정렬 없음, sales\_items만 사용합니다.
+- 최종 한 행, 정렬 없음, sales_items만 사용합니다.
 
 ### 출력 컬럼
 
 | 컬럼 | 의미 |
 | --- | --- |
-| avg\_customer\_total | 대상 고객별 2011년 누적 구매금액의 평균(GBP) |
+| avg_customer_total | 대상 고객별 2011년 누적 구매금액의 평균(GBP) |
 
 ### 출력 예시 — 가상
 
-| avg\_customer\_total |
+| avg_customer_total |
 | --- |
 | 1500.00 |
 
@@ -593,7 +593,7 @@ FROM (
 
 ### 틀린 이유·수정 사항
 
-계산에 쓰는 고객별 합계는 그대로 유지하고 표시할 최종 평균만 반올림해야 합니다. 이번 출력에 필요 없는 total\_quantity는 최종본에서 제거했습니다.
+계산에 쓰는 고객별 합계는 그대로 유지하고 표시할 최종 평균만 반올림해야 합니다. 이번 출력에 필요 없는 total_quantity는 최종본에서 제거했습니다.
 
 ### 최종 쿼리
 
@@ -613,7 +613,7 @@ FROM (
 
 ### 검증
 
-| avg\_customer\_total |
+| avg_customer_total |
 | --- |
 | 3915.73 |
 
@@ -645,7 +645,7 @@ A·B의 총액을 더해 고객 수 2명으로 나눕니다. (1200+1800)/2 = 150
 
 ### 실제 결과 읽기
 
-문제 4의 대상 고객은 1692명입니다. 마지막 결과 3915.73파운드는 **이 1692명의 2011년 총구매금액을 평균 낸 고객당 금액**입니다.
+문제 4의 대상 고객은 1692명입니다. 마지막 결과 3915.73파운드는 <b>이 1692명의 2011년 총구매금액을 평균 낸 고객당 금액</b>입니다.
 
 월평균도, 주문당 평균도, 상품 항목당 평균도 아닙니다. 전체 대상 고객의 금액을 구매 월 수로 나누지 않습니다.
 
@@ -653,7 +653,7 @@ A·B의 총액을 더해 고객 수 2명으로 나눕니다. (1200+1800)/2 = 150
 
 | 위치 | 역할 |
 | --- | --- |
-| 안쪽 DISTINCT DATE\_FORMAT | 고객별 서로 다른 구매 연월 수 |
+| 안쪽 DISTINCT DATE_FORMAT | 고객별 서로 다른 구매 연월 수 |
 | 안쪽 SUM | 고객별 2011년 모든 항목 금액 합계 |
 | 안쪽 HAVING | 구매 월 3개 이상인 고객 선별 |
 | 바깥 AVG | 남은 고객별 총액의 평균 |
@@ -663,7 +663,7 @@ A·B의 총액을 더해 고객 수 2명으로 나눕니다. (1200+1800)/2 = 150
 
 ## 날짜 출력과 날짜 필터
 
-DATE\_FORMAT은 월 단위 그룹·중복 제외에 사용합니다. 특정 기간 선택은 DATETIME에 시작일 이상·다음 연도 시작일 미만을 직접 비교할 수 있습니다.
+DATE_FORMAT은 월 단위 그룹·중복 제외에 사용합니다. 특정 기간 선택은 DATETIME에 시작일 이상·다음 연도 시작일 미만을 직접 비교할 수 있습니다.
 
 ## NULL·DISTINCT 조건 읽기
 

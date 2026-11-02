@@ -1,4 +1,6 @@
--- Historical final queries transcribed from the study journal. Not rerun for publication.
+-- Scoped MySQL 8.4.11 audit: 2026-11-02. See docs/audit.en.md.
+
+-- Historical final queries transcribed from the study journal; later audited with explicit snapshot/schema adaptations.
 
 -- Exercise 1: Customers with multiple high-value transactions
 SELECT customer_id,

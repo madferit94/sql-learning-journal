@@ -1,3 +1,5 @@
+-- Scoped MySQL 8.4.11 audit: 2026-11-02. See docs/audit.en.md.
+
 -- Day 11: Conditional aggregation and subquery review
 -- Historical final recorded queries, NOT a freshly validated solution set.
 -- See ../til/en/day11.md for questions, context and known limitations.
@@ -33,7 +35,7 @@ ORDER BY
     customer_state ASC;
 
 -- Exercise 3: For 2018 purchases, show each state's total, delivered and canceled order counts, keeping at least one thousand total orders.
--- UNRESOLVED: source records ERROR 1064; no successful final output.
+-- Resolved: historical ERROR 1064 was followed by a successful 10-row run; scoped audit also passed.
 SELECT
     c.customer_state,
     COUNT(*) AS total_order_count,
@@ -55,7 +57,7 @@ GROUP BY c.customer_state
 HAVING total_order_count >= 1000
 ORDER BY
     total_order_count DESC,
-    customer_state ASC;
+    c.customer_state ASC;
 
 -- Exercise 4: Across all available periods, count repeat customers per state, keeping at least twenty.
 SELECT

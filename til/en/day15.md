@@ -235,3 +235,9 @@ FROM (
 ## Race scope and interpretation
 
 These are Baku-only historical queries. After a local multi-race expansion, add a session filter or use the original single-session snapshot. The normal Baku race is 51 laps; recorded non-NULL times need not equal officially completed laps. None of these all-lap averages or threshold counts is an official race or ability ranking.
+
+## Audit notes — 2026-11-02
+
+Verification used isolated Baku-only views for session 11377; an unfiltered rerun on the present 19-race database changes the question. Keep raw driver means until the outer final ROUND in Exercise 5; the verified mean is 115.90. Total timed-lap eligibility and the count of laps below a threshold are distinct filters.
+
+See the [full audit and scope notes](../../docs/audit.en.md).

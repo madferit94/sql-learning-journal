@@ -1,19 +1,21 @@
-# Day 15 — Baku F1 2일차·조건부 집계·팀 통계·서브쿼리
+# 🏎️ Day15 — Baku F1 2일차·조건부 집계·팀 통계·서브쿼리
 
-[English](../en/day15.md) · [목차](../../README.ko.md)
+[English](../en/day15.md) · [목차](../../README.ko.md) · [검증 기록](../../docs/audit.ko.md)
 
 <details>
 <summary>🏎️ Day15 — Baku F1 2일차·조건부 집계·팀 통계·서브쿼리</summary>
+
+<b>재실행 범위:</b> 아래 SQL·결과는 바쿠 단일 세션 11377 기준의 과거 학습 기록입니다. 현재 f1_study에는 19경기가 있어 필터 없이 실행하면 다른 결과가 나옵니다. 이번 재검증은 원본 쿼리를 바꾸지 않고 세션 11377만 노출하는 별도 조회 환경에서 수행했습니다. 직접 재실행할 때는 모든 원본 테이블의 세션을 바쿠로 제한해야 합니다.
 
 # SQL 학습 기록 — Day 15
 
 ## 학습 개요
 
-**환경:** MySQL / f1\_study / laps·drivers
+<b>환경:</b> MySQL / f1_study / laps·drivers
 
-**범위:** 조건부 COUNT·비율·복합 JOIN·팀별 AVG/MIN·서브쿼리 COUNT/AVG, 5문제.
+<b>범위:</b> 조건부 COUNT·비율·복합 JOIN·팀별 AVG/MIN·서브쿼리 COUNT/AVG, 5문제.
 
-**검증 근거:** 사용자가 직접 실행해 공유한 MySQL 출력.
+<b>검증 근거:</b> 사용자가 직접 실행해 공유한 MySQL 출력.
 
 ### 접속 — 매번 문제 앞에 안내
 
@@ -34,31 +36,31 @@ SHOW TABLES;
 
 ### 데이터 설명
 
-**laps — 한 행은 특정 세션에서 드라이버 한 명의 한 랩입니다.**
+<b>laps — 한 행은 특정 세션에서 드라이버 한 명의 한 랩입니다.</b>
 
 | 컬럼 | 타입 | 설명 |
 | --- | --- | --- |
-| session\_key | INT | 세션 ID |
-| driver\_number | INT | 드라이버 번호 |
-| lap\_number | INT | 해당 드라이버의 랩 순번 |
-| lap\_duration | DECIMAL(12,3) | 랩타임(초), 기록이 없으면 NULL |
+| session_key | INT | 세션 ID |
+| driver_number | INT | 드라이버 번호 |
+| lap_number | INT | 해당 드라이버의 랩 순번 |
+| lap_duration | DECIMAL(12,3) | 랩타임(초), 기록이 없으면 NULL |
 
-현재 데이터에는 세션 하나만 있습니다. NULL은 0초가 아니라 시간 기록이 없는 상태입니다.
+당시 학습 스냅샷에는 바쿠 세션 하나만 있었습니다. NULL은 0초가 아니라 시간 기록이 없는 상태입니다.
 
-**drivers — 한 행은 세션에 참가한 드라이버 한 명입니다.**
+<b>drivers — 한 행은 세션에 참가한 드라이버 한 명입니다.</b>
 
 | 컬럼 | 타입 | 설명 |
 | --- | --- | --- |
-| session\_key | INT | 세션 ID |
-| driver\_number | INT | 드라이버 번호 |
-| full\_name | VARCHAR(100) | 드라이버 이름 |
-| team\_name | VARCHAR(100) | 팀 이름 |
+| session_key | INT | 세션 ID |
+| driver_number | INT | 드라이버 번호 |
+| full_name | VARCHAR(100) | 드라이버 이름 |
+| team_name | VARCHAR(100) | 팀 이름 |
 
-같은 session\_key와 driver\_number를 가진 행끼리 같은 세션의 같은 드라이버입니다.
+같은 session_key와 driver_number를 가진 행끼리 같은 세션의 같은 드라이버입니다.
 
-laps의 기본키는 session\_key + driver\_number + lap\_number, drivers의 기본키는 session\_key + driver\_number다. drivers 한 행에 여러 laps 행이 연결된다.
+laps의 기본키는 session_key + driver_number + lap_number, drivers의 기본키는 session_key + driver_number다. drivers 한 행에 여러 laps 행이 연결된다.
 
-전체 laps 983행 중 lap\_duration 기록 976행, NULL 7행. drivers 22행. lap\_details 뷰와 stints 테이블은 오늘 문제에 사용하지 않았다.
+전체 laps 983행 중 lap_duration 기록 976행, NULL 7행. drivers 22행. lap_details 뷰와 stints 테이블은 오늘 문제에 사용하지 않았다.
 
 원본: [바쿠 프로젝트 고정 스냅샷](https://github.com/madferit94/all-sports-analytics/tree/c1e22c8f1d0f14192f92159d59b7b8f12a307ef5/f1/baku-2026). 임계값 109초·110초는 SQL 연습 기준이며 공식 성능 기준이 아니다. 전체 랩 평균에 피트·세이프티카·타이어·교통 등 맥락이 섞일 수 있어 실력 순위로 단정하지 않는다.
 
@@ -69,45 +71,45 @@ laps의 기본키는 session\_key + driver\_number + lap\_number, drivers의 기
 
 ### 선정 기준의 이유와 해석 한계
 
-기록이 아주 적은 드라이버와 많은 드라이버를 바로 비교하지 않도록, 기록된 랩이 일정량 이상인 대상을 고르는 학습용 조건입니다. 40은 공식 F1 기준이나 통계적으로 검증된 기준이 아닙니다. COUNT(lap\_duration)은 NULL이 아닌 기록 수이며 공식 완주 랩 수와 항상 같다고 단정하지 않습니다. 평균·조건부 건수·비율에는 타이어, 피트스톱, 세이프티카와 주행 상황이 섞이므로 경기 최종 순위나 실력 순위로 해석하지 않습니다. 109초는 조건부 집계 연습을 위한 시간 기준이며 공식 성능 기준은 아닙니다.
+기록이 아주 적은 드라이버와 많은 드라이버를 바로 비교하지 않도록, 기록된 랩이 일정량 이상인 대상을 고르는 학습용 조건입니다. 40은 공식 F1 기준이나 통계적으로 검증된 기준이 아닙니다. COUNT(lap_duration)은 NULL이 아닌 기록 수이며 공식 완주 랩 수와 항상 같다고 단정하지 않습니다. 평균·조건부 건수·비율에는 타이어, 피트스톱, 세이프티카와 주행 상황이 섞이므로 경기 최종 순위나 실력 순위로 해석하지 않습니다. 109초는 조건부 집계 연습을 위한 시간 기준이며 공식 성능 기준은 아닙니다.
 
 ### 테이블 설명
 
-**laps — 한 행은 특정 세션에서 드라이버 한 명의 한 랩입니다.**
+<b>laps — 한 행은 특정 세션에서 드라이버 한 명의 한 랩입니다.</b>
 
 | 컬럼 | 타입 | 설명 |
 | --- | --- | --- |
-| session\_key | INT | 세션 ID |
-| driver\_number | INT | 드라이버 번호 |
-| lap\_number | INT | 해당 드라이버의 랩 순번 |
-| lap\_duration | DECIMAL(12,3) | 랩타임(초), 기록이 없으면 NULL |
+| session_key | INT | 세션 ID |
+| driver_number | INT | 드라이버 번호 |
+| lap_number | INT | 해당 드라이버의 랩 순번 |
+| lap_duration | DECIMAL(12,3) | 랩타임(초), 기록이 없으면 NULL |
 
-현재 데이터에는 세션 하나만 있습니다. NULL은 0초가 아니라 시간 기록이 없는 상태입니다.
+당시 학습 스냅샷에는 바쿠 세션 하나만 있었습니다. NULL은 0초가 아니라 시간 기록이 없는 상태입니다.
 
 ### 문제
 
-laps에서 **랩타임이 기록된 랩이 40개 이상인 드라이버**의 번호, 기록된 랩 수, 109초 미만 랩 수를 조회하는 SQL문을 작성한다.
+laps에서 <b>랩타임이 기록된 랩이 40개 이상인 드라이버</b>의 번호, 기록된 랩 수, 109초 미만 랩 수를 조회하는 SQL문을 작성한다.
 
 ### 조건
 
 - NULL 랩타임은 기록된 랩 수에서 제외한다.
 - 정확히 109초인 랩은 109초 미만 랩에 포함하지 않는다.
 - 109초 미만 랩이 없어도 기록된 전체 랩이 40개 이상이면 포함하며 해당 건수는 0이다.
-- under\_109\_count 내림차순, 같으면 driver\_number 오름차순.
+- under_109_count 내림차순, 같으면 driver_number 오름차순.
 
-**결과 한 행:** 조건을 만족한 드라이버 한 명의 통계.
+<b>결과 한 행:</b> 조건을 만족한 드라이버 한 명의 통계.
 
 ### 출력 컬럼
 
 | 컬럼 | 의미 |
 | --- | --- |
-| driver\_number | 드라이버 번호 |
-| timed\_lap\_count | NULL이 아닌 랩타임 수 |
-| under\_109\_count | 109초 미만 랩 수 |
+| driver_number | 드라이버 번호 |
+| timed_lap_count | NULL이 아닌 랩타임 수 |
+| under_109_count | 109초 미만 랩 수 |
 
 ### 출력 예시 — 가상
 
-| driver\_number | timed\_lap\_count | under\_109\_count |
+| driver_number | timed_lap_count | under_109_count |
 | --- | --- | --- |
 | 7 | 50 | 20 |
 | 12 | 45 | 20 |
@@ -133,7 +135,7 @@ ORDER BY under_109_count DESC, driver_number ASC;
 
 ### 검증 — 사용자 실제 출력
 
-| driver\_number | timed\_lap\_count | under\_109\_count |
+| driver_number | timed_lap_count | under_109_count |
 | --- | --- | --- |
 | 63 | 51 | 41 |
 | 3 | 51 | 39 |
@@ -164,20 +166,20 @@ ORDER BY under_109_count DESC, driver_number ASC;
 
 ### 선정 기준의 이유와 해석 한계
 
-기록이 아주 적은 드라이버와 많은 드라이버를 바로 비교하지 않도록, 기록된 랩이 일정량 이상인 대상을 고르는 학습용 조건입니다. 40은 공식 F1 기준이나 통계적으로 검증된 기준이 아닙니다. COUNT(lap\_duration)은 NULL이 아닌 기록 수이며 공식 완주 랩 수와 항상 같다고 단정하지 않습니다. 평균·조건부 건수·비율에는 타이어, 피트스톱, 세이프티카와 주행 상황이 섞이므로 경기 최종 순위나 실력 순위로 해석하지 않습니다. 109초 미만 비율은 선정된 각 드라이버의 기록된 전체 랩 수를 분모로 계산합니다.
+기록이 아주 적은 드라이버와 많은 드라이버를 바로 비교하지 않도록, 기록된 랩이 일정량 이상인 대상을 고르는 학습용 조건입니다. 40은 공식 F1 기준이나 통계적으로 검증된 기준이 아닙니다. COUNT(lap_duration)은 NULL이 아닌 기록 수이며 공식 완주 랩 수와 항상 같다고 단정하지 않습니다. 평균·조건부 건수·비율에는 타이어, 피트스톱, 세이프티카와 주행 상황이 섞이므로 경기 최종 순위나 실력 순위로 해석하지 않습니다. 109초 미만 비율은 선정된 각 드라이버의 기록된 전체 랩 수를 분모로 계산합니다.
 
 ### 테이블 설명
 
-**laps — 한 행은 특정 세션에서 드라이버 한 명의 한 랩입니다.**
+<b>laps — 한 행은 특정 세션에서 드라이버 한 명의 한 랩입니다.</b>
 
 | 컬럼 | 타입 | 설명 |
 | --- | --- | --- |
-| session\_key | INT | 세션 ID |
-| driver\_number | INT | 드라이버 번호 |
-| lap\_number | INT | 해당 드라이버의 랩 순번 |
-| lap\_duration | DECIMAL(12,3) | 랩타임(초), 기록이 없으면 NULL |
+| session_key | INT | 세션 ID |
+| driver_number | INT | 드라이버 번호 |
+| lap_number | INT | 해당 드라이버의 랩 순번 |
+| lap_duration | DECIMAL(12,3) | 랩타임(초), 기록이 없으면 NULL |
 
-현재 데이터에는 세션 하나만 있습니다. NULL은 0초가 아니라 시간 기록이 없는 상태입니다.
+당시 학습 스냅샷에는 바쿠 세션 하나만 있었습니다. NULL은 0초가 아니라 시간 기록이 없는 상태입니다.
 
 ### 문제
 
@@ -191,20 +193,20 @@ ORDER BY under_109_count DESC, driver_number ASC;
 - 조건부 랩이 없어도 전체 기록 수 조건을 만족하면 포함하고 건수·비율은 0이다.
 - 반올림한 비율 내림차순, 같으면 번호 오름차순.
 
-**결과 한 행:** 드라이버 한 명의 기록 수와 비율.
+<b>결과 한 행:</b> 드라이버 한 명의 기록 수와 비율.
 
 ### 출력 컬럼
 
 | 컬럼 | 의미 |
 | --- | --- |
-| driver\_number | 드라이버 번호 |
-| timed\_lap\_count | 기록된 랩 수 |
-| under\_109\_count | 109초 미만 랩 수 |
-| under\_109\_rate | 109초 미만 랩 비율(%) |
+| driver_number | 드라이버 번호 |
+| timed_lap_count | 기록된 랩 수 |
+| under_109_count | 109초 미만 랩 수 |
+| under_109_rate | 109초 미만 랩 비율(%) |
 
 ### 출력 예시 — 가상
 
-| driver\_number | timed\_lap\_count | under\_109\_count | under\_109\_rate |
+| driver_number | timed_lap_count | under_109_count | under_109_rate |
 | --- | --- | --- | --- |
 | 12 | 40 | 20 | 50.00 |
 | 7 | 50 | 20 | 40.00 |
@@ -233,7 +235,7 @@ ORDER BY under_109_rate DESC, driver_number ASC;
 
 ### 검증 — 사용자 실제 출력
 
-| driver\_number | timed\_lap\_count | under\_109\_count | under\_109\_rate |
+| driver_number | timed_lap_count | under_109_count | under_109_rate |
 | --- | --- | --- | --- |
 | 63 | 51 | 41 | 80.39 |
 | 3 | 51 | 39 | 76.47 |
@@ -256,7 +258,7 @@ ORDER BY under_109_rate DESC, driver_number ASC;
 
 63번: 41 / 51 × 100 = 80.39%. 비율 내림차순과 동률 번호순 확인.
 
-**해결 상태:** 최종 제출 기준 정답, 사용자 실행 확인.
+<b>해결 상태:</b> 최종 제출 기준 정답, 사용자 실행 확인.
 
 ### 핵심 개념 정리
 
@@ -272,31 +274,31 @@ ORDER BY under_109_rate DESC, driver_number ASC;
 
 ### 테이블 설명
 
-**laps — 한 행은 특정 세션에서 드라이버 한 명의 한 랩입니다.**
+<b>laps — 한 행은 특정 세션에서 드라이버 한 명의 한 랩입니다.</b>
 
 | 컬럼 | 타입 | 설명 |
 | --- | --- | --- |
-| session\_key | INT | 세션 ID |
-| driver\_number | INT | 드라이버 번호 |
-| lap\_number | INT | 해당 드라이버의 랩 순번 |
-| lap\_duration | DECIMAL(12,3) | 랩타임(초), 기록이 없으면 NULL |
+| session_key | INT | 세션 ID |
+| driver_number | INT | 드라이버 번호 |
+| lap_number | INT | 해당 드라이버의 랩 순번 |
+| lap_duration | DECIMAL(12,3) | 랩타임(초), 기록이 없으면 NULL |
 
-현재 데이터에는 세션 하나만 있습니다. NULL은 0초가 아니라 시간 기록이 없는 상태입니다.
+당시 학습 스냅샷에는 바쿠 세션 하나만 있었습니다. NULL은 0초가 아니라 시간 기록이 없는 상태입니다.
 
-**drivers — 한 행은 세션에 참가한 드라이버 한 명입니다.**
+<b>drivers — 한 행은 세션에 참가한 드라이버 한 명입니다.</b>
 
 | 컬럼 | 타입 | 설명 |
 | --- | --- | --- |
-| session\_key | INT | 세션 ID |
-| driver\_number | INT | 드라이버 번호 |
-| full\_name | VARCHAR(100) | 드라이버 이름 |
-| team\_name | VARCHAR(100) | 팀 이름 |
+| session_key | INT | 세션 ID |
+| driver_number | INT | 드라이버 번호 |
+| full_name | VARCHAR(100) | 드라이버 이름 |
+| team_name | VARCHAR(100) | 팀 이름 |
 
-같은 session\_key와 driver\_number를 가진 행끼리 같은 세션의 같은 드라이버입니다.
+같은 session_key와 driver_number를 가진 행끼리 같은 세션의 같은 드라이버입니다.
 
 ### 문제
 
-두 테이블을 이용해 **팀 전체의 기록된 랩이 90개 이상인 팀**의 이름, 기록된 랩 수, 평균과 가장 짧은 랩타임을 조회한다.
+두 테이블을 이용해 <b>팀 전체의 기록된 랩이 90개 이상인 팀</b>의 이름, 기록된 랩 수, 평균과 가장 짧은 랩타임을 조회한다.
 
 ### 조건
 
@@ -305,22 +307,22 @@ ORDER BY under_109_rate DESC, driver_number ASC;
 - 기록이 정확히 90개인 팀도 포함한다.
 - 평균·최솟값은 소수점 둘째 자리까지 반올림한다.
 - 반올림한 평균 오름차순, 같으면 팀 이름 오름차순.
-- lap\_details는 사용하지 않는다.
+- lap_details는 사용하지 않는다.
 
-**결과 한 행:** 팀 하나의 통계.
+<b>결과 한 행:</b> 팀 하나의 통계.
 
 ### 출력 컬럼
 
 | 컬럼 | 의미 |
 | --- | --- |
-| team\_name | 팀 이름 |
-| timed\_lap\_count | 팀의 기록된 랩 수 |
-| avg\_lap\_duration | 팀 랩타임 평균(초) |
-| fastest\_lap\_duration | 팀에서 가장 짧은 랩타임(초) |
+| team_name | 팀 이름 |
+| timed_lap_count | 팀의 기록된 랩 수 |
+| avg_lap_duration | 팀 랩타임 평균(초) |
+| fastest_lap_duration | 팀에서 가장 짧은 랩타임(초) |
 
 ### 출력 예시 — 가상
 
-| team\_name | timed\_lap\_count | avg\_lap\_duration | fastest\_lap\_duration |
+| team_name | timed_lap_count | avg_lap_duration | fastest_lap_duration |
 | --- | --- | --- | --- |
 | Team A | 100 | 115.20 | 105.30 |
 | Team B | 90 | 116.40 | 106.10 |
@@ -343,7 +345,7 @@ ORDER BY avg_lap_durationn ASC, team_name ASC;
 
 ### 실행 결과·오류
 
-GROPU BY, avg\_lap\_durationn 두 오타가 있었다. 수정 후 JOIN 줄 끝의 특수 공백이 컬럼명 일부로 인식된 것으로 보이는 오류가 발생했다.
+GROPU BY, avg_lap_durationn 두 오타가 있었다. 수정 후 JOIN 줄 끝의 특수 공백이 컬럼명 일부로 인식된 것으로 보이는 오류가 발생했다.
 
 ```txt
 ERROR 1054 (42S22): Unknown column 'd.driver_number ' in 'on clause'
@@ -371,7 +373,7 @@ ORDER BY avg_lap_duration ASC, d.team_name ASC;
 
 ### 검증 — 사용자 실제 출력
 
-| team\_name | timed\_lap\_count | avg\_lap\_duration | fastest\_lap\_duration |
+| team_name | timed_lap_count | avg_lap_duration | fastest_lap_duration |
 | --- | --- | --- | --- |
 | Red Bull Racing | 102 | 115.45 | 104.99 |
 | Mercedes | 102 | 115.49 | 104.92 |
@@ -399,20 +401,20 @@ ORDER BY avg_lap_duration ASC, d.team_name ASC;
 
 ### 테이블 설명
 
-**laps — 한 행은 특정 세션에서 드라이버 한 명의 한 랩입니다.**
+<b>laps — 한 행은 특정 세션에서 드라이버 한 명의 한 랩입니다.</b>
 
 | 컬럼 | 타입 | 설명 |
 | --- | --- | --- |
-| session\_key | INT | 세션 ID |
-| driver\_number | INT | 드라이버 번호 |
-| lap\_number | INT | 해당 드라이버의 랩 순번 |
-| lap\_duration | DECIMAL(12,3) | 랩타임(초), 기록이 없으면 NULL |
+| session_key | INT | 세션 ID |
+| driver_number | INT | 드라이버 번호 |
+| lap_number | INT | 해당 드라이버의 랩 순번 |
+| lap_duration | DECIMAL(12,3) | 랩타임(초), 기록이 없으면 NULL |
 
-현재 데이터에는 세션 하나만 있습니다. NULL은 0초가 아니라 시간 기록이 없는 상태입니다.
+당시 학습 스냅샷에는 바쿠 세션 하나만 있었습니다. NULL은 0초가 아니라 시간 기록이 없는 상태입니다.
 
 ### 문제
 
-**110초 미만인 랩이 35개 이상인 드라이버가 몇 명인지** 조회한다.
+<b>110초 미만인 랩이 35개 이상인 드라이버가 몇 명인지</b> 조회한다.
 
 ### 조건
 
@@ -425,11 +427,11 @@ ORDER BY avg_lap_duration ASC, d.team_name ASC;
 
 | 컬럼 | 의미 |
 | --- | --- |
-| driver\_count | 조건을 만족하는 드라이버 수 |
+| driver_count | 조건을 만족하는 드라이버 수 |
 
 ### 예시 — 가상 집계와 최종 출력
 
-| driver\_number | 110초 미만 랩 수 |
+| driver_number | 110초 미만 랩 수 |
 | --- | --- |
 | 7 | 42 |
 | 12 | 35 |
@@ -437,7 +439,7 @@ ORDER BY avg_lap_duration ASC, d.team_name ASC;
 
 이 표는 원본이 아닌 설명용 요약이다. 7·12번만 조건을 만족하므로 최종 예시는 다음과 같다.
 
-| driver\_count |
+| driver_count |
 | --- |
 | 2 |
 
@@ -479,7 +481,7 @@ FROM (
 
 ### 검증 — 사용자 실제 출력
 
-| driver\_count |
+| driver_count |
 | --- |
 | 11 |
 
@@ -489,9 +491,9 @@ FROM (
 
 묶는 역할은 안쪽 GROUP BY다. 바깥 COUNT는 남은 행을 센다. 안쪽 한 행이 드라이버 한 명이므로 11행은 11명이다.
 
-COUNT 안에서 모든 별칭이 금지되는 것은 아니다. driver는 표 별칭이라 COUNT(driver)는 불가하지만, 바깥에서 COUNT(driver.driver\_number)나 COUNT(driver.timed\_lap\_duration)처럼 중간 결과의 컬럼은 사용할 수 있다. 각각 NULL이 아닌 값을 세며, 이번 driver\_number는 NULL이 아니므로 COUNT(\*)와 같다.
+COUNT 안에서 모든 별칭이 금지되는 것은 아니다. driver는 표 별칭이라 COUNT(driver)는 불가하지만, 바깥에서 COUNT(driver.driver_number)나 COUNT(driver.timed_lap_duration)처럼 중간 결과의 컬럼은 사용할 수 있다. 각각 NULL이 아닌 값을 세며, 이번 driver_number는 NULL이 아니므로 COUNT(\*)와 같다.
 
-timed\_lap\_duration은 사용자 별칭을 보존했다. 실제 단위는 시간 길이가 아닌 조건부 랩 건수이므로 under\_110\_count가 더 명확한 이름이다.
+timed_lap_duration은 사용자 별칭을 보존했다. 실제 단위는 시간 길이가 아닌 조건부 랩 건수이므로 under_110_count가 더 명확한 이름이다.
 </details>
 
 <details>
@@ -501,24 +503,24 @@ timed\_lap\_duration은 사용자 별칭을 보존했다. 실제 단위는 시�
 
 ### 선정 기준의 이유와 해석 한계
 
-기록이 아주 적은 드라이버와 많은 드라이버를 바로 비교하지 않도록, 기록된 랩이 일정량 이상인 대상을 고르는 학습용 조건입니다. 40은 공식 F1 기준이나 통계적으로 검증된 기준이 아닙니다. COUNT(lap\_duration)은 NULL이 아닌 기록 수이며 공식 완주 랩 수와 항상 같다고 단정하지 않습니다. 평균·조건부 건수·비율에는 타이어, 피트스톱, 세이프티카와 주행 상황이 섞이므로 경기 최종 순위나 실력 순위로 해석하지 않습니다. 대상 드라이버별 평균을 다시 평균 낼 때는 드라이버 한 명당 같은 비중을 줍니다. 전체 랩을 한꺼번에 평균 내는 값과는 가중치가 다릅니다.
+기록이 아주 적은 드라이버와 많은 드라이버를 바로 비교하지 않도록, 기록된 랩이 일정량 이상인 대상을 고르는 학습용 조건입니다. 40은 공식 F1 기준이나 통계적으로 검증된 기준이 아닙니다. COUNT(lap_duration)은 NULL이 아닌 기록 수이며 공식 완주 랩 수와 항상 같다고 단정하지 않습니다. 평균·조건부 건수·비율에는 타이어, 피트스톱, 세이프티카와 주행 상황이 섞이므로 경기 최종 순위나 실력 순위로 해석하지 않습니다. 대상 드라이버별 평균을 다시 평균 낼 때는 드라이버 한 명당 같은 비중을 줍니다. 전체 랩을 한꺼번에 평균 내는 값과는 가중치가 다릅니다.
 
 ### 테이블 설명
 
-**laps — 한 행은 특정 세션에서 드라이버 한 명의 한 랩입니다.**
+<b>laps — 한 행은 특정 세션에서 드라이버 한 명의 한 랩입니다.</b>
 
 | 컬럼 | 타입 | 설명 |
 | --- | --- | --- |
-| session\_key | INT | 세션 ID |
-| driver\_number | INT | 드라이버 번호 |
-| lap\_number | INT | 해당 드라이버의 랩 순번 |
-| lap\_duration | DECIMAL(12,3) | 랩타임(초), 기록이 없으면 NULL |
+| session_key | INT | 세션 ID |
+| driver_number | INT | 드라이버 번호 |
+| lap_number | INT | 해당 드라이버의 랩 순번 |
+| lap_duration | DECIMAL(12,3) | 랩타임(초), 기록이 없으면 NULL |
 
-현재 데이터에는 세션 하나만 있습니다. NULL은 0초가 아니라 시간 기록이 없는 상태입니다.
+당시 학습 스냅샷에는 바쿠 세션 하나만 있었습니다. NULL은 0초가 아니라 시간 기록이 없는 상태입니다.
 
 ### 문제
 
-**랩타임이 기록된 랩이 40개 이상인 드라이버 각각의 평균 랩타임**을 구하고, **그 드라이버별 평균값들의 평균**을 조회한다.
+<b>랩타임이 기록된 랩이 40개 이상인 드라이버 각각의 평균 랩타임</b>을 구하고, <b>그 드라이버별 평균값들의 평균</b>을 조회한다.
 
 드라이버마다 기록된 랩 수가 달라도 최종 평균에는 드라이버 한 명당 같은 비중으로 반영한다.
 
@@ -534,13 +536,13 @@ timed\_lap\_duration은 사용자 별칭을 보존했다. 실제 단위는 시�
 
 | 컬럼 | 의미 |
 | --- | --- |
-| avg\_driver\_lap\_duration | 대상 드라이버별 평균 랩타임의 평균(초) |
+| avg_driver_lap_duration | 대상 드라이버별 평균 랩타임의 평균(초) |
 
 ### 출력 예시 — 가상
 
 조건을 만족한 두 드라이버의 평균이 110초·114초이면 (110+114)/2 = 112초다. 두 드라이버의 랩 수가 달라도 평균값 하나씩 동일한 비중으로 계산한다.
 
-| avg\_driver\_lap\_duration |
+| avg_driver_lap_duration |
 | --- |
 | 112.00 |
 
@@ -562,7 +564,7 @@ FROM (
 
 첫 실행 결과 115.78, 1 row in set (0.00 sec). GROUP BY가 없어 전체 랩 평균 한 행을 다시 평균 낸 결과였다.
 
-GROUP BY를 추가한 다음 시도에서는 안쪽 ROUND(AVG(lap\_duration))가 남아 정수 반올림된 값들을 평균 냈다. 결과 115.94, 1 row in set (0.08 sec).
+GROUP BY를 추가한 다음 시도에서는 안쪽 ROUND(AVG(lap_duration))가 남아 정수 반올림된 값들을 평균 냈다. 결과 115.94, 1 row in set (0.08 sec).
 
 ROUND를 제거하는 과정에서 닫는 괄호 하나가 남아 다음 오류가 발생했다.
 
@@ -578,7 +580,7 @@ AVG(lap_duration) ) AS avg_lap_duration
 
 ### 틀린 이유·수정 사항
 
-- 바깥 AVG를 쓰는 방향은 처음부터 맞았다. 안쪽에서 driver\_number별 GROUP BY로 드라이버 한 명당 평균값 하나를 만들어야 한다.
+- 바깥 AVG를 쓰는 방향은 처음부터 맞았다. 안쪽에서 driver_number별 GROUP BY로 드라이버 한 명당 평균값 하나를 만들어야 한다.
 - ROUND(값)에 자릿수를 생략해도 반올림이 없어지는 것이 아니라 정수 반올림이 된다.
 - 중간에 반올림하면 계산에 사용할 평균값이 바뀐다. 이번 조건은 원래 평균을 유지하고 최종만 반올림하도록 요구한다.
 - AVG 뒤 불필요한 괄호를 제거했다.
@@ -598,7 +600,7 @@ FROM (
 
 ### 검증 — 사용자 실제 출력
 
-| avg\_driver\_lap\_duration |
+| avg_driver_lap_duration |
 | --- |
 | 115.90 |
 
@@ -671,7 +673,7 @@ P1에서 바뀐 임계값에 조건부 COUNT를 직접 적용했고 P2에서 비
 - [ ] P5를 답 없이 다시 작성하고 두 AVG의 대상 설명
 - [ ] P5에서 GROUP BY를 빼면 어떤 평균으로 바뀌는지 설명
 
-**재풀이 상태: 미실행.**
+<b>재풀이 상태: 미실행.</b>
 
 ## 수업 운영 수정
 

@@ -1,3 +1,5 @@
+-- Scoped MySQL 8.4.11 audit: 2026-11-02. See docs/audit.en.md.
+
 -- Day 09: Olist joins and two-stage aggregation
 -- Historical final recorded queries, NOT a freshly validated solution set.
 -- See ../til/en/day09.md for questions, context and known limitations.

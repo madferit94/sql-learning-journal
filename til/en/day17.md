@@ -273,3 +273,9 @@ FROM (
 ## Understanding the final result
 
 The three-month rule selects 1,692 customers. Each selected customer contributes one total for all their 2011 item purchases; averaging those totals gives GBP 3,915.73 per selected customer. This is neither per order nor per month. A customer with only two observed purchasing months is excluded even if their amount is large.
+
+## Audit notes — 2026-11-02
+
+Distinct YYYY-MM values count purchase months, not transaction rows. The inclusive lower/exclusive upper date range selects purchases in 2011. Customer-level analysis excludes missing IDs. Verification reproduced 1692 qualifying customers and an equally weighted customer-total mean of 3915.73.
+
+See the [full audit and scope notes](../../docs/audit.en.md).

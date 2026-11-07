@@ -803,5 +803,40 @@
     "query_sha256": "c55eebaaa17de1dc1d82be4a4ba3d11b1e831b85ba545a8d062a7a272a7180c7",
     "status": "recorded_final_with_scoped_mysql_audit",
     "audit": "2026-11-02"
+  },
+  {
+    "day": 23,
+    "exercise": 1,
+    "query_sha256": "7f29705504456b89e75f251ccb3b4ffc9d2a931854ae6e07d3c9ff1a6592ee01",
+    "status": "recorded_final_with_scoped_mysql_audit",
+    "audit": "2026-11-08"
+  },
+  {
+    "day": 23,
+    "exercise": 2,
+    "query_sha256": "941ba9fcd8f541c549aabf02544cd3a8531ec1e93080a1f68a020e5ccc1a277a",
+    "status": "recorded_final_with_scoped_mysql_audit",
+    "audit": "2026-11-08"
+  },
+  {
+    "day": 23,
+    "exercise": 3,
+    "query_sha256": "3b4d9961d18aa4fbb58a59a24bf1fd72908ada1e74449f64bc88853e762a211b",
+    "status": "recorded_final_with_scoped_mysql_audit",
+    "audit": "2026-11-08"
+  },
+  {
+    "day": 23,
+    "exercise": 4,
+    "query_sha256": "020962daec1520d7189ff5f82d0b565f28275684937e97cc4cbbbc798f948887",
+    "status": "recorded_final_with_scoped_mysql_audit",
+    "audit": "2026-11-08"
+  },
+  {
+    "day": 23,
+    "exercise": 5,
+    "query_sha256": "d48226e27b926826d8b1c86dc70bcdf289553d0fbd4f4c3d2bb31d5a3c88fefb",
+    "status": "recorded_final_with_scoped_mysql_audit",
+    "audit": "2026-11-08"
   }
 ]

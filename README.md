@@ -2,9 +2,9 @@
 
 [한국어](README.ko.md) | English
 
-A bilingual SQL TIL (Today I Learned) journal documenting my practice toward data analysis, using football, e-commerce and transaction examples such as monthly order metrics, repeat customers and conditional aggregation.
+A bilingual SQL TIL (Today I Learned) journal documenting my practice toward data analysis, using real datasets from varied domains including sports, e-commerce, finance and music.
 
-The focus is learning to turn a question into a query, understand the unit of each row, diagnose mistakes and check results. This is a learning record, not a claim of independent mastery or a production-ready analytics project.
+The focus is learning to turn a question into a query, understand the unit of each row, diagnose mistakes and check results. The aim is to apply SQL across changing datasets and questions.
 
 ## Study index
 
@@ -32,6 +32,7 @@ The focus is learning to turn a question into a query, understand the unit of ea
 | 20 | F1 joins, CTEs and introductory window functions | [한글](til/ko/day20.md) | [English](til/en/day20.md) | [Queries](sql/day20.sql) |
 | 21 | F1 Austin results, multi-race points totals and rankings | [한글](til/ko/day21.md) | [English](til/en/day21.md) | [Queries](sql/day21.sql) |
 | 22 | F1 review, customer totals and overall/country rankings | [한글](til/ko/day22.md) | [English](til/en/day22.md) | [Queries](sql/day22.sql) |
+| 23 | Music track/video rankings, CAST and conditional aggregation | [한글](til/ko/day23.md) | [English](til/en/day23.md) | [Queries](sql/day23.sql) |
 
 ## What the record covers
 
@@ -40,13 +41,15 @@ The focus is learning to turn a question into a query, understand the unit of ea
 - RANK and PARTITION BY for overall and within-team rankings.
 - Row grain, join keys, NULL treatment, denominators, team changes and metric interpretation.
 
-The journal contains 22 sessions and 115 final recorded exercise queries. It is a learning record, not a production analytics service. Explanations and bilingual editing used AI; SQL and output provenance are documented in the lesson and editorial notes.
+The journal contains 23 sessions and 120 final recorded exercise queries.
+
+Solutions are written directly; AI is used for grading and feedback on mistakes.
 
 ## Data and execution
 
 Examples use European Soccer Database, Olist, a transaction practice table, UCI Online Retail and F1 snapshots. Read the [data and schema notes](docs/data.en.md). Raw datasets, dumps, credentials, private Notion exports and machine-specific paths are excluded.
 
-Result tables retain historical executions. A separate 2026-11-02 audit reran all 115 final queries with explicit schema/snapshot adaptations; see [audit findings](docs/audit.en.md). Day19 Exercise 1 includes the subsequently supplied three-row result and its recorded database cross-check. F1 Days14–15 and 20 describe a Baku-only snapshot; Day21 uses 18 main races through Austin; Day22 uses the later 19-race snapshot through Mexico and Online Retail. Reusing an old unfiltered query after expanding the database can combine races, so specify session scope before running it.
+Result tables retain historical executions. A separate 2026-11-02 audit reran the existing 115 final queries with explicit schema/snapshot adaptations, followed by a separate five-query Day23 check; see [audit findings](docs/audit.en.md). Day19 Exercise 1 includes the subsequently supplied three-row result and its recorded database cross-check. F1 Days14–15 and 20 describe a Baku-only snapshot; Day21 uses 18 main races through Austin; Day22 uses the later 19-race snapshot through Mexico and Online Retail. Reusing an old unfiltered query after expanding the database can combine races, so specify session scope before running it.
 
 Main-race points exclude Sprints and RANK ties do not implement official championship tie-breaking. A timed-lap cutoff or an all-lap mean is not an official classification or a controlled ability comparison.
 
@@ -59,4 +62,4 @@ Main-race points exclude Sprints and RANK ties do not implement official champio
 
 The Korean edition follows the detailed Notion record; English is an edited translation covering the same exercises, final SQL, output values and interpretation limits. [Editorial and validation notes](docs/editorial.en.md) describe publication checks.
 
-Source: [Notion SQL TIL](https://www.notion.so/7b736fd8bbd949ca93f84cdc66987ace) (access may be required). Publication snapshot: 2026-11-02. This is a manual synchronization, not an automatic background sync.
+Source: [Notion SQL TIL](https://www.notion.so/7b736fd8bbd949ca93f84cdc66987ace) (access may be required). Publication snapshot: 2026-11-08. This is a manual synchronization, not an automatic background sync.

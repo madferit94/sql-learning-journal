@@ -41,3 +41,12 @@ Day21은 오스틴(11396)까지 18개 본 레이스를 사용합니다. 취소�
 멕시코 본 레이스 11404 추가 후 현재 스냅샷은 sessions 19행, drivers 418행, laps 22171행, stints 1199행, race_results 418행입니다. 추가분은 경기 1·드라이버 참가 22·랩 1360·타이어 구간 80·결과 22행입니다. 기존 18경기의 모든 행을 보존했고 공식 순위·완료 랩·포인트 66개 값의 차이는 0건입니다. 신규 랩타임 NULL 5행으로 전체 123행이며 기존의 잘못된 타이어 구간 6행은 원본 상태로 보존했습니다. 출처는 [OpenF1](https://openf1.org/docs/)과 [F1 멕시코 공식 결과](https://www.formula1.com/en/results/2026/races/1298/mexico/race-result)입니다.
 
 이전 Day는 당시 경기 범위를 유지합니다. 이번 [전체 재검증](audit.ko.md)은 Olist 백업 격리 복원·테이블명 대응·F1 범위 제한 뷰를 사용했습니다. 과거 게시 당시 미실행 설명과 이번 재검증을 구분하며, 원래 실행 결과와 시간은 보존합니다.
+
+
+## Day23: music_study
+
+kworb 수집 기록(2026-11-05)을 이용한 비틀즈 Spotify 개별 트랙 500행·공식 YouTube 영상 89행입니다. 원본 트랙 ID와 영상 ID는 공개 플랫폼 식별자입니다. 두 플랫폼은 개별 트랙·영상 단위로 분석했고 곡·버전 합산과 플랫폼 간 연결은 하지 않았습니다. Hot100은 이번 세션에 사용하지 않았습니다. 수집 기록의 날짜와 ‘전일’ 기준을 현재 실시간 수치로 해석하지 않습니다.
+
+beatles_spotify_tracks: row_id INT PK, track_id VARCHAR(22), title VARCHAR(255), streams BIGINT (모두 NOT NULL). beatles_youtube_videos: video_id VARCHAR(11) PK, title VARCHAR(255), views BIGINT (NOT NULL), views_yesterday BIGINT (NULL 허용). 현재 두 조회수의 실제 NULL은0건입니다. DB의 utf8mb4_0900_as_cs는 대소문자·악센트를 구분합니다. 모든 Unicode 문자열 비교가 Python과 같음을 보증하지는 않습니다.
+
+분석용 학습 데이터이며 원본 CSV·적재 스크립트·인증 파일·프로젝트 개인 경로는 공개하지 않습니다. 노션의 첫 소개는 다양한 분야의 실제 데이터에 같은 SQL 원리를 적용하는 방향으로 수정했습니다. 음악 세션은 넘버로그 콘텐츠 기획 질문과 연결한 연습이며 직접적 플랫폼 효과나 인과 분석은 아닙니다.

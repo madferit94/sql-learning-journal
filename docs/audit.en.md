@@ -53,3 +53,8 @@ The repository does not distribute the datasets/backups or the local temporary s
 - [MySQL aliases](https://dev.mysql.com/doc/refman/8.4/en/problems-with-alias.html)
 - [MySQL CASE behavior](https://dev.mysql.com/doc/refman/8.4/en/flow-control-functions.html)
 - [SQLite bare aggregate columns](https://www.sqlite.org/lang_select.html#bareagg)
+
+
+## Day23 addition check — 2026-11-08
+
+All five new music queries executed on the collected music_study snapshot and matched the complete user-submitted output tables. Result counts are10/10/1/21/1; the final share is21 of89, or23.60%. The manifest now contains120 queries. Earlier115-query audit dates/scopes remain historical. The Notion-wide audit summary toggle was removed at the user request; repository audit evidence remains available.

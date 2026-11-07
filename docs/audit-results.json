@@ -2,8 +2,8 @@
   "audit_date": "2026-11-02",
   "mysql_version": "8.4.11",
   "only_full_group_by": true,
-  "queries_checked": 115,
-  "passed": 115,
+  "queries_checked": 120,
+  "passed": 120,
   "failed": 0,
   "recorded_outputs_preserved": true,
   "checks": [
@@ -1725,6 +1725,97 @@
       "error": "",
       "scope": "retail_study",
       "adaptation": "none"
+    },
+    {
+      "day": 23,
+      "exercise_index": 1,
+      "query_sha256": "7f29705504456b89e75f251ccb3b4ffc9d2a931854ae6e07d3c9ff1a6592ee01",
+      "ok": true,
+      "rows": 10,
+      "columns": [
+        "stream_rank",
+        "track_id",
+        "title",
+        "streams"
+      ],
+      "error": "",
+      "scope": "music_study: collected 2026-11-05 snapshot",
+      "adaptation": "none",
+      "audit_date": "2026-11-08"
+    },
+    {
+      "day": 23,
+      "exercise_index": 2,
+      "query_sha256": "941ba9fcd8f541c549aabf02544cd3a8531ec1e93080a1f68a020e5ccc1a277a",
+      "ok": true,
+      "rows": 10,
+      "columns": [
+        "total_rank",
+        "daily_rank",
+        "video_id",
+        "title",
+        "views",
+        "views_yesterday"
+      ],
+      "error": "",
+      "scope": "music_study: collected 2026-11-05 snapshot",
+      "adaptation": "none",
+      "audit_date": "2026-11-08"
+    },
+    {
+      "day": 23,
+      "exercise_index": 3,
+      "query_sha256": "3b4d9961d18aa4fbb58a59a24bf1fd72908ada1e74449f64bc88853e762a211b",
+      "ok": true,
+      "rows": 1,
+      "columns": [
+        "total_rank",
+        "daily_rank",
+        "video_id",
+        "title",
+        "views",
+        "views_yesterday"
+      ],
+      "error": "",
+      "scope": "music_study: collected 2026-11-05 snapshot",
+      "adaptation": "none",
+      "audit_date": "2026-11-08"
+    },
+    {
+      "day": 23,
+      "exercise_index": 4,
+      "query_sha256": "020962daec1520d7189ff5f82d0b565f28275684937e97cc4cbbbc798f948887",
+      "ok": true,
+      "rows": 21,
+      "columns": [
+        "video_id",
+        "title",
+        "total_rank",
+        "daily_rank",
+        "rank_gap"
+      ],
+      "error": "",
+      "scope": "music_study: collected 2026-11-05 snapshot",
+      "adaptation": "none",
+      "audit_date": "2026-11-08"
+    },
+    {
+      "day": 23,
+      "exercise_index": 5,
+      "query_sha256": "d48226e27b926826d8b1c86dc70bcdf289553d0fbd4f4c3d2bb31d5a3c88fefb",
+      "ok": true,
+      "rows": 1,
+      "columns": [
+        "total_video_count",
+        "high_gap_video_count",
+        "high_gap_rate"
+      ],
+      "error": "",
+      "scope": "music_study: collected 2026-11-05 snapshot",
+      "adaptation": "none",
+      "audit_date": "2026-11-08"
     }
-  ]
+  ],
+  "historical_full_audit_date": "2026-11-02",
+  "latest_addition_audit_date": "2026-11-08"
 }

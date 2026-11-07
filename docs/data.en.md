@@ -41,3 +41,12 @@ After expansion, old unfiltered Baku SQL can combine races. Filter a session or 
 Mexico main race 11404 was added after Austin. The current snapshot has sessions 19, drivers 418, laps 22171, stints 1199 and race_results 418. New rows: 1 session, 22 driver appearances, 1360 laps, 80 stints and 22 results. All prior 18-race rows were preserved; the 66 official position/lap/point fields matched without differences. New lap_duration NULLs: 5, making 123 overall; the earlier six invalid stint intervals remain flagged, with no new reversed intervals. Sources: [OpenF1](https://openf1.org/docs/) and [F1 Mexico results](https://www.formula1.com/en/results/2026/races/1298/mexico/race-result).
 
 Historical lessons keep their old snapshot scope. Current full-query replay is documented in the [audit](audit.en.md), including isolated Olist restoration, schema-name mapping and F1 snapshot views. This supersedes older statements that no query was rerun for any publication update. Original outputs and timings still describe their historical executions.
+
+
+## Day23: music_study
+
+The Beatles snapshot is recorded as collected from kworb on 2026-11-05: 500 individual Spotify tracks and 89 official YouTube videos. Track/video IDs are public platform identifiers. Platforms were analyzed separately; song/version aggregation, cross-platform matching and Hot100 were not performed. Source dates and prior-day figures are not current live metrics.
+
+beatles_spotify_tracks: row_id INT PK, track_id VARCHAR(22), title VARCHAR(255), streams BIGINT, all NOT NULL. beatles_youtube_videos: video_id VARCHAR(11) PK, title VARCHAR(255), views BIGINT, all NOT NULL; views_yesterday BIGINT nullable. Actual NULL counts for the two view metrics are zero. utf8mb4_0900_as_cs distinguishes case and accents, but does not guarantee identical comparison semantics to Python for all Unicode strings.
+
+Raw CSVs, loaders, authentication files and private project paths are not published. The journal introduction now describes applying SQL principles across varied domains. Music practice connects to Numberlog content planning, without claiming platform effects or causality.

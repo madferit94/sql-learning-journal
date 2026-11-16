@@ -50,3 +50,7 @@ kworb 수집 기록(2026-11-05)을 이용한 비틀즈 Spotify 개별 트랙 500
 beatles_spotify_tracks: row_id INT PK, track_id VARCHAR(22), title VARCHAR(255), streams BIGINT (모두 NOT NULL). beatles_youtube_videos: video_id VARCHAR(11) PK, title VARCHAR(255), views BIGINT (NOT NULL), views_yesterday BIGINT (NULL 허용). 현재 두 조회수의 실제 NULL은0건입니다. DB의 utf8mb4_0900_as_cs는 대소문자·악센트를 구분합니다. 모든 Unicode 문자열 비교가 Python과 같음을 보증하지는 않습니다.
 
 분석용 학습 데이터이며 원본 CSV·적재 스크립트·인증 파일·프로젝트 개인 경로는 공개하지 않습니다. 노션의 첫 소개는 다양한 분야의 실제 데이터에 같은 SQL 원리를 적용하는 방향으로 수정했습니다. 음악 세션은 넘버로그 콘텐츠 기획 질문과 연결한 연습이며 직접적 플랫폼 효과나 인과 분석은 아닙니다.
+
+## Day24·25 범위
+
+F1은 브라질 session_key 11412까지 20개 본선입니다. Day24 5-2의 소속 보완은 세션 11404·드라이버 50의 NULL만 조회 중 CASE로 바꾸며 원본 DB는 유지합니다. Day25는 소속 NULL을 제외합니다. 금융은 finance.bank_transactions 전체를 사용합니다. transaction_id VARCHAR(20) 기본키, customer_id VARCHAR(20), transaction_date DATE, transaction_amount DECIMAL(15,2)는 모두 NULL 불가입니다. 대표 거래는 날짜 내림차순·금액 내림차순·거래 ID 문자열 오름차순으로 선택하며 거래 시각은 사용하지 않습니다. 공개 결과의 ID는 가명 처리합니다.

@@ -50,3 +50,7 @@ The Beatles snapshot is recorded as collected from kworb on 2026-11-05: 500 indi
 beatles_spotify_tracks: row_id INT PK, track_id VARCHAR(22), title VARCHAR(255), streams BIGINT, all NOT NULL. beatles_youtube_videos: video_id VARCHAR(11) PK, title VARCHAR(255), views BIGINT, all NOT NULL; views_yesterday BIGINT nullable. Actual NULL counts for the two view metrics are zero. utf8mb4_0900_as_cs distinguishes case and accents, but does not guarantee identical comparison semantics to Python for all Unicode strings.
 
 Raw CSVs, loaders, authentication files and private project paths are not published. The journal introduction now describes applying SQL principles across varied domains. Music practice connects to Numberlog content planning, without claiming platform effects or causality.
+
+## Day24–25 scope
+
+F1 contains 20 main races through Brazil, session 11412. Day24 correction example changes only session 11404/driver 50 NULL team via query-time CASE; the source database is unchanged. Day25 excludes NULL teams. Finance uses the full finance.bank_transactions table: non-NULL transaction_id VARCHAR(20) primary key, customer_id VARCHAR(20), transaction_date DATE and transaction_amount DECIMAL(15,2). Representatives are chosen by date DESC, amount DESC, transaction_id ASC as a string; time of day is ignored. Published output IDs are pseudonymized.

@@ -58,3 +58,7 @@ The repository does not distribute the datasets/backups or the local temporary s
 ## Day23 addition check — 2026-11-08
 
 All five new music queries executed on the collected music_study snapshot and matched the complete user-submitted output tables. Result counts are10/10/1/21/1; the final share is21 of89, or23.60%. The manifest now contains120 queries. Earlier115-query audit dates/scopes remain historical. The Notion-wide audit summary toggle was removed at the user request; repository audit evidence remains available.
+
+## Day24–25 incremental checks
+
+On 2026-11-16, separately executed/count-checked 11 final queries: six in Day24 (including supplied correction example 5-2) and five in Day25. This is not a rerun of the prior 120-query audit; earlier records remain intact. Historical outputs/runtimes are preserved and finance IDs use matching pseudonyms in both editions.

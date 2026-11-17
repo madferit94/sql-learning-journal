@@ -2,8 +2,8 @@
   "audit_date": "2026-11-02",
   "mysql_version": "8.4.11",
   "only_full_group_by": true,
-  "queries_checked": 131,
-  "passed": 131,
+  "queries_checked": 139,
+  "passed": 139,
   "failed": 0,
   "recorded_outputs_preserved": true,
   "checks": [
@@ -1957,9 +1957,180 @@
       "audit_date": "2026-11-16",
       "check_kind": "read_only_exact_query_count",
       "historical_outputs_preserved": true
+    },
+    {
+      "day": 26,
+      "exercise_index": 1,
+      "query_sha256": "287fe6cd25ad112ba3e2a87ad4a56f1cb0a6a6d29e971d376e4d8f20ea4a78f2",
+      "ok": true,
+      "rows": 37,
+      "columns": [
+        "country",
+        "customer_id",
+        "item_count",
+        "total_purchase_amount"
+      ],
+      "error": "",
+      "scope": "retail_study: full sales_items view",
+      "adaptation": "none",
+      "audit_date": "2026-11-17",
+      "check_kind": "read_only_exact_execution_and_supplied_row_comparison",
+      "original_question_case": "1",
+      "recorded_rows_compared": 29,
+      "historical_output_supplied": true
+    },
+    {
+      "day": 26,
+      "exercise_index": 2,
+      "query_sha256": "7d16d7f46e367acfa0eae558f2df7ff65b09af1671f4a4b8d3780053c5605e4f",
+      "ok": true,
+      "rows": 12,
+      "columns": [
+        "country",
+        "customer_id",
+        "item_count",
+        "total_purchase_amount"
+      ],
+      "error": "",
+      "scope": "retail_study: full sales_items view",
+      "adaptation": "none",
+      "audit_date": "2026-11-17",
+      "check_kind": "read_only_exact_execution_and_supplied_row_comparison",
+      "original_question_case": "2-1",
+      "recorded_rows_compared": 12,
+      "historical_output_supplied": true
+    },
+    {
+      "day": 26,
+      "exercise_index": 3,
+      "query_sha256": "730eaaf19e7ac1211a56d75a9b48a5475ada7c257eb6e1f3e9b0604b8699960d",
+      "ok": true,
+      "rows": 12,
+      "columns": [
+        "country",
+        "customer_id",
+        "item_count",
+        "total_purchase_amount"
+      ],
+      "error": "",
+      "scope": "retail_study: full sales_items view",
+      "adaptation": "none",
+      "audit_date": "2026-11-17",
+      "check_kind": "read_only_exact_execution_and_supplied_row_comparison",
+      "original_question_case": "2-2",
+      "recorded_rows_compared": 12,
+      "historical_output_supplied": true
+    },
+    {
+      "day": 26,
+      "exercise_index": 4,
+      "query_sha256": "9df2443ce5ad37c4f18dc15f6a26bc8379a53f165bb79c093f12fc1eac0de41a",
+      "ok": true,
+      "rows": 12,
+      "columns": [
+        "country",
+        "customer_id",
+        "item_count",
+        "total_purchase_amount"
+      ],
+      "error": "",
+      "scope": "retail_study: full sales_items view",
+      "adaptation": "none",
+      "audit_date": "2026-11-17",
+      "check_kind": "read_only_exact_execution_and_supplied_row_comparison",
+      "original_question_case": "2-3",
+      "recorded_rows_compared": 12,
+      "historical_output_supplied": true
+    },
+    {
+      "day": 26,
+      "exercise_index": 5,
+      "query_sha256": "c0b74af7ad3f53ddc5fab8d67cdeb38a140d0d5b5587295bf37db5d2a79a2087",
+      "ok": true,
+      "rows": 65,
+      "columns": [
+        "country",
+        "country_rank",
+        "customer_id",
+        "item_count",
+        "total_purchase_amount"
+      ],
+      "error": "",
+      "scope": "retail_study: full sales_items view",
+      "adaptation": "none",
+      "audit_date": "2026-11-17",
+      "check_kind": "read_only_exact_execution_and_supplied_row_comparison",
+      "original_question_case": "3-1",
+      "recorded_rows_compared": 26,
+      "historical_output_supplied": true
+    },
+    {
+      "day": 26,
+      "exercise_index": 6,
+      "query_sha256": "987cdc06fbc235f39d7d960aa0440cc4a9b05ca013305410c4cbcd4ab36fa2e1",
+      "ok": true,
+      "rows": 65,
+      "columns": [
+        "country",
+        "country_rank",
+        "customer_id",
+        "item_count",
+        "total_purchase_amount"
+      ],
+      "error": "",
+      "scope": "retail_study: full sales_items view",
+      "adaptation": "none",
+      "audit_date": "2026-11-17",
+      "check_kind": "read_only_exact_execution_and_supplied_row_comparison",
+      "original_question_case": "3-2",
+      "recorded_rows_compared": 65,
+      "historical_output_supplied": true
+    },
+    {
+      "day": 26,
+      "exercise_index": 7,
+      "query_sha256": "11c948100c6ea201bca3ecb4e87ab5d0a2b5351da6523f87d521e51905314ed8",
+      "ok": true,
+      "rows": 65,
+      "columns": [
+        "country",
+        "selection_no",
+        "customer_id",
+        "item_count",
+        "total_purchase_amount"
+      ],
+      "error": "",
+      "scope": "retail_study: full sales_items view",
+      "adaptation": "none",
+      "audit_date": "2026-11-17",
+      "check_kind": "read_only_exact_execution_and_supplied_row_comparison",
+      "original_question_case": "4",
+      "recorded_rows_compared": 0,
+      "historical_output_supplied": false
+    },
+    {
+      "day": 26,
+      "exercise_index": 8,
+      "query_sha256": "26d24842a5d24c83ae612c77652c2837495ad1ee7833b8e8eeaa532468a77661",
+      "ok": true,
+      "rows": 37,
+      "columns": [
+        "country",
+        "selected_customer_count",
+        "top2_purchase_amount"
+      ],
+      "error": "",
+      "scope": "retail_study: full sales_items view",
+      "adaptation": "none",
+      "audit_date": "2026-11-17",
+      "check_kind": "read_only_exact_execution_and_supplied_row_comparison",
+      "original_question_case": "5",
+      "recorded_rows_compared": 37,
+      "historical_output_supplied": true
     }
   ],
   "historical_full_audit_date": "2026-11-02",
-  "latest_addition_audit_date": "2026-11-16",
-  "addition_scope_note": "Day24 has six recorded queries (5-1 original, 5-2 supplied correction example); Day25 has five. New read-only checks verify query execution/counts, not historical runtimes or unshared output rows. Previous audit records retained."
+  "latest_addition_audit_date": "2026-11-17",
+  "addition_scope_note": "Day24 has six recorded queries (5-1 original, 5-2 supplied correction example); Day25 has five. New read-only checks verify query execution/counts, not historical runtimes or unshared output rows. Previous audit records retained.",
+  "day26_note": "Five questions/eight retained variants. Q2 retains all three cases; Q3 both CTE forms. Later execution of Q4 is not user execution evidence. Supplied historical times retained; no speed claim from one execution."
 }

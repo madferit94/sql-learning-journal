@@ -35,6 +35,7 @@ The focus is learning to turn a question into a query, understand the unit of ea
 | 23 | Music track/video rankings, CAST and conditional aggregation | [한글](til/ko/day23.md) | [English](til/en/day23.md) | [Queries](sql/day23.sql) |
 | 24 | F1 aggregation, ranks and a scoped team correction | [한글](til/ko/day24.md) | [English](til/en/day24.md) | [Queries](sql/day24.sql) |
 | 25 | Groupwise top N, chained CTEs and representative transactions | [한글](til/ko/day25.md) | [English](til/en/day25.md) | [Queries](sql/day25.sql) |
+| 26 | Retail representatives, CTE alternatives and top-two re-aggregation | [한글](til/ko/day26.md) | [English](til/en/day26.md) | [Queries](sql/day26.sql) |
 
 ## What the record covers
 
@@ -43,7 +44,7 @@ The focus is learning to turn a question into a query, understand the unit of ea
 - RANK and PARTITION BY for overall and within-team rankings.
 - Row grain, join keys, NULL treatment, denominators, team changes and metric interpretation.
 
-The journal contains 25 sessions and 131 final recorded queries (including the Day24 correction example).
+The journal contains 26 sessions and 139 final recorded queries (including the Day24 correction example).
 
 Solutions are written directly; AI is used for grading and feedback on mistakes.
 
@@ -64,6 +65,8 @@ Main-race points exclude Sprints and RANK ties do not implement official champio
 
 The Korean edition follows the detailed Notion record; English is an edited translation covering the same exercises, final SQL, output values and interpretation limits. [Editorial and validation notes](docs/editorial.en.md) describe publication checks.
 
-Source: [Notion SQL TIL](https://www.notion.so/7b736fd8bbd949ca93f84cdc66987ace) (access may be required). Publication snapshot: 2026-11-16. This is a manual synchronization, not an automatic background sync.
+Source: [Notion SQL TIL](https://www.notion.so/7b736fd8bbd949ca93f84cdc66987ace) (access may be required). Publication snapshot: 2026-11-17. This is a manual synchronization, not an automatic background sync.
 
 Days24–25 use 20 main races through Brazil and finance transactions. Eleven added queries received separate read-only execution/count checks; unshared historical result counts/runtimes are not inferred. Finance output identifiers are pseudonymized.
+
+Day26 has five questions/eight retained queries: three cases for Question 2 and both CTE forms for Question 3. Later execution checks remain separate from supplied historical results/runtimes.

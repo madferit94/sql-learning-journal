@@ -62,3 +62,7 @@ All five new music queries executed on the collected music_study snapshot and ma
 ## Day24–25 incremental checks
 
 On 2026-11-16, separately executed/count-checked 11 final queries: six in Day24 (including supplied correction example 5-2) and five in Day25. This is not a rerun of the prior 120-query audit; earlier records remain intact. Historical outputs/runtimes are preserved and finance IDs use matching pseudonyms in both editions.
+
+## Day26 incremental verification
+
+On 2026-11-17 separately executed eight variants of five questions, comparing all supplied output rows and their order. All three Question 2 cases match, as do both Question 3 CTE forms. Question 4 had no corrected user output; later validation does not imply historical user execution. The prior 131 checks are preserved.

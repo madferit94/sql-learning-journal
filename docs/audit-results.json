@@ -2,8 +2,8 @@
   "audit_date": "2026-11-02",
   "mysql_version": "8.4.11",
   "only_full_group_by": true,
-  "queries_checked": 139,
-  "passed": 139,
+  "queries_checked": 147,
+  "passed": 147,
   "failed": 0,
   "recorded_outputs_preserved": true,
   "checks": [
@@ -2127,6 +2127,143 @@
       "original_question_case": "5",
       "recorded_rows_compared": 37,
       "historical_output_supplied": true
+    },
+    {
+      "day": 27,
+      "exercise_index": 1,
+      "query_sha256": "002d88268b1b6d29f9e4dbc33b0f86215781808e810b6aa86bbff366c30c9add",
+      "ok": true,
+      "rows": 3,
+      "columns": [
+        "transaction_month",
+        "transaction_count",
+        "customer_count",
+        "total_transaction_amount"
+      ],
+      "error": "",
+      "scope": "finance",
+      "audit_date": "2026-11-18",
+      "mysql_version": "8.4.11"
+    },
+    {
+      "day": 27,
+      "exercise_index": 2,
+      "query_sha256": "590e8228b48696e1ccbd4e6bf407c6170d419d8ac2c6d3c40ffe0ceebcb6c486",
+      "ok": true,
+      "rows": 3,
+      "columns": [
+        "transaction_month",
+        "total_transaction_amount",
+        "previous_month_amount",
+        "amount_change"
+      ],
+      "error": "",
+      "scope": "finance",
+      "audit_date": "2026-11-18",
+      "mysql_version": "8.4.11"
+    },
+    {
+      "day": 27,
+      "exercise_index": 3,
+      "query_sha256": "559470829f4455ba3314cc0c2c29721dd8064be28db718301a7b39821229cb6c",
+      "ok": true,
+      "rows": 3,
+      "columns": [
+        "transaction_month",
+        "total_transaction_amount",
+        "previous_month_amount",
+        "amount_change_rate"
+      ],
+      "error": "",
+      "scope": "finance",
+      "audit_date": "2026-11-18",
+      "mysql_version": "8.4.11"
+    },
+    {
+      "day": 27,
+      "exercise_index": 4,
+      "query_sha256": "74456f88918a9e30fd5a2c6407b2ab72cb1acd13751dba3b9efa2b750aa7fd9d",
+      "ok": true,
+      "rows": 3,
+      "columns": [
+        "transaction_month",
+        "total_transaction_amount",
+        "previous_month_amount",
+        "amount_change_rate"
+      ],
+      "error": "",
+      "scope": "finance",
+      "audit_date": "2026-11-18",
+      "mysql_version": "8.4.11"
+    },
+    {
+      "day": 27,
+      "exercise_index": 5,
+      "query_sha256": "ef46af9fc2a00f1a58cc94698f99f7d8c6536d21e6345a7640fb24a9b4105a69",
+      "ok": true,
+      "rows": 3,
+      "columns": [
+        "transaction_month",
+        "total_transaction_amount",
+        "previous_month_amount",
+        "amount_change_rate"
+      ],
+      "error": "",
+      "scope": "finance",
+      "audit_date": "2026-11-18",
+      "mysql_version": "8.4.11"
+    },
+    {
+      "day": 27,
+      "exercise_index": 6,
+      "query_sha256": "b08eba0afbe0b595720202aa0c13283fe93e82f1bb923cfc6ad0b34b980f9cca",
+      "ok": true,
+      "rows": 20,
+      "columns": [
+        "customer_id",
+        "transaction_date",
+        "daily_amount",
+        "previous_day_amount"
+      ],
+      "error": "",
+      "scope": "finance",
+      "audit_date": "2026-11-18",
+      "mysql_version": "8.4.11",
+      "warnings": [
+        "Warning\t1052\tColumn 'transaction_date' in group statement is ambiguous"
+      ]
+    },
+    {
+      "day": 27,
+      "exercise_index": 7,
+      "query_sha256": "09464f00c61bc0223acff87d01258aaad4f64209e045bc8550de3d864fcb3e89",
+      "ok": true,
+      "rows": 20,
+      "columns": [
+        "customer_id",
+        "transaction_date",
+        "daily_amount",
+        "previous_day_amount"
+      ],
+      "error": "",
+      "scope": "finance",
+      "audit_date": "2026-11-18",
+      "mysql_version": "8.4.11"
+    },
+    {
+      "day": 27,
+      "exercise_index": 8,
+      "query_sha256": "b55e34ee8a7d45fd5a0951c5099b531df4c65cf5813da3c28dd0024abfc597c1",
+      "ok": true,
+      "rows": 20,
+      "columns": [
+        "customer_id",
+        "increase_day_count"
+      ],
+      "error": "",
+      "scope": "finance",
+      "audit_date": "2026-11-18",
+      "mysql_version": "8.4.11"
     }
   ],
   "historical_full_audit_date": "2026-11-02",

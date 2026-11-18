@@ -979,5 +979,69 @@
     "query_sha256": "26d24842a5d24c83ae612c77652c2837495ad1ee7833b8e8eeaa532468a77661",
     "status": "recorded_final_with_scoped_mysql_audit",
     "audit": "2026-11-17"
+  },
+  {
+    "day": 27,
+    "exercise": 1,
+    "original_question_case": "1",
+    "query_sha256": "002d88268b1b6d29f9e4dbc33b0f86215781808e810b6aa86bbff366c30c9add",
+    "status": "recorded_final_with_scoped_mysql_audit",
+    "audit": "2026-11-18"
+  },
+  {
+    "day": 27,
+    "exercise": 2,
+    "original_question_case": "2",
+    "query_sha256": "590e8228b48696e1ccbd4e6bf407c6170d419d8ac2c6d3c40ffe0ceebcb6c486",
+    "status": "recorded_final_with_scoped_mysql_audit",
+    "audit": "2026-11-18"
+  },
+  {
+    "day": 27,
+    "exercise": 3,
+    "original_question_case": "3-1",
+    "query_sha256": "559470829f4455ba3314cc0c2c29721dd8064be28db718301a7b39821229cb6c",
+    "status": "recorded_final_with_scoped_mysql_audit",
+    "audit": "2026-11-18"
+  },
+  {
+    "day": 27,
+    "exercise": 4,
+    "original_question_case": "3-2",
+    "query_sha256": "74456f88918a9e30fd5a2c6407b2ab72cb1acd13751dba3b9efa2b750aa7fd9d",
+    "status": "recorded_final_with_scoped_mysql_audit",
+    "audit": "2026-11-18"
+  },
+  {
+    "day": 27,
+    "exercise": 5,
+    "original_question_case": "3-3",
+    "query_sha256": "ef46af9fc2a00f1a58cc94698f99f7d8c6536d21e6345a7640fb24a9b4105a69",
+    "status": "recorded_final_with_scoped_mysql_audit",
+    "audit": "2026-11-18"
+  },
+  {
+    "day": 27,
+    "exercise": 6,
+    "original_question_case": "4-1",
+    "query_sha256": "b08eba0afbe0b595720202aa0c13283fe93e82f1bb923cfc6ad0b34b980f9cca",
+    "status": "recorded_final_with_scoped_mysql_audit",
+    "audit": "2026-11-18"
+  },
+  {
+    "day": 27,
+    "exercise": 7,
+    "original_question_case": "4-2",
+    "query_sha256": "09464f00c61bc0223acff87d01258aaad4f64209e045bc8550de3d864fcb3e89",
+    "status": "recorded_final_with_scoped_mysql_audit",
+    "audit": "2026-11-18"
+  },
+  {
+    "day": 27,
+    "exercise": 8,
+    "original_question_case": "5",
+    "query_sha256": "b55e34ee8a7d45fd5a0951c5099b531df4c65cf5813da3c28dd0024abfc597c1",
+    "status": "recorded_final_with_scoped_mysql_audit",
+    "audit": "2026-11-18"
   }
 ]

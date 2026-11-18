@@ -36,6 +36,7 @@
 | 24 | F1 집계·CTE·팀별 순위·소속 보완 | [한글](til/ko/day24.md) | [English](til/en/day24.md) | [쿼리](sql/day24.sql) |
 | 25 | 상위 대상·다단계 CTE·ROW_NUMBER·대표 거래 | [한글](til/ko/day25.md) | [English](til/en/day25.md) | [쿼리](sql/day25.sql) |
 | 26 | 이커머스 대표 고객·CTE 대안·상위 고객 재집계 | [한글](til/ko/day26.md) | [English](til/en/day26.md) | [쿼리](sql/day26.sql) |
+| 27 | 금융 월별 증감·고객별 직전 거래일 비교 | [한글](til/ko/day27.md) | [English](til/en/day27.md) | [쿼리](sql/day27.sql) |
 
 ## 학습 범위
 

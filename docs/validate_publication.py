@@ -2,7 +2,7 @@
 from pathlib import Path
 import hashlib,html,json,re
 root=Path(__file__).resolve().parents[1]
-DAYS=26;QUERIES=139
+DAYS=27;QUERIES=147
 manifest=json.loads((root/'docs/query-manifest.json').read_text())
 audit=json.loads((root/'docs/audit-results.json').read_text())
 assert len(manifest)==QUERIES
@@ -45,7 +45,7 @@ for day in range(1,DAYS+1):
  for lang,text in [('ko',ko),('en',en)]:
   assert text.count('```')%2==0,(day,lang,'fences')
   assert '/Users/' not in text and '/tmp/' not in text,(day,lang,'private path')
-  if day in [6,12,13,18,19,25]:assert not re.search(r'\bC\d{5,}\b',text),(day,'original finance ID')
+  if day in [6,12,13,18,19,25,27]:assert not re.search(r'\bC\d{5,}\b',text),(day,'original finance ID')
   assert not re.search(r'COUNT\(\*\*\)|COUNT\(\\\*\*\)|\*FROM\*',text),(day,'broken code')
 for lang in ['ko','en']:
  readme=(root/('README.ko.md' if lang=='ko' else 'README.md')).read_text()
@@ -60,4 +60,4 @@ assert '-- UNRESOLVED:' not in (root/'sql/day11.sql').read_text()
 assert '| 2012/2013 | 1.552 |' not in (root/'til/en/day01.md').read_text()
 assert not (root/'notion-export.json').exists()
 assert (root/'docs/audit.ko.md').exists() and (root/'docs/audit.en.md').exists()
-print('PASS: 26 bilingual sessions, 139 exact final query hashes, recorded output-row alignment, all index links, balanced fences, scoped execution evidence and privacy checks.')
+print('PASS: 27 bilingual sessions, 147 exact final query hashes, recorded output-row alignment, all index links, balanced fences, scoped execution evidence and privacy checks.')

@@ -2,8 +2,8 @@
   "audit_date": "2026-11-02",
   "mysql_version": "8.4.11",
   "only_full_group_by": true,
-  "queries_checked": 147,
-  "passed": 147,
+  "queries_checked": 153,
+  "passed": 153,
   "failed": 0,
   "recorded_outputs_preserved": true,
   "checks": [
@@ -2263,6 +2263,106 @@
       "error": "",
       "scope": "finance",
       "audit_date": "2026-11-18",
+      "mysql_version": "8.4.11"
+    },
+    {
+      "day": 28,
+      "exercise_index": 1,
+      "query_sha256": "77863e1d2bfbe3652244ac9d15b515c375c7c7b3889f0c1856ece6c117429ccc",
+      "ok": true,
+      "rows": 20,
+      "columns": [
+        "customer_id",
+        "transaction_date",
+        "previous_transaction_date",
+        "days_since_previous"
+      ],
+      "error": "",
+      "scope": "finance",
+      "audit_date": "2026-11-19",
+      "mysql_version": "8.4.11"
+    },
+    {
+      "day": 28,
+      "exercise_index": 2,
+      "query_sha256": "555fb90a30bf8867a8e283c807b02e99d8df449756aaaa3167ce4b980dd7ae5e",
+      "ok": true,
+      "rows": 20,
+      "columns": [
+        "customer_id",
+        "active_day_count",
+        "avg_days_between_transactions"
+      ],
+      "error": "",
+      "scope": "finance",
+      "audit_date": "2026-11-19",
+      "mysql_version": "8.4.11"
+    },
+    {
+      "day": 28,
+      "exercise_index": 3,
+      "query_sha256": "8ac5bc52e98356fb3b34fc2a8bb53af475944024271037451e58cdef6b842c14",
+      "ok": true,
+      "rows": 20,
+      "columns": [
+        "customer_id",
+        "transaction_date",
+        "previous_transaction_date",
+        "days_since_previous"
+      ],
+      "error": "",
+      "scope": "finance",
+      "audit_date": "2026-11-19",
+      "mysql_version": "8.4.11"
+    },
+    {
+      "day": 28,
+      "exercise_index": 4,
+      "query_sha256": "22b91ab34e44fc9ef6cb2ed7f898ca1cb906aa2b106d43f14db1aeecc645bc45",
+      "ok": true,
+      "rows": 20,
+      "columns": [
+        "customer_id",
+        "long_gap_count",
+        "longest_gap_days"
+      ],
+      "error": "",
+      "scope": "finance",
+      "audit_date": "2026-11-19",
+      "mysql_version": "8.4.11"
+    },
+    {
+      "day": 28,
+      "exercise_index": 5,
+      "query_sha256": "b34b905ab7ff685b563e4605caf999a1860b1cbb29f4f5ee8d3a5c45d6202f7c",
+      "ok": true,
+      "rows": 20,
+      "columns": [
+        "customer_id",
+        "total_gap_count",
+        "long_gap_count",
+        "long_gap_rate"
+      ],
+      "error": "",
+      "scope": "finance",
+      "audit_date": "2026-11-19",
+      "mysql_version": "8.4.11"
+    },
+    {
+      "day": 28,
+      "exercise_index": 6,
+      "query_sha256": "5ecea0af640eb8dcf4ff368510c96d38d808e1143dcff7cccb70d6e94b84c8f9",
+      "ok": true,
+      "rows": 20,
+      "columns": [
+        "customer_id",
+        "total_gap_count",
+        "long_gap_count",
+        "long_gap_rate"
+      ],
+      "error": "",
+      "scope": "finance",
+      "audit_date": "2026-11-19",
       "mysql_version": "8.4.11"
     }
   ],

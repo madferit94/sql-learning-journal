@@ -37,6 +37,7 @@
 | 25 | 상위 대상·다단계 CTE·ROW_NUMBER·대표 거래 | [한글](til/ko/day25.md) | [English](til/en/day25.md) | [쿼리](sql/day25.sql) |
 | 26 | 이커머스 대표 고객·CTE 대안·상위 고객 재집계 | [한글](til/ko/day26.md) | [English](til/en/day26.md) | [쿼리](sql/day26.sql) |
 | 27 | 금융 월별 증감·고객별 직전 거래일 비교 | [한글](til/ko/day27.md) | [English](til/en/day27.md) | [쿼리](sql/day27.sql) |
+| 28 | 금융 거래일 간격·장기 간격 비율 | [한글](til/ko/day28.md) | [English](til/en/day28.md) | [쿼리](sql/day28.sql) |
 
 ## 학습 범위
 

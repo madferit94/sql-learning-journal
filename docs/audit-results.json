@@ -2,8 +2,8 @@
   "audit_date": "2026-11-02",
   "mysql_version": "8.4.11",
   "only_full_group_by": true,
-  "queries_checked": 153,
-  "passed": 153,
+  "queries_checked": 158,
+  "passed": 158,
   "failed": 0,
   "recorded_outputs_preserved": true,
   "checks": [
@@ -2363,6 +2363,97 @@
       "error": "",
       "scope": "finance",
       "audit_date": "2026-11-19",
+      "mysql_version": "8.4.11"
+    },
+    {
+      "day": 29,
+      "exercise_index": 1,
+      "query_sha256": "be39368d1c741a2098d070cf5d0b7f77c03af9b4bf424ac3ad6ba7f67e1dd2ed",
+      "ok": true,
+      "rows": 20,
+      "columns": [
+        "driver_number",
+        "session_key",
+        "date_start",
+        "points",
+        "previous_points",
+        "points_change"
+      ],
+      "error": "",
+      "scope": "f1_study",
+      "audit_date": "2026-11-20",
+      "mysql_version": "8.4.11"
+    },
+    {
+      "day": 29,
+      "exercise_index": 2,
+      "query_sha256": "1b8976d36154260dadc4a36329fab478897872c7e3168bfb9bee581fc4f698ff",
+      "ok": true,
+      "rows": 20,
+      "columns": [
+        "driver_number",
+        "session_key",
+        "date_start",
+        "points",
+        "previous_points",
+        "points_change"
+      ],
+      "error": "",
+      "scope": "f1_study",
+      "audit_date": "2026-11-20",
+      "mysql_version": "8.4.11"
+    },
+    {
+      "day": 29,
+      "exercise_index": 3,
+      "query_sha256": "b702dbccb86b244bbb793e369576663475b4938eff4afe68582e5f2f416a05d6",
+      "ok": true,
+      "rows": 20,
+      "columns": [
+        "driver_number",
+        "points_increase_count"
+      ],
+      "error": "",
+      "scope": "f1_study",
+      "audit_date": "2026-11-20",
+      "mysql_version": "8.4.11"
+    },
+    {
+      "day": 29,
+      "exercise_index": 4,
+      "query_sha256": "338e78dbbb070023c43c0e405d977269da43f44b00f3e18cbe7100e7b01a726f",
+      "ok": true,
+      "rows": 22,
+      "columns": [
+        "team_name",
+        "selection_no",
+        "driver_number",
+        "race_count",
+        "scoring_race_count",
+        "scoring_rate",
+        "total_points"
+      ],
+      "error": "",
+      "scope": "f1_study",
+      "audit_date": "2026-11-20",
+      "mysql_version": "8.4.11"
+    },
+    {
+      "day": 29,
+      "exercise_index": 5,
+      "query_sha256": "7dc277d3bf0fd2f949e17c09655f38bf754c233de596d5a0146424e1a68151c7",
+      "ok": true,
+      "rows": 11,
+      "columns": [
+        "team_name",
+        "selected_driver_count",
+        "total_race_count",
+        "total_scoring_race_count",
+        "combined_scoring_rate"
+      ],
+      "error": "",
+      "scope": "f1_study",
+      "audit_date": "2026-11-20",
       "mysql_version": "8.4.11"
     }
   ],

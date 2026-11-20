@@ -1091,5 +1091,45 @@
     "query_sha256": "5ecea0af640eb8dcf4ff368510c96d38d808e1143dcff7cccb70d6e94b84c8f9",
     "status": "recorded_final_with_scoped_mysql_audit",
     "audit": "2026-11-19"
+  },
+  {
+    "day": 29,
+    "exercise": 1,
+    "original_question_case": "1",
+    "query_sha256": "be39368d1c741a2098d070cf5d0b7f77c03af9b4bf424ac3ad6ba7f67e1dd2ed",
+    "status": "recorded_final_with_scoped_mysql_audit",
+    "audit": "2026-11-20"
+  },
+  {
+    "day": 29,
+    "exercise": 2,
+    "original_question_case": "2",
+    "query_sha256": "1b8976d36154260dadc4a36329fab478897872c7e3168bfb9bee581fc4f698ff",
+    "status": "recorded_final_with_scoped_mysql_audit",
+    "audit": "2026-11-20"
+  },
+  {
+    "day": 29,
+    "exercise": 3,
+    "original_question_case": "3",
+    "query_sha256": "b702dbccb86b244bbb793e369576663475b4938eff4afe68582e5f2f416a05d6",
+    "status": "recorded_final_with_scoped_mysql_audit",
+    "audit": "2026-11-20"
+  },
+  {
+    "day": 29,
+    "exercise": 4,
+    "original_question_case": "4",
+    "query_sha256": "338e78dbbb070023c43c0e405d977269da43f44b00f3e18cbe7100e7b01a726f",
+    "status": "recorded_final_with_scoped_mysql_audit",
+    "audit": "2026-11-20"
+  },
+  {
+    "day": 29,
+    "exercise": 5,
+    "original_question_case": "5",
+    "query_sha256": "7dc277d3bf0fd2f949e17c09655f38bf754c233de596d5a0146424e1a68151c7",
+    "status": "recorded_final_with_scoped_mysql_audit",
+    "audit": "2026-11-20"
   }
 ]

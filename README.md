@@ -38,6 +38,7 @@ The focus is learning to turn a question into a query, understand the unit of ea
 | 26 | Retail representatives, CTE alternatives and top-two re-aggregation | [한글](til/ko/day26.md) | [English](til/en/day26.md) | [Queries](sql/day26.sql) |
 | 27 | Finance month-over-month and previous active-date comparisons | [한글](til/ko/day27.md) | [English](til/en/day27.md) | [Queries](sql/day27.sql) |
 | 28 | Finance transaction gaps and long-gap share | [한글](til/ko/day28.md) | [English](til/en/day28.md) | [Queries](sql/day28.sql) |
+| 29 | F1 previous-start points and team scoring rates | [한글](til/ko/day29.md) | [English](til/en/day29.md) | [Queries](sql/day29.sql) |
 
 ## What the record covers
 

@@ -1131,5 +1131,29 @@
     "query_sha256": "7dc277d3bf0fd2f949e17c09655f38bf754c233de596d5a0146424e1a68151c7",
     "status": "recorded_final_with_scoped_mysql_audit",
     "audit": "2026-11-20"
+  },
+  {
+    "day": 30,
+    "exercise": 1,
+    "original_question_case": "1",
+    "query_sha256": "055fd2d5b93703ca9232fe8d701b8a61abc2b881847e229637962ebd90cb5525",
+    "status": "recorded_final_with_scoped_mysql_audit",
+    "audit": "2026-11-23"
+  },
+  {
+    "day": 30,
+    "exercise": 2,
+    "original_question_case": "2",
+    "query_sha256": "b97103cae26df72720d09d315dd8f89d9b1b3fd0a90666e83adf54b59a1bd88f",
+    "status": "recorded_final_with_scoped_mysql_audit",
+    "audit": "2026-11-23"
+  },
+  {
+    "day": 30,
+    "exercise": 3,
+    "original_question_case": "3",
+    "query_sha256": "49c8291c2d410f581ae971c4b4808399a4c188b41c7cc2b8d654a12dc4b9ad61",
+    "status": "recorded_final_with_scoped_mysql_audit",
+    "audit": "2026-11-23"
   }
 ]

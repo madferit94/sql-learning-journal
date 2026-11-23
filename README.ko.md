@@ -39,6 +39,7 @@
 | 27 | 금융 월별 증감·고객별 직전 거래일 비교 | [한글](til/ko/day27.md) | [English](til/en/day27.md) | [쿼리](sql/day27.sql) |
 | 28 | 금융 거래일 간격·장기 간격 비율 | [한글](til/ko/day28.md) | [English](til/en/day28.md) | [쿼리](sql/day28.sql) |
 | 29 | F1 직전 출전 포인트 비교·팀별 득점률 | [한글](til/ko/day29.md) | [English](til/en/day29.md) | [쿼리](sql/day29.sql) |
+| 30 | 주가 다음 거래일 비교·거래량 이동평균 | [한글](til/ko/day30.md) | [English](til/en/day30.md) | [쿼리](sql/day30.sql) |
 
 ## 학습 범위
 

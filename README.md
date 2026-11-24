@@ -10,37 +10,37 @@ The focus is learning to turn a question into a query, understand the unit of ea
 
 | Day | Topic | Korean | English | SQL |
 | --- | --- | --- | --- | --- |
-| 01 | Selection, filtering and aggregation | [한글](til/ko/day01.md) | [English](til/en/day01.md) | [Queries](sql/day01.sql) |
-| 02 | Aggregation and row filters | [한글](til/ko/day02.md) | [English](til/en/day02.md) | [Queries](sql/day02.sql) |
-| 03 | WHERE and HAVING | [한글](til/ko/day03.md) | [English](til/en/day03.md) | [Queries](sql/day03.sql) |
-| 04 | Olist order aggregation | [한글](til/ko/day04.md) | [English](til/en/day04.md) | [Queries](sql/day04.sql) |
-| 05 | Customer identifiers and joins | [한글](til/ko/day05.md) | [English](til/en/day05.md) | [Queries](sql/day05.sql) |
-| 06 | Transaction aggregation and CASE | [한글](til/ko/day06.md) | [English](til/en/day06.md) | [Queries](sql/day06.sql) |
-| 07 | Football joins and team aliases | [한글](til/ko/day07.md) | [English](til/en/day07.md) | [Queries](sql/day07.sql) |
-| 08 | Football classification and outcomes | [한글](til/ko/day08.md) | [English](til/en/day08.md) | [Queries](sql/day08.sql) |
-| 09 | Olist joins and two-stage aggregation | [한글](til/ko/day09.md) | [English](til/en/day09.md) | [Queries](sql/day09.sql) |
-| 10 | Monthly metrics and repeat customers | [한글](til/ko/day10.md) | [English](til/en/day10.md) | [Queries](sql/day10.sql) |
-| 11 | Conditional aggregation and subqueries | [한글](til/ko/day11.md) | [English](til/en/day11.md) | [Queries](sql/day11.sql) |
-| 12 | Customer aggregation and transaction distribution | [한글](til/ko/day12.md) | [English](til/en/day12.md) | [Queries](sql/day12.sql) |
-| 13 | Conditional counts, amounts and customer totals | [한글](til/ko/day13.md) | [English](til/en/day13.md) | [Queries](sql/day13.sql) |
-| 14 | Baku F1 joins and conditional aggregation | [한글](til/ko/day14.md) | [English](til/en/day14.md) | [Queries](sql/day14.sql) |
-| 15 | Baku F1 practice and aggregate subqueries | [한글](til/ko/day15.md) | [English](til/en/day15.md) | [Queries](sql/day15.sql) |
-| 16 | Online Retail quantities, customer joins and totals | [한글](til/ko/day16.md) | [English](til/en/day16.md) | [Queries](sql/day16.sql) |
-| 17 | Online Retail monthly aggregation, date filters and subqueries | [한글](til/ko/day17.md) | [English](til/en/day17.md) | [Queries](sql/day17.sql) |
-| 18 | Finance monthly metrics, distinct transaction days and subqueries | [한글](til/ko/day18.md) | [English](til/en/day18.md) | [Queries](sql/day18.sql) |
-| 19 | Finance aggregation review and CTE foundations | [한글](til/ko/day19.md) | [English](til/en/day19.md) | [Queries](sql/day19.sql) |
-| 20 | F1 joins, CTEs and introductory window functions | [한글](til/ko/day20.md) | [English](til/en/day20.md) | [Queries](sql/day20.sql) |
-| 21 | F1 Austin results, multi-race points totals and rankings | [한글](til/ko/day21.md) | [English](til/en/day21.md) | [Queries](sql/day21.sql) |
-| 22 | F1 review, customer totals and overall/country rankings | [한글](til/ko/day22.md) | [English](til/en/day22.md) | [Queries](sql/day22.sql) |
-| 23 | Music track/video rankings, CAST and conditional aggregation | [한글](til/ko/day23.md) | [English](til/en/day23.md) | [Queries](sql/day23.sql) |
-| 24 | F1 aggregation, ranks and a scoped team correction | [한글](til/ko/day24.md) | [English](til/en/day24.md) | [Queries](sql/day24.sql) |
-| 25 | Groupwise top N, chained CTEs and representative transactions | [한글](til/ko/day25.md) | [English](til/en/day25.md) | [Queries](sql/day25.sql) |
-| 26 | Retail representatives, CTE alternatives and top-two re-aggregation | [한글](til/ko/day26.md) | [English](til/en/day26.md) | [Queries](sql/day26.sql) |
-| 27 | Finance month-over-month and previous active-date comparisons | [한글](til/ko/day27.md) | [English](til/en/day27.md) | [Queries](sql/day27.sql) |
-| 28 | Finance transaction gaps and long-gap share | [한글](til/ko/day28.md) | [English](til/en/day28.md) | [Queries](sql/day28.sql) |
-| 29 | F1 previous-start points and team scoring rates | [한글](til/ko/day29.md) | [English](til/en/day29.md) | [Queries](sql/day29.sql) |
-| 30 | Stock prices: next-session comparisons and moving averages | [한글](til/ko/day30.md) | [English](til/en/day30.md) | [Queries](sql/day30.sql) |
 | 31 | Healthcare facility records, missing IDs, and specialty shares | [한글](til/ko/day31.md) | [English](til/en/day31.md) | [Queries](sql/day31.sql) |
+| 30 | Stock prices: next-session comparisons and moving averages | [한글](til/ko/day30.md) | [English](til/en/day30.md) | [Queries](sql/day30.sql) |
+| 29 | F1 previous-start points and team scoring rates | [한글](til/ko/day29.md) | [English](til/en/day29.md) | [Queries](sql/day29.sql) |
+| 28 | Finance transaction gaps and long-gap share | [한글](til/ko/day28.md) | [English](til/en/day28.md) | [Queries](sql/day28.sql) |
+| 27 | Finance month-over-month and previous active-date comparisons | [한글](til/ko/day27.md) | [English](til/en/day27.md) | [Queries](sql/day27.sql) |
+| 26 | Retail representatives, CTE alternatives and top-two re-aggregation | [한글](til/ko/day26.md) | [English](til/en/day26.md) | [Queries](sql/day26.sql) |
+| 25 | Groupwise top N, chained CTEs and representative transactions | [한글](til/ko/day25.md) | [English](til/en/day25.md) | [Queries](sql/day25.sql) |
+| 24 | F1 aggregation, ranks and a scoped team correction | [한글](til/ko/day24.md) | [English](til/en/day24.md) | [Queries](sql/day24.sql) |
+| 23 | Music track/video rankings, CAST and conditional aggregation | [한글](til/ko/day23.md) | [English](til/en/day23.md) | [Queries](sql/day23.sql) |
+| 22 | F1 review, customer totals and overall/country rankings | [한글](til/ko/day22.md) | [English](til/en/day22.md) | [Queries](sql/day22.sql) |
+| 21 | F1 Austin results, multi-race points totals and rankings | [한글](til/ko/day21.md) | [English](til/en/day21.md) | [Queries](sql/day21.sql) |
+| 20 | F1 joins, CTEs and introductory window functions | [한글](til/ko/day20.md) | [English](til/en/day20.md) | [Queries](sql/day20.sql) |
+| 19 | Finance aggregation review and CTE foundations | [한글](til/ko/day19.md) | [English](til/en/day19.md) | [Queries](sql/day19.sql) |
+| 18 | Finance monthly metrics, distinct transaction days and subqueries | [한글](til/ko/day18.md) | [English](til/en/day18.md) | [Queries](sql/day18.sql) |
+| 17 | Online Retail monthly aggregation, date filters and subqueries | [한글](til/ko/day17.md) | [English](til/en/day17.md) | [Queries](sql/day17.sql) |
+| 16 | Online Retail quantities, customer joins and totals | [한글](til/ko/day16.md) | [English](til/en/day16.md) | [Queries](sql/day16.sql) |
+| 15 | Baku F1 practice and aggregate subqueries | [한글](til/ko/day15.md) | [English](til/en/day15.md) | [Queries](sql/day15.sql) |
+| 14 | Baku F1 joins and conditional aggregation | [한글](til/ko/day14.md) | [English](til/en/day14.md) | [Queries](sql/day14.sql) |
+| 13 | Conditional counts, amounts and customer totals | [한글](til/ko/day13.md) | [English](til/en/day13.md) | [Queries](sql/day13.sql) |
+| 12 | Customer aggregation and transaction distribution | [한글](til/ko/day12.md) | [English](til/en/day12.md) | [Queries](sql/day12.sql) |
+| 11 | Conditional aggregation and subqueries | [한글](til/ko/day11.md) | [English](til/en/day11.md) | [Queries](sql/day11.sql) |
+| 10 | Monthly metrics and repeat customers | [한글](til/ko/day10.md) | [English](til/en/day10.md) | [Queries](sql/day10.sql) |
+| 09 | Olist joins and two-stage aggregation | [한글](til/ko/day09.md) | [English](til/en/day09.md) | [Queries](sql/day09.sql) |
+| 08 | Football classification and outcomes | [한글](til/ko/day08.md) | [English](til/en/day08.md) | [Queries](sql/day08.sql) |
+| 07 | Football joins and team aliases | [한글](til/ko/day07.md) | [English](til/en/day07.md) | [Queries](sql/day07.sql) |
+| 06 | Transaction aggregation and CASE | [한글](til/ko/day06.md) | [English](til/en/day06.md) | [Queries](sql/day06.sql) |
+| 05 | Customer identifiers and joins | [한글](til/ko/day05.md) | [English](til/en/day05.md) | [Queries](sql/day05.sql) |
+| 04 | Olist order aggregation | [한글](til/ko/day04.md) | [English](til/en/day04.md) | [Queries](sql/day04.sql) |
+| 03 | WHERE and HAVING | [한글](til/ko/day03.md) | [English](til/en/day03.md) | [Queries](sql/day03.sql) |
+| 02 | Aggregation and row filters | [한글](til/ko/day02.md) | [English](til/en/day02.md) | [Queries](sql/day02.sql) |
+| 01 | Selection, filtering and aggregation | [한글](til/ko/day01.md) | [English](til/en/day01.md) | [Queries](sql/day01.sql) |
 
 ## What the record covers
 

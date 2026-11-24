@@ -10,37 +10,37 @@
 
 | 일차 | 주제 | 한글 | 영어 | SQL |
 | --- | --- | --- | --- | --- |
-| 01 | 기본 조회·필터링·집계 | [한글](til/ko/day01.md) | [English](til/en/day01.md) | [쿼리](sql/day01.sql) |
-| 02 | 집계와 행 조건 | [한글](til/ko/day02.md) | [English](til/en/day02.md) | [쿼리](sql/day02.sql) |
-| 03 | WHERE와 HAVING | [한글](til/ko/day03.md) | [English](til/en/day03.md) | [쿼리](sql/day03.sql) |
-| 04 | Olist 주문 집계 | [한글](til/ko/day04.md) | [English](til/en/day04.md) | [쿼리](sql/day04.sql) |
-| 05 | 고객 식별자와 JOIN | [한글](til/ko/day05.md) | [English](til/en/day05.md) | [쿼리](sql/day05.sql) |
-| 06 | 거래 집계와 CASE WHEN | [한글](til/ko/day06.md) | [English](til/en/day06.md) | [쿼리](sql/day06.sql) |
-| 07 | 축구 JOIN과 팀 별칭 | [한글](til/ko/day07.md) | [English](til/en/day07.md) | [쿼리](sql/day07.sql) |
-| 08 | 축구 결과 분류와 집계 | [한글](til/ko/day08.md) | [English](til/en/day08.md) | [쿼리](sql/day08.sql) |
-| 09 | Olist JOIN과 2단계 집계 | [한글](til/ko/day09.md) | [English](til/en/day09.md) | [쿼리](sql/day09.sql) |
-| 10 | 월별 집계와 재구매 고객 | [한글](til/ko/day10.md) | [English](til/en/day10.md) | [쿼리](sql/day10.sql) |
-| 11 | 조건부 집계와 서브쿼리 복습 | [한글](til/ko/day11.md) | [English](til/en/day11.md) | [쿼리](sql/day11.sql) |
-| 12 | Finance 고객 집계·조건부 집계·서브쿼리 (2026-10-10) | [한글](til/ko/day12.md) | [English](til/en/day12.md) | [쿼리](sql/day12.sql) |
-| 13 | Finance 조건부 집계·비율·서브쿼리 (2026-10-11) | [한글](til/ko/day13.md) | [English](til/en/day13.md) | [쿼리](sql/day13.sql) |
-| 14 | Baku F1 집계·JOIN·조건부 COUNT·서브쿼리 (2026-10-12) | [한글](til/ko/day14.md) | [English](til/en/day14.md) | [쿼리](sql/day14.sql) |
-| 15 | Baku F1 2일차·조건부 집계·팀 통계·서브쿼리 (2026-10-13) | [한글](til/ko/day15.md) | [English](til/en/day15.md) | [쿼리](sql/day15.sql) |
-| 16 | Online Retail 국가·고객 집계·JOIN·서브쿼리 (2026-10-16) | [한글](til/ko/day16.md) | [English](til/en/day16.md) | [쿼리](sql/day16.sql) |
-| 17 | Online Retail 월별 집계·날짜 필터·서브쿼리 | [한글](til/ko/day17.md) | [English](til/en/day17.md) | [쿼리](sql/day17.sql) |
-| 18 | Finance 월별 집계·거래일 수·서브쿼리 | [한글](til/ko/day18.md) | [English](til/en/day18.md) | [쿼리](sql/day18.sql) |
-| 19 | Finance 집계 복습·CTE 기초 | [한글](til/ko/day19.md) | [English](til/en/day19.md) | [쿼리](sql/day19.sql) |
-| 20 | F1 JOIN·CTE·윈도우 함수 기초 | [한글](til/ko/day20.md) | [English](til/en/day20.md) | [쿼리](sql/day20.sql) |
-| 21 | F1 오스틴 결과·다중 경기 집계·CTE·윈도우 함수 | [한글](til/ko/day21.md) | [English](til/en/day21.md) | [쿼리](sql/day21.sql) |
-| 22 | F1 복습·고객 집계·전체 및 국가별 구매금액 순위 | [한글](til/ko/day22.md) | [English](til/en/day22.md) | [쿼리](sql/day22.sql) |
-| 23 | 음악 트랙·영상 순위·CTE·CAST·조건부 집계 | [한글](til/ko/day23.md) | [English](til/en/day23.md) | [쿼리](sql/day23.sql) |
-| 24 | F1 집계·CTE·팀별 순위·소속 보완 | [한글](til/ko/day24.md) | [English](til/en/day24.md) | [쿼리](sql/day24.sql) |
-| 25 | 상위 대상·다단계 CTE·ROW_NUMBER·대표 거래 | [한글](til/ko/day25.md) | [English](til/en/day25.md) | [쿼리](sql/day25.sql) |
-| 26 | 이커머스 대표 고객·CTE 대안·상위 고객 재집계 | [한글](til/ko/day26.md) | [English](til/en/day26.md) | [쿼리](sql/day26.sql) |
-| 27 | 금융 월별 증감·고객별 직전 거래일 비교 | [한글](til/ko/day27.md) | [English](til/en/day27.md) | [쿼리](sql/day27.sql) |
-| 28 | 금융 거래일 간격·장기 간격 비율 | [한글](til/ko/day28.md) | [English](til/en/day28.md) | [쿼리](sql/day28.sql) |
-| 29 | F1 직전 출전 포인트 비교·팀별 득점률 | [한글](til/ko/day29.md) | [English](til/en/day29.md) | [쿼리](sql/day29.sql) |
-| 30 | 주가 다음 거래일 비교·거래량 이동평균 | [한글](til/ko/day30.md) | [English](til/en/day30.md) | [쿼리](sql/day30.sql) |
 | 31 | 의료기관 신고 기록·ID 누락·표시과목 비중 | [한글](til/ko/day31.md) | [English](til/en/day31.md) | [쿼리](sql/day31.sql) |
+| 30 | 주가 다음 거래일 비교·거래량 이동평균 | [한글](til/ko/day30.md) | [English](til/en/day30.md) | [쿼리](sql/day30.sql) |
+| 29 | F1 직전 출전 포인트 비교·팀별 득점률 | [한글](til/ko/day29.md) | [English](til/en/day29.md) | [쿼리](sql/day29.sql) |
+| 28 | 금융 거래일 간격·장기 간격 비율 | [한글](til/ko/day28.md) | [English](til/en/day28.md) | [쿼리](sql/day28.sql) |
+| 27 | 금융 월별 증감·고객별 직전 거래일 비교 | [한글](til/ko/day27.md) | [English](til/en/day27.md) | [쿼리](sql/day27.sql) |
+| 26 | 이커머스 대표 고객·CTE 대안·상위 고객 재집계 | [한글](til/ko/day26.md) | [English](til/en/day26.md) | [쿼리](sql/day26.sql) |
+| 25 | 상위 대상·다단계 CTE·ROW_NUMBER·대표 거래 | [한글](til/ko/day25.md) | [English](til/en/day25.md) | [쿼리](sql/day25.sql) |
+| 24 | F1 집계·CTE·팀별 순위·소속 보완 | [한글](til/ko/day24.md) | [English](til/en/day24.md) | [쿼리](sql/day24.sql) |
+| 23 | 음악 트랙·영상 순위·CTE·CAST·조건부 집계 | [한글](til/ko/day23.md) | [English](til/en/day23.md) | [쿼리](sql/day23.sql) |
+| 22 | F1 복습·고객 집계·전체 및 국가별 구매금액 순위 | [한글](til/ko/day22.md) | [English](til/en/day22.md) | [쿼리](sql/day22.sql) |
+| 21 | F1 오스틴 결과·다중 경기 집계·CTE·윈도우 함수 | [한글](til/ko/day21.md) | [English](til/en/day21.md) | [쿼리](sql/day21.sql) |
+| 20 | F1 JOIN·CTE·윈도우 함수 기초 | [한글](til/ko/day20.md) | [English](til/en/day20.md) | [쿼리](sql/day20.sql) |
+| 19 | Finance 집계 복습·CTE 기초 | [한글](til/ko/day19.md) | [English](til/en/day19.md) | [쿼리](sql/day19.sql) |
+| 18 | Finance 월별 집계·거래일 수·서브쿼리 | [한글](til/ko/day18.md) | [English](til/en/day18.md) | [쿼리](sql/day18.sql) |
+| 17 | Online Retail 월별 집계·날짜 필터·서브쿼리 | [한글](til/ko/day17.md) | [English](til/en/day17.md) | [쿼리](sql/day17.sql) |
+| 16 | Online Retail 국가·고객 집계·JOIN·서브쿼리 (2026-10-16) | [한글](til/ko/day16.md) | [English](til/en/day16.md) | [쿼리](sql/day16.sql) |
+| 15 | Baku F1 2일차·조건부 집계·팀 통계·서브쿼리 (2026-10-13) | [한글](til/ko/day15.md) | [English](til/en/day15.md) | [쿼리](sql/day15.sql) |
+| 14 | Baku F1 집계·JOIN·조건부 COUNT·서브쿼리 (2026-10-12) | [한글](til/ko/day14.md) | [English](til/en/day14.md) | [쿼리](sql/day14.sql) |
+| 13 | Finance 조건부 집계·비율·서브쿼리 (2026-10-11) | [한글](til/ko/day13.md) | [English](til/en/day13.md) | [쿼리](sql/day13.sql) |
+| 12 | Finance 고객 집계·조건부 집계·서브쿼리 (2026-10-10) | [한글](til/ko/day12.md) | [English](til/en/day12.md) | [쿼리](sql/day12.sql) |
+| 11 | 조건부 집계와 서브쿼리 복습 | [한글](til/ko/day11.md) | [English](til/en/day11.md) | [쿼리](sql/day11.sql) |
+| 10 | 월별 집계와 재구매 고객 | [한글](til/ko/day10.md) | [English](til/en/day10.md) | [쿼리](sql/day10.sql) |
+| 09 | Olist JOIN과 2단계 집계 | [한글](til/ko/day09.md) | [English](til/en/day09.md) | [쿼리](sql/day09.sql) |
+| 08 | 축구 결과 분류와 집계 | [한글](til/ko/day08.md) | [English](til/en/day08.md) | [쿼리](sql/day08.sql) |
+| 07 | 축구 JOIN과 팀 별칭 | [한글](til/ko/day07.md) | [English](til/en/day07.md) | [쿼리](sql/day07.sql) |
+| 06 | 거래 집계와 CASE WHEN | [한글](til/ko/day06.md) | [English](til/en/day06.md) | [쿼리](sql/day06.sql) |
+| 05 | 고객 식별자와 JOIN | [한글](til/ko/day05.md) | [English](til/en/day05.md) | [쿼리](sql/day05.sql) |
+| 04 | Olist 주문 집계 | [한글](til/ko/day04.md) | [English](til/en/day04.md) | [쿼리](sql/day04.sql) |
+| 03 | WHERE와 HAVING | [한글](til/ko/day03.md) | [English](til/en/day03.md) | [쿼리](sql/day03.sql) |
+| 02 | 집계와 행 조건 | [한글](til/ko/day02.md) | [English](til/en/day02.md) | [쿼리](sql/day02.sql) |
+| 01 | 기본 조회·필터링·집계 | [한글](til/ko/day01.md) | [English](til/en/day01.md) | [쿼리](sql/day01.sql) |
 
 ## 학습 범위
 

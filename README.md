@@ -40,6 +40,7 @@ The focus is learning to turn a question into a query, understand the unit of ea
 | 28 | Finance transaction gaps and long-gap share | [한글](til/ko/day28.md) | [English](til/en/day28.md) | [Queries](sql/day28.sql) |
 | 29 | F1 previous-start points and team scoring rates | [한글](til/ko/day29.md) | [English](til/en/day29.md) | [Queries](sql/day29.sql) |
 | 30 | Stock prices: next-session comparisons and moving averages | [한글](til/ko/day30.md) | [English](til/en/day30.md) | [Queries](sql/day30.sql) |
+| 31 | Healthcare facility records, missing IDs, and specialty shares | [한글](til/ko/day31.md) | [English](til/en/day31.md) | [Queries](sql/day31.sql) |
 
 ## What the record covers
 

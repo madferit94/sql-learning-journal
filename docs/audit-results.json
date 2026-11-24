@@ -2,8 +2,8 @@
   "audit_date": "2026-11-02",
   "mysql_version": "8.4.11",
   "only_full_group_by": true,
-  "queries_checked": 161,
-  "passed": 161,
+  "queries_checked": 164,
+  "passed": 164,
   "failed": 0,
   "recorded_outputs_preserved": true,
   "checks": [
@@ -2508,6 +2508,55 @@
       "error": "",
       "scope": "market_study",
       "audit_date": "2026-11-23",
+      "mysql_version": "8.4.11"
+    },
+    {
+      "day": 31,
+      "exercise_index": 1,
+      "query_sha256": "57ecae93ef6d730c66c759c4ca4ffe0f8a9b1bff4b12c5f1b734dda028c1b9d8",
+      "ok": true,
+      "rows": 25,
+      "columns": [
+        "district",
+        "clinic_count"
+      ],
+      "error": "",
+      "scope": "health_study",
+      "audit_date": "2026-11-24",
+      "mysql_version": "8.4.11"
+    },
+    {
+      "day": 31,
+      "exercise_index": 2,
+      "query_sha256": "611e06f8957d7cb4d3d6bbe2b9d462e553e6b4000ce20249991cc0ef0ec0be91",
+      "ok": true,
+      "rows": 25,
+      "columns": [
+        "district",
+        "total_record_count",
+        "missing_id_count",
+        "missing_id_rate"
+      ],
+      "error": "",
+      "scope": "health_study",
+      "audit_date": "2026-11-24",
+      "mysql_version": "8.4.11"
+    },
+    {
+      "day": 31,
+      "exercise_index": 3,
+      "query_sha256": "88ec4fc20435d072edb2fa40457493429e57a00406209f17bce873ea0e274a64",
+      "ok": true,
+      "rows": 25,
+      "columns": [
+        "district",
+        "clinic_count",
+        "pediatric_clinic_count",
+        "pediatric_clinic_rate"
+      ],
+      "error": "",
+      "scope": "health_study",
+      "audit_date": "2026-11-24",
       "mysql_version": "8.4.11"
     }
   ],

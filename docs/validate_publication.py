@@ -2,7 +2,7 @@
 from pathlib import Path
 import hashlib,html,json,re
 root=Path(__file__).resolve().parents[1]
-DAYS=31;QUERIES=164
+DAYS=32;QUERIES=167
 manifest=json.loads((root/'docs/query-manifest.json').read_text())
 audit=json.loads((root/'docs/audit-results.json').read_text())
 assert len(manifest)==QUERIES
@@ -60,4 +60,4 @@ assert '-- UNRESOLVED:' not in (root/'sql/day11.sql').read_text()
 assert '| 2012/2013 | 1.552 |' not in (root/'til/en/day01.md').read_text()
 assert not (root/'notion-export.json').exists()
 assert (root/'docs/audit.ko.md').exists() and (root/'docs/audit.en.md').exists()
-print('PASS: 31 bilingual sessions, 164 exact final query hashes, recorded output-row alignment, all index links, balanced fences, scoped execution evidence and privacy checks.')
+print('PASS: 32 bilingual sessions, 167 exact final query hashes, recorded output-row alignment, all index links, balanced fences, scoped execution evidence and privacy checks.')

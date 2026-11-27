@@ -10,6 +10,7 @@
 
 | 일차 | 주제 | 한글 | 영어 | SQL |
 | --- | --- | --- | --- | --- |
+| 32 | 종합병원 신고 기록 · LEFT JOIN · 전체 비중과 누적합 | [한글](til/ko/day32.md) | [English](til/en/day32.md) | [쿼리](sql/day32.sql) |
 | 31 | 의료기관 신고 기록·ID 누락·표시과목 비중 | [한글](til/ko/day31.md) | [English](til/en/day31.md) | [쿼리](sql/day31.sql) |
 | 30 | 주가 다음 거래일 비교·거래량 이동평균 | [한글](til/ko/day30.md) | [English](til/en/day30.md) | [쿼리](sql/day30.sql) |
 | 29 | F1 직전 출전 포인트 비교·팀별 득점률 | [한글](til/ko/day29.md) | [English](til/en/day29.md) | [쿼리](sql/day29.sql) |

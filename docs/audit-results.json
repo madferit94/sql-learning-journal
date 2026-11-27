@@ -2,8 +2,8 @@
   "audit_date": "2026-11-02",
   "mysql_version": "8.4.11",
   "only_full_group_by": true,
-  "queries_checked": 164,
-  "passed": 164,
+  "queries_checked": 167,
+  "passed": 167,
   "failed": 0,
   "recorded_outputs_preserved": true,
   "checks": [
@@ -2557,6 +2557,56 @@
       "error": "",
       "scope": "health_study",
       "audit_date": "2026-11-24",
+      "mysql_version": "8.4.11"
+    },
+    {
+      "day": 32,
+      "exercise_index": 1,
+      "query_sha256": "38c2ff5e673e9e1f8b4b10824f5c5ed31e1decb13441c3c39d65832b89683c8c",
+      "ok": true,
+      "rows": 25,
+      "columns": [
+        "district",
+        "general_hospital_count"
+      ],
+      "error": "",
+      "scope": "health_study",
+      "audit_date": "2026-11-27",
+      "mysql_version": "8.4.11"
+    },
+    {
+      "day": 32,
+      "exercise_index": 2,
+      "query_sha256": "f308a521e376c2132b5c8ec9d867b6e902dcfc554e633087eb856c98eb89a03b",
+      "ok": true,
+      "rows": 25,
+      "columns": [
+        "district",
+        "general_hospital_count",
+        "seoul_total_count",
+        "share_pct"
+      ],
+      "error": "",
+      "scope": "health_study",
+      "audit_date": "2026-11-27",
+      "mysql_version": "8.4.11"
+    },
+    {
+      "day": 32,
+      "exercise_index": 3,
+      "query_sha256": "b04ff4c44b61f2b90d5984cf7c610c9f9a95c544d1477982b66483d9aa2d15aa",
+      "ok": true,
+      "rows": 25,
+      "columns": [
+        "district",
+        "general_hospital_count",
+        "cumulative_count",
+        "seoul_total_count",
+        "cumulative_share_pct"
+      ],
+      "error": "",
+      "scope": "health_study",
+      "audit_date": "2026-11-27",
       "mysql_version": "8.4.11"
     }
   ],

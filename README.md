@@ -10,6 +10,7 @@ The focus is learning to turn a question into a query, understand the unit of ea
 
 | Day | Topic | Korean | English | SQL |
 | --- | --- | --- | --- | --- |
+| 32 | General hospital records: LEFT JOIN, citywide shares, and running totals | [한글](til/ko/day32.md) | [English](til/en/day32.md) | [Queries](sql/day32.sql) |
 | 31 | Healthcare facility records, missing IDs, and specialty shares | [한글](til/ko/day31.md) | [English](til/en/day31.md) | [Queries](sql/day31.sql) |
 | 30 | Stock prices: next-session comparisons and moving averages | [한글](til/ko/day30.md) | [English](til/en/day30.md) | [Queries](sql/day30.sql) |
 | 29 | F1 previous-start points and team scoring rates | [한글](til/ko/day29.md) | [English](til/en/day29.md) | [Queries](sql/day29.sql) |
